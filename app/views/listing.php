@@ -16,7 +16,7 @@ require_once(_CLASS_PATH . DIRECTORY_SEPARATOR . 'Article.php');
         <div class="article-listing">
             <?php
             for ($counter = 0; $counter < 30; $counter++) {
-                $article = new Article();
+                $article = NULL;
                 renderArticleElement($article);
             }
 
