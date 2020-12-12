@@ -14,12 +14,12 @@
 			<div><?php echo $errors['all'] ?><div><?php endif; ?>
 			
 		    <!-- Okno z możliwością wpisania tytułu książki -->
-		    <div><label for = "title">Tytuł</label></div>
-		    <div><input type = "text" name="title" value = "" /></div>
+		    <div><label for = "alt">Opis</label></div>
+		    <div><input type = "text" name="alt" value = "" /></div>
 		
 		    <!-- Wypisanie błędów z talbicy errors -->
-		    <?php if(array_key_exists('title', $errors)): ?>
-			<div><?php echo $errors['title'] ?></div><?php endif; ?>
+		    <?php if(array_key_exists('alt', $errors)): ?>
+			<div><?php echo $errors['alt'] ?></div><?php endif; ?>
                 
             <!-- Okno z możliwością wybrania pliku (okładki książki) -->			
             <div><label for = "file">Plik</label></div>

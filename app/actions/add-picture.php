@@ -2,7 +2,7 @@
  
     
 
-    $fields['title'] = array_key_exists('title', $_POST) ? $_POST['title'] : ''; //ustawienie zmiennej title w tablicy fields
+    $fields['alt'] = array_key_exists('alt', $_POST) ? $_POST['alt'] : ''; //ustawienie zmiennej title w tablicy fields
     
     $errors = array();
     //sprawdzanie, czy tablica metody POST jest większa od 0
@@ -12,10 +12,10 @@
         
         
         //sprawdzanie, czy zmienna title w tablicy fields jest pusta
-        if(strlen($fields['title']) == 0)
+        if(strlen($fields['alt']) == 0)
         {
             //wpisanie do zmiennej title w tablicy errors komunikatu
-            $errors['title'] = 'Pole jest wymagane.';
+            $errors['alt'] = 'Pole jest wymagane.';
         }
         
         //sprawdzanie, czy został wysłany plik
