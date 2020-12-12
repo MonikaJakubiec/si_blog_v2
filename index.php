@@ -8,7 +8,7 @@
     define('_CLASS_PATH', _ROOT_PATH . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'classes');
 	define('_UPLOADS_PATH', realpath(dirname(__FILE__)).DIRECTORY_SEPARATOR.'uploads');
 
-	session_start(); //rozpoczęcie sesji
+	//session_start(); //rozpoczęcie sesji
    
 	$pages = array('add-article', 'delete-article', 'edit-article', 'homepage', 'login', 'logout', 'admin-panel', 'preview-article', 'add-picture');
     $page = 'homepage';
