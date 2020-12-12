@@ -12,7 +12,6 @@
         $page = $_GET['page']; //przypisanie zmiennej action wartosci przesłanej za pomocą metody GET
     }
 
-
     $action = _ACTIONS_PATH . DIRECTORY_SEPARATOR . $page . '.php';
     $view = _VIEWS_PATH . DIRECTORY_SEPARATOR . $page . '.php';
     
