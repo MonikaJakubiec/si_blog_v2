@@ -5,7 +5,7 @@
 </head>
 <body>
 
-<h1>DUPA</h1>
+<h1>Projekt sekcji numer 1</h1>
 
 
 <a href="index.php?page=add-picture"> Dodaj</a>

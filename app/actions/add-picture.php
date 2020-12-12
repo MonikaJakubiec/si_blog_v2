@@ -8,7 +8,7 @@
     //sprawdzanie, czy tablica metody POST jest większa od 0
     if(count($_POST) > 0)
     {
-        echo "dupa";
+
         
         
         //sprawdzanie, czy zmienna title w tablicy fields jest pusta
