@@ -5,6 +5,9 @@ define('_RESOURCES_PATH', _ROOT_PATH.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARAT
 define('_VIEWS_PATH', _ROOT_PATH.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'views');
 define('_ACTIONS_PATH', _ROOT_PATH.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'actions');
 define('_CLASS_PATH', _ROOT_PATH.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'classes');
+define('_UPLOADS_PATH', realpath(dirname(__FILE__)).DIRECTORY_SEPARATOR.'uploads');
+
+session_start(); //rozpoczęcie sesji
 
 $actions = array('add-article', 'delete-article', 'edit-article', 'homepage', 'login', 'add-picture');
 $action = 'homepage';

@@ -5,8 +5,10 @@
 </head>
 <body>
 
-<h1>This is a Heading</h1>
-<p>This is a paragraph.</p>
+<h1>DUPA</h1>
+
+
+<a href="index.php?page=add-picture"> Dodaj</a>
 
 </body>
 </html>
