@@ -6,7 +6,7 @@ define('_VIEWS_PATH', _ROOT_PATH.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'
 define('_ACTIONS_PATH', _ROOT_PATH.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'actions');
 define('_CLASS_PATH', _ROOT_PATH.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'classes');
 
-$actions = array('add-article', 'delete-article', 'edit-article', 'homepage', 'login');
+$actions = array('add-article', 'delete-article', 'edit-article', 'homepage', 'login', 'add-picture');
 $action = 'homepage';
 if(array_key_exists('page', $_GET) && in_array($_GET['page'], $actions))
 	{
