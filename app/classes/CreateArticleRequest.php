@@ -1,7 +1,6 @@
 <?php
+final class CreateArticleRequest {
 
-class Article {
-	private $id;
 	private $title;
 	private $content;
 	private $publishedTimestamp;
@@ -10,8 +9,7 @@ class Article {
 	private $userId;
 	private $photoId;
 
-	public function __construct($id, $title, $content, $publishedTimestamp, $status, $featured, $userId, $photoId) {
-		$this->id = $id;
+	private function __construct($title, $content, $publishedTimestamp, $status, $featured, $userId, $photoId) {
 		$this->title = $title;
 		$this->content = $content;
 		$this->publishedTimestamp = $publishedTimestamp;
@@ -21,10 +19,14 @@ class Article {
 		$this->photoId = $photoId;   
 	}
 
-	public function getId() {
-		return $this->id;
+	public static function createWithPhoto($title, $content, $publishedTimestamp, $status, $featured, $userId, $photoId) {
+		return new CreateArticleRequest($title, $content, $publishedTimestamp, $status, $featured, $userId, $photoId);
 	}
 
+	public static function createWithoutPhoto($title, $content, $publishedTimestamp, $status, $featured, $userId, $photoId) {
+		return new CreateArticleRequest($title, $content, $publishedTimestamp, $status, $featured, $userId, null);
+	}
+	
 	public function getTitle() {
 		return $this->title;
 	}
