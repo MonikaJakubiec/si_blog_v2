@@ -1,6 +1,7 @@
 <?php
-function showHtmlFooter(){
+function showHtmlFooter()
+{
 ?><footer>
-<p>Copyright Techblog 2020</p>
-</footer>
-<?php }?>
+        <p>Copyright Techblog 2020</p>
+    </footer>
+<?php } ?>

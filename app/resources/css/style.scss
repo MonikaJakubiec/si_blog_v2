@@ -3,7 +3,12 @@ $primary-color: #000a51;
 $font-primary-color: #fff;
 $article-background: #fff;
 $button-background: #8bc34a;
+$green-dark:#4caf50;
 $button-color: #fff;
+$max-width-default: 1200px;
+$article-listing-gap: 30px;
+$article-listing-cols: 3;
+
 
 body {
   font: 100% $font-stack;
@@ -17,26 +22,35 @@ body {
 }
 
 header {
+  max-width: $max-width-default;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 8px;
   h1 {
     padding-left: 8px;
     font-size: 40px;
     color: $font-primary-color;
   }
+  a {
+    text-decoration: none;
+    color: unset;
+  }
 }
-footer{
+footer {
   display: block;
-  margin:10px 0px 0px 0px;
-  padding:4px;
+  margin: 10px 0px 0px 0px;
+  padding: 4px;
   background-color: #000;
-  color:#ccc;
-  text-align:center;
-  
-  p{
-    font-size:14px;
-    margin:0px;
+  color: #ccc;
+  text-align: center;
+
+  p {
+    font-size: 14px;
+    margin: 0px;
   }
 }
 
+/*BUTTONS*/
 .button,
 a.button {
   background-color: $button-background;
@@ -47,11 +61,71 @@ a.button {
   text-decoration: unset;
 
   &:hover {
-    background: #4caf50;
+    background:$green-dark;
     transition-duration: 0.4s;
+    box-shadow: inset 1px 1px 4px 0px #000;
+  }
+
+  &:active {
+    background: $primary-color;
+    transition-duration: 0s;
   }
 }
 
+.article-listing {
+  max-width: $max-width-default;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0px $article-listing-gap;
+  display: grid;
+  $article-listing-element-width: ($max-width-default / $article-listing-cols) -
+    (($article-listing-cols - 1) * $article-listing-gap) / $article-listing-cols;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax($article-listing-element-width, 1fr)
+  );
+  grid-gap: $article-listing-gap;
+
+  @media only screen and (max-width: $article-listing-element-width+2*$article-listing-gap) {
+    & {
+      grid-template-columns: none;
+      padding: 0px $article-listing-gap/2;
+    }
+  }
+
+  article {
+    display: flex;
+    flex-direction: column;
+    background-color: $article-background;
+    height: auto;
+    padding: 0px;
+    flex: 10 2 30%;
+    box-shadow: 4px 4px 0px $green-dark;
+
+    //except image
+    & > h2,
+    & > p,
+    & > a {
+      padding-left: 4px;
+      padding-right: 4px;
+    }
+
+    img.featured {
+      width: 100%;
+      height: 214px;
+      object-fit: cover;
+    }
+
+    a.read-more {
+      margin: 4px;
+      display: block;
+      text-align: center;
+      margin-top: auto;
+    }
+  }
+}
+
+/*
 .article-listing {
   padding: auto;
   display: flex;
@@ -98,3 +172,4 @@ a.button {
     }
   }
 }
+*/

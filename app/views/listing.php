@@ -7,7 +7,7 @@ require_once(_CLASS_PATH . DIRECTORY_SEPARATOR . 'Article.php');
 ?>
 <!DOCTYPE html>
 <html lang="pl">
-<?php showHtmlHead(_SITE_NAME, "Zobacz najnowsze artykuły", null); ?>
+<?php showHtmlHead(_SITE_NAME."— Strona główna", "Zobacz najnowsze artykuły", null); ?>
 
 <body>
     <?php showHtmlHeader(); ?>
@@ -15,7 +15,7 @@ require_once(_CLASS_PATH . DIRECTORY_SEPARATOR . 'Article.php');
     <section id="main">
         <div class="article-listing">
             <?php
-            for ($counter = 0; $counter < 9; $counter++) {
+            for ($counter = 0; $counter < 30; $counter++) {
                 $article = new Article();
                 renderArticleElement($article);
             }

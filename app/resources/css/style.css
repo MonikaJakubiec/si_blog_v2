@@ -9,10 +9,22 @@ body {
   margin: 0 auto;
 }
 
+header {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 8px;
+}
+
 header h1 {
   padding-left: 8px;
   font-size: 40px;
   color: #fff;
+}
+
+header a {
+  text-decoration: none;
+  color: unset;
 }
 
 footer {
@@ -29,6 +41,7 @@ footer p {
   margin: 0px;
 }
 
+/*BUTTONS*/
 .button,
 a.button {
   background-color: #8bc34a;
@@ -44,24 +57,35 @@ a.button:hover {
   background: #4caf50;
   -webkit-transition-duration: 0.4s;
           transition-duration: 0.4s;
+  -webkit-box-shadow: inset 1px 1px 4px 0px #000;
+          box-shadow: inset 1px 1px 4px 0px #000;
+}
+
+.button:active,
+a.button:active {
+  background: #000a51;
+  -webkit-transition-duration: 0s;
+          transition-duration: 0s;
 }
 
 .article-listing {
-  padding: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: space-around;
-          flex-flow: space-around;
-  -webkit-box-align: stretch;
-      -ms-flex-align: stretch;
-          align-items: stretch;
-  -ms-flex-line-pack: start;
-      align-content: flex-start;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0px 30px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(380px, 1fr))[auto-fill];
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  grid-gap: 30px;
+}
+
+@media only screen and (max-width: 440px) {
+  .article-listing {
+    -ms-grid-columns: none;
+        grid-template-columns: none;
+    padding: 0px 15px;
+  }
 }
 
 .article-listing article {
@@ -74,11 +98,12 @@ a.button:hover {
           flex-direction: column;
   background-color: #fff;
   height: auto;
-  margin: 8px;
-  padding: 8px 0px;
+  padding: 0px;
   -webkit-box-flex: 10;
       -ms-flex: 10 2 30%;
           flex: 10 2 30%;
+  -webkit-box-shadow: 4px 4px 0px #4caf50;
+          box-shadow: 4px 4px 0px #4caf50;
 }
 
 .article-listing article > h2,
@@ -88,19 +113,11 @@ a.button:hover {
   padding-right: 4px;
 }
 
-.article-listing article h2 {
-  margin: 0px;
-  padding: 4px;
-  text-align: center;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.article-listing article img {
+.article-listing article img.featured {
   width: 100%;
+  height: 214px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .article-listing article a.read-more {
@@ -109,4 +126,53 @@ a.button:hover {
   text-align: center;
   margin-top: auto;
 }
+
+/*
+.article-listing {
+  padding: auto;
+  display: flex;
+  flex-wrap: wrap;
+  flex-flow: space-around;
+  align-items: stretch;
+  align-content: flex-start;
+
+  article {
+    display: flex;
+    flex-direction: column;
+    background-color: $article-background;
+    height: auto;
+    margin: 8px;
+    padding: 8px 0px;
+    flex: 10 2 30%;
+
+    //except image
+    & > h2,
+    & > p,
+    & > a {
+      padding-left: 4px;
+      padding-right: 4px;
+    }
+    h2 {
+      margin: 0px;
+      padding: 4px;
+      text-align: center;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    img {
+      width: 100%;
+    }
+
+    a.read-more {
+      margin:4px;
+      display: block;
+      text-align: center;
+      margin-top: auto;
+    }
+  }
+}
+*/
 /*# sourceMappingURL=style.css.map */
