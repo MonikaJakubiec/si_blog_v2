@@ -16,3 +16,4 @@ if(array_key_exists('page', $_GET) && in_array($_GET['page'], $actions))
 include(_ACTIONS_PATH . DIRECTORY_SEPARATOR .$action.'.php');
 include(_VIEWS_PATH . DIRECTORY_SEPARATOR .$action.'.php');
 ?>
+
