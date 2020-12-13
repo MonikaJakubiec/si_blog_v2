@@ -3,12 +3,13 @@
 <?php
 require_once(_VIEWS_PATH . DIRECTORY_SEPARATOR . 'partials' . DIRECTORY_SEPARATOR . 'head.php');
 showHtmlHead("Panel administratora");
-include _VIEWS_PATH . DIRECTORY_SEPARATOR . 'admin-menu.php';
-echo _RESOURCES_PATH.DIRECTORY_SEPARATOR.'js'.DIRECTORY_SEPARATOR.'manage-article.js';
 ?>
-<script src="<?php echo _RESOURCES_PATH.DIRECTORY_SEPARATOR.'js'.DIRECTORY_SEPARATOR.'manage-article.js'; ?>"></script>
 
 <body>
+    <?php
+    include _VIEWS_PATH . DIRECTORY_SEPARATOR . 'admin-menu.php';
+    ?>
+    <script src="<?php echo _RESOURCES_PATH . DIRECTORY_SEPARATOR . 'js' . DIRECTORY_SEPARATOR . 'manage-article.js'; ?>"></script>
     <table>
         <thead>
             <tr>
