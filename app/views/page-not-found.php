@@ -12,8 +12,12 @@ showHtmlHead();
     <?php
     showHtmlHeader();
     ?>
-    <p>404 PAGE NOT FOUND</p>
-    <p>Przepraszamy podana strona nie istnieje :(</p>
+    <main id="content">
+        <div class="no-bcg t-center">
+            <p>404 PAGE NOT FOUND</p>
+            <p>Przepraszamy podana strona nie istnieje :(</p>
+        </div>
+    </main>
     <?php
     showHtmlFooter();
     ?>

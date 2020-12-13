@@ -6,35 +6,45 @@ require_once(_VIEWS_PATH . DIRECTORY_SEPARATOR . 'partials' . DIRECTORY_SEPARATO
 require_once(_VIEWS_PATH . DIRECTORY_SEPARATOR . 'partials' . DIRECTORY_SEPARATOR . 'footer.php');
 require_once(_VIEWS_PATH . DIRECTORY_SEPARATOR . 'partials' . DIRECTORY_SEPARATOR . 'admin-menu.php');
 
-showHtmlHead("Panel administratora");
+showHtmlHead("Panel administratora", null, null, true);
 ?>
 
-<body>
+<body class="admin">
     <?php
     showHtmlHeader();
-    showHtmlAdminMenu();
     ?>
     <script src="<?php echo _RESOURCES_PATH . DIRECTORY_SEPARATOR . 'js' . DIRECTORY_SEPARATOR . 'manage-article.js'; ?>"></script>
-    <table>
-        <thead>
-            <tr>
-                <th>Tytuł</th>
-                <th>Autor</th>
-                <th>Data publikacji</th>
-                <th colspan="3">Akcje</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><a href="index.php?page=preview-article">Zobacz artykuł</a></td>
-                <td><a href="index.php?page=edit-article">Edytuj artykuł</a></td>
-                <td><a href="#" onClick="confirmArticleDelete()">Usuń artykuł</a></td>
-            </tr>
-        </tbody>
-    </table>
+    <main id="content">
+        <?php showHtmlAdminMenu(); ?>
+        <table id="articles">
+            <thead>
+                <tr>
+                    <th>Tytuł</th>
+                    <th>Autor</th>
+                    <th>Data publikacji</th>
+                    <th class="actions">Akcje</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $lorem='Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores ducimus ab, voluptates provident porro aspernatur quod excepturi voluptas, facilis inventore dicta eaque ratione iure neque laudantium quis distinctio voluptatem animi';
+                $tempRand=rand(0,100);
+                
+                
+                for ($i = 0; $i < 10; $i++) { ?>
+                    <tr>
+                        <td><?php $start=rand(0,50); echo substr($lorem, $start,rand(1,50));?></td>
+                        <td><?php $start=rand(0,50); echo substr($lorem, $start,rand(8,20));?></td>
+                        <td><?php $start=rand(0,0); echo substr($lorem, $start,rand(8,8));?></td>
+                        <td class="actions">
+                            <a class="button" href="index.php?page=preview-article">Zobacz artykuł</a>
+                            <a class="button" href="index.php?page=edit-article">Edytuj artykuł</a>
+                            <a class="button button-red" href="#" onClick="confirmArticleDelete()">Usuń artykuł</a></td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </main>
     <?php
     showHtmlFooter();
     ?>

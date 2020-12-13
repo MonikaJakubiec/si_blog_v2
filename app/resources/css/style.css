@@ -9,6 +9,16 @@ body {
   margin: 0 auto;
 }
 
+.t-center {
+  text-align: center;
+}
+
+main#content {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 header {
   max-width: 1200px;
   margin-left: auto;
@@ -41,19 +51,25 @@ footer p {
   margin: 0px;
 }
 
+.no-bcg {
+  color: #fff;
+}
+
 /*BUTTONS*/
 .button,
-a.button {
+a.button, input.button {
   background-color: #8bc34a;
   color: #fff;
   padding: 4px;
   border-radius: 2px;
   display: inline-block;
   text-decoration: unset;
+  min-width: 100px;
+  text-align: center;
 }
 
 .button:hover,
-a.button:hover {
+a.button:hover, input.button:hover {
   background: #4caf50;
   -webkit-transition-duration: 0.4s;
           transition-duration: 0.4s;
@@ -62,10 +78,15 @@ a.button:hover {
 }
 
 .button:active,
-a.button:active {
+a.button:active, input.button:active {
   background: #000a51;
   -webkit-transition-duration: 0s;
           transition-duration: 0s;
+}
+
+.button.button-red,
+a.button.button-red, input.button.button-red {
+  background-color: red;
 }
 
 .article-listing {
