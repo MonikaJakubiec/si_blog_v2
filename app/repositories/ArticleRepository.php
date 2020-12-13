@@ -18,10 +18,41 @@ final class ArticleRepository {
 		return $article;
 	}
 
-	public function getAllUsers() {
+	public function getAllArticles() {
 		require '..' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
 		$articles = [];
 		$stmt = $db->query('SELECT * FROM Article ORDER BY id');
+		while ($articleInfo = $stmt->fetch()) {
+			$article = new Article($articleInfo['id'], $articleInfo['title'], $articleInfo['content'], $articleInfo['published_timestamp'], $articleInfo['status'], $articleInfo['is_featured'], $articleInfo['user_id'], $articleInfo['photo_id']);
+			array_push($articles, $article);
+		}
+		$stmt->closeCursor();
+		$db = null;
+
+		return $articles;
+	}
+
+	public function getNumberOfArticlesStartingFromOffset($number, $offset) {
+		require '..' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
+		$articles = [];
+		$stmt = $db->prepare('SELECT * FROM Article ORDER BY published_timestamp DESC LIMIT :number OFFSET :offset');
+		$stmt->bindValue(':number', $number, PDO::PARAM_INT);
+		$stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+		$stmt->execute();
+		while ($articleInfo = $stmt->fetch()) {
+			$article = new Article($articleInfo['id'], $articleInfo['title'], $articleInfo['content'], $articleInfo['published_timestamp'], $articleInfo['status'], $articleInfo['is_featured'], $articleInfo['user_id'], $articleInfo['photo_id']);
+			array_push($articles, $article);
+		}
+		$stmt->closeCursor();
+		$db = null;
+
+		return $articles;
+	}
+
+	public function getFeaturedArticles() {
+		require '..' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
+		$articles = [];
+		$stmt = $db->query('SELECT * FROM Article WHERE is_featured = 1 ORDER BY published_timestamp DESC');
 		while ($articleInfo = $stmt->fetch()) {
 			$article = new Article($articleInfo['id'], $articleInfo['title'], $articleInfo['content'], $articleInfo['published_timestamp'], $articleInfo['status'], $articleInfo['is_featured'], $articleInfo['user_id'], $articleInfo['photo_id']);
 			array_push($articles, $article);
