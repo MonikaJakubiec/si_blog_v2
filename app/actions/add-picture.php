@@ -26,8 +26,8 @@
             
             $temp_name = $_FILES['file']['tmp_name']; //zmienna do przechowywania tymczasowej nazwy
             $file_name = $_FILES['file']['name']; //zmienna przechowywująca nazwę pliku
-            $file_create = _UPLOADS_PATH.'\\'.$today;
-            $file_root = $file_create.'\\'.$file_name; //ścieżka dostępu do pliku
+            $file_create = _UPLOADS_PATH. DIRECTORY_SEPARATOR .$today;
+            $file_root = $file_create. DIRECTORY_SEPARATOR .$file_name; //ścieżka dostępu do pliku
             if(!file_exists($file_create))
             {
                 mkdir($file_create,0777,true);
