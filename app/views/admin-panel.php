@@ -2,12 +2,17 @@
 <html lang="pl">
 <?php
 require_once(_VIEWS_PATH . DIRECTORY_SEPARATOR . 'partials' . DIRECTORY_SEPARATOR . 'head.php');
+require_once(_VIEWS_PATH . DIRECTORY_SEPARATOR . 'partials' . DIRECTORY_SEPARATOR . 'header.php');
+require_once(_VIEWS_PATH . DIRECTORY_SEPARATOR . 'partials' . DIRECTORY_SEPARATOR . 'footer.php');
+require_once(_VIEWS_PATH . DIRECTORY_SEPARATOR . 'partials' . DIRECTORY_SEPARATOR . 'admin-menu.php');
+
 showHtmlHead("Panel administratora");
 ?>
 
 <body>
     <?php
-    include _VIEWS_PATH . DIRECTORY_SEPARATOR . 'admin-menu.php';
+    showHtmlHeader();
+    showHtmlAdminMenu();
     ?>
     <script src="<?php echo _RESOURCES_PATH . DIRECTORY_SEPARATOR . 'js' . DIRECTORY_SEPARATOR . 'manage-article.js'; ?>"></script>
     <table>
@@ -30,6 +35,9 @@ showHtmlHead("Panel administratora");
             </tr>
         </tbody>
     </table>
+    <?php
+    showHtmlFooter();
+    ?>
 </body>
 
 </html>

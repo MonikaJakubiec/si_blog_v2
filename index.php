@@ -10,10 +10,13 @@
 
 	session_start(); //rozpoczęcie sesji
    
-	$pages = array('add-article', 'delete-article', 'edit-article', 'homepage', 'login', 'logout', 'admin-panel', 'preview-article', 'add-picture');
+	$pages = array('add-article', 'delete-article', 'edit-article', 'homepage', 'login', 'logout', 'admin-panel', 'preview-article', 'add-picture', 'listing', 'article');
     $page = 'homepage';
     if (array_key_exists('page', $_GET) && in_array($_GET['page'], $pages)) {
         $page = $_GET['page']; //przypisanie zmiennej action wartosci przesłanej za pomocą metody GET
+    }
+    else {
+        $page = 'page-not-found';
     }
 
     $action = _ACTIONS_PATH . DIRECTORY_SEPARATOR . $page . '.php';
@@ -26,4 +29,3 @@
     if (file_exists($view)) {
         include($view);
     }
-?>
