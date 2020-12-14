@@ -13,10 +13,22 @@ define('_UPLOADS_PATH', realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR . 'upl
 require_once _CLASS_PATH . DIRECTORY_SEPARATOR . 'CreateUserRequest.php';
 require_once _REPOSITORIES_PATH . DIRECTORY_SEPARATOR . 'UserRepository.php';
 
+require_once _CLASS_PATH . DIRECTORY_SEPARATOR . 'CreateArticleRequest.php';
+require_once _REPOSITORIES_PATH . DIRECTORY_SEPARATOR . 'ArticleRepository.php';
+
 $userRequest = CreateUserRequest::createAdministrator("user1", "user1password");
 $userRepo = new UserRepository();
 $userRepo->saveUserFromRequest($userRequest);
 $userArray = $userRepo->getAllUsers();
 var_dump($userArray);
+
+echo "\n\n";
+
+$articleRequest = CreateArticleRequest::createWithoutPhoto("First Article", "abcabcabc abcabcabc", time(), "draft", false, 1);
+var_dump($articleRequest);
+$articleRepo = new ArticleRepository();
+$articleRepo->saveArticleFromRequest($articleRequest);
+$articleArray = $articleRepo->getAllArticles();
+var_dump($articleArray);
 
 ?>

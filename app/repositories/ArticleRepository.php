@@ -64,14 +64,14 @@ final class ArticleRepository {
 
 	public function saveArticleFromRequest($createArticleRequest) {
 		require 'app' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
-		$stmt = $db->prepare('INSERT INTO Article (title, content, published_timestamp, status, is_featured, user_id, photo_id) VALUES (:title, :content, :published_timestamp, :status, :is_featured, :user_id, :photo_id)');
+		$stmt = $db->prepare('INSERT INTO Article (user_id, photo_id, is_featured, status, title, published_timestamp, content) VALUES (:user_id, :photo_id, :is_featured, :status, :title, :published_timestamp, :content)');
 		$stmt->bindValue(':title', $createArticleRequest->getTitle(), PDO::PARAM_STR);
 		$stmt->bindValue(':content', $createArticleRequest->getContent(), PDO::PARAM_STR);
-		$stmt->bindValue(':published_timestamp', $createUserRequest->getPublishedTimestamp(), PDO::PARAM_INT);
+		$stmt->bindValue(':published_timestamp', $createArticleRequest->getPublishedTimestamp(), PDO::PARAM_INT);
 		$stmt->bindValue(':status', $createArticleRequest->getStatus(), PDO::PARAM_STR);
 		$stmt->bindValue(':is_featured', $createArticleRequest->isFeatured(), PDO::PARAM_BOOL);
-		$stmt->bindValue(':user_id', $createUserRequest->getUserId(), PDO::PARAM_INT);
-		$stmt->bindValue(':photo_id', $createUserRequest->getPhotoId(), PDO::PARAM_INT);
+		$stmt->bindValue(':user_id', $createArticleRequest->getUserId(), PDO::PARAM_INT);
+		$stmt->bindValue(':photo_id', $createArticleRequest->getPhotoId(), PDO::PARAM_INT);
 		$stmt->execute();
 		$stmt->closeCursor();
 		$db = null;
