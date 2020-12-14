@@ -1,12 +1,11 @@
 <?php
-spl_autoload_register(function ($class_name) {
-    include '..' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . $class_name . '.php';
-});
+require_once 'app' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'Article.php';
+require_once 'app' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'CreateArticleRequest.php';
 
 final class ArticleRepository {
 	
 	public function getArticleById($articleId) {
-		require '..' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
+		require 'app' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
 		$stmt = $db->prepare('SELECT * FROM Article WHERE id = :articleId');
 		$stmt->bindValue(':articleId', $articleId, PDO::PARAM_INT);
 		$stmt->execute();
@@ -19,7 +18,7 @@ final class ArticleRepository {
 	}
 
 	public function getAllArticles() {
-		require '..' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
+		require 'app' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
 		$articles = [];
 		$stmt = $db->query('SELECT * FROM Article ORDER BY id');
 		while ($articleInfo = $stmt->fetch()) {
@@ -33,7 +32,7 @@ final class ArticleRepository {
 	}
 
 	public function getNumberOfArticlesStartingFromOffset($number, $offset) {
-		require '..' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
+		require 'app' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
 		$articles = [];
 		$stmt = $db->prepare('SELECT * FROM Article ORDER BY published_timestamp DESC LIMIT :number OFFSET :offset');
 		$stmt->bindValue(':number', $number, PDO::PARAM_INT);
@@ -50,7 +49,7 @@ final class ArticleRepository {
 	}
 
 	public function getFeaturedArticles() {
-		require '..' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
+		require 'app' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
 		$articles = [];
 		$stmt = $db->query('SELECT * FROM Article WHERE is_featured = 1 ORDER BY published_timestamp DESC');
 		while ($articleInfo = $stmt->fetch()) {
@@ -64,7 +63,7 @@ final class ArticleRepository {
 	}
 
 	public function saveArticleFromRequest($createArticleRequest) {
-		require '..' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
+		require 'app' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
 		$stmt = $db->prepare('INSERT INTO Article (title, content, published_timestamp, status, is_featured, user_id, photo_id) VALUES (:title, :content, :published_timestamp, :status, :is_featured, :user_id, :photo_id)');
 		$stmt->bindValue(':title', $createArticleRequest->getTitle(), PDO::PARAM_STR);
 		$stmt->bindValue(':content', $createArticleRequest->getContent(), PDO::PARAM_STR);
@@ -79,7 +78,7 @@ final class ArticleRepository {
 	}
 
 	public function updateArticle($article) {
-		require '..' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
+		require 'app' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
 		$stmt = $db->prepare('UPDATE Article SET title = :title, content = :content, published_timestamp = :published_timestamp, status = :status, is_featured = :is_featured, user_id = :user_id, photo_id = :photo_id WHERE id = :articleId');
 		$stmt->bindValue(':title', $article->getTitle(), PDO::PARAM_STR);
 		$stmt->bindValue(':content', $article->getContent(), PDO::PARAM_STR);

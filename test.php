@@ -10,29 +10,13 @@ define('_REPOSITORIES_PATH', _ROOT_PATH . DIRECTORY_SEPARATOR . 'app' . DIRECTOR
 define('_PDO_PATH', _ROOT_PATH . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'pdo');
 define('_UPLOADS_PATH', realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR . 'uploads');
 
-session_start(); //rozpoczęcie sesji
+require_once _CLASS_PATH . DIRECTORY_SEPARATOR . 'CreateUserRequest.php';
+require_once _REPOSITORIES_PATH . DIRECTORY_SEPARATOR . 'UserRepository.php';
 
-$pages = array('add-article', 'delete-article', 'edit-article', 'homepage', 'login', 'logout', 'admin-panel', 'preview-article', 'add-picture', 'listing', 'article');
+$userRequest = CreateUserRequest::createAdministrator("user1", "user1password");
+$userRepo = new UserRepository();
+$userRepo->saveUserFromRequest($userRequest);
+$userArray = $userRepo->getAllUsers();
+var_dump($userArray);
 
-if (array_key_exists('page', $_GET)) {
-
-    if (in_array($_GET['page'], $pages)) {
-        $page = $_GET['page']; //przypisanie zmiennej action wartosci przesłanej za pomocą metody GET
-    } else {
-        $page = 'page-not-found';
-    }
-} else {
-
-    $page = 'listing';
-}
-
-$action = _ACTIONS_PATH . DIRECTORY_SEPARATOR . $page . '.php';
-$view = _VIEWS_PATH . DIRECTORY_SEPARATOR . $page . '.php';
-
-if (file_exists($action)) {
-    include($action);
-}
-
-if (file_exists($view)) {
-    include($view);
-}
+?>
