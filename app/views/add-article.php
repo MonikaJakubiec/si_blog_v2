@@ -16,7 +16,7 @@ showHtmlHead("Dodawanie artykułu", null, null, true);
     <main id="content">
         <?php  showHtmlAdminMenu();?>
         <h2 class="no-bcg t-center">Dodaj artykuł</h2>
-    <form class="edit-article no-bcg t-center" method="post" action="index.php?page=article-validation">
+    <form class="edit-article no-bcg t-center" method="post" action="<?php echo _RHOME;?>=article-validation">
         <label for="title">Tytuł</label><br>
         <input type="text" value="" id="title" name="title" placeholder="Wpisz tytuł" autofocus="true" required><br>
         <label for="title">Treść</label><br>

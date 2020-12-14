@@ -37,8 +37,8 @@ showHtmlHead("Panel administratora", null, null, true);
                         <td><?php $start=rand(0,50); echo substr($lorem, $start,rand(8,20));?></td>
                         <td><?php $start=rand(0,0); echo substr($lorem, $start,rand(8,8));?></td>
                         <td class="actions">
-                            <a class="button" href="index.php?page=preview-article">Zobacz artykuł</a>
-                            <a class="button" href="index.php?page=edit-article">Edytuj artykuł</a>
+                            <a class="button" href="<?php echo _RHOME;?>preview-article">Zobacz artykuł</a>
+                            <a class="button" href="<?php echo _RHOME;?>edit-article">Edytuj artykuł</a>
                             <a class="button button-red" href="#" onClick="confirmArticleDelete()">Usuń artykuł</a></td>
                     </tr>
                 <?php } ?>
