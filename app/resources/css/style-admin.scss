@@ -1,0 +1,52 @@
+$max-width-default: 1200px;
+$font-primary-color: #fff;
+
+body.admin {
+
+
+
+  nav.admin-menu {
+    max-width: $max-width-default;
+    background-color: $font-primary-color;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: auto;
+    margin-bottom: 4px;
+    padding: 4px;
+  }
+
+  table {
+    background-color: $font-primary-color;
+    width: 100%;
+
+    td {
+      border: 1px solid gray;
+    }
+
+    #articles {
+      border-spacing: 0px;
+      width: 100%;
+      border: 1px solid black;
+    }
+  }
+
+form.edit-article{
+    padding:4px;
+    border:1px solid $font-primary-color;
+input#title{
+    width:90%;
+    font-size:28px;
+    margin:4px;
+}
+textarea#content{
+    width: 90%;
+    font-size:14px;
+    margin:4px;
+}
+
+}
+
+
+
+}

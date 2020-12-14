@@ -20,6 +20,15 @@ body {
 .m-auto {
   margin: 0 auto;
 }
+.t-center{
+  text-align: center;
+}
+
+main#content{
+  max-width: $max-width-default;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 header {
   max-width: $max-width-default;
@@ -49,16 +58,21 @@ footer {
     margin: 0px;
   }
 }
+.no-bcg{
+  color:$font-primary-color;
+}
 
 /*BUTTONS*/
 .button,
-a.button {
+a.button, input.button {
   background-color: $button-background;
   color: $button-color;
   padding: 4px;
   border-radius: 2px;
   display: inline-block;
   text-decoration: unset;
+  min-width: 100px;
+  text-align: center;
 
   &:hover {
     background:$green-dark;
@@ -69,6 +83,9 @@ a.button {
   &:active {
     background: $primary-color;
     transition-duration: 0s;
+  }
+  &.button-red{
+    background-color: red;
   }
 }
 
