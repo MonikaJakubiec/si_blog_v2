@@ -7,7 +7,7 @@
 </head>
 <body>
     <div>
-        <form method="post" action="index.php?page=add-picture" enctype="multipart/form-data">
+        <form method="post" action="<?php echo _RHOME;?>add-picture" enctype="multipart/form-data">
         
             <!-- Wypisanie błędów z talbicy errors -->
 		    <?php if(array_key_exists('all', $errors)): ?>

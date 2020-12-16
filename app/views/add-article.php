@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-require_once(_VIEWS_PATH . DIRECTORY_SEPARATOR . 'partials' . DIRECTORY_SEPARATOR . 'head.php');
-require_once(_VIEWS_PATH . DIRECTORY_SEPARATOR . 'partials' . DIRECTORY_SEPARATOR . 'header.php');
-require_once(_VIEWS_PATH . DIRECTORY_SEPARATOR . 'partials' . DIRECTORY_SEPARATOR . 'footer.php');
-require_once(_VIEWS_PATH . DIRECTORY_SEPARATOR . 'partials' . DIRECTORY_SEPARATOR . 'admin-menu.php');
-
+require_once(_VIEWS_PATH . 'partials' . DIRECTORY_SEPARATOR . 'admin-menu.php');
 showHtmlHead("Dodawanie artykułu", null, null, true);
 ?>
 
@@ -16,7 +12,7 @@ showHtmlHead("Dodawanie artykułu", null, null, true);
     <main id="content">
         <?php  showHtmlAdminMenu();?>
         <h2 class="no-bcg t-center">Dodaj artykuł</h2>
-    <form class="edit-article no-bcg t-center" method="post" action="index.php?page=article-validation">
+    <form class="edit-article no-bcg t-center" method="post" action="<?php echo _RHOME;?>=article-validation">
         <label for="title">Tytuł</label><br>
         <input type="text" value="" id="title" name="title" placeholder="Wpisz tytuł" autofocus="true" required><br>
         <label for="title">Treść</label><br>

@@ -1,5 +1,5 @@
 <div>
-<form method="post" action="index.php?page=login">
+<form method="post" action="<?php echo _RHOME;?>login">
 		<!-- Wypisanie błędów z talbicy errors -->
 		<?php if(array_key_exists('all', $errors)): ?>
 			<div><?php echo $errors['all'] ?><div><?php endif; ?>

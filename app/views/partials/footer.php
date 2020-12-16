@@ -2,6 +2,6 @@
 function showHtmlFooter()
 {
 ?><footer>
-        <p>Copyright Techblog 2020</p>
+        <p>Copyright <?php echo _SITE_NAME;?> 2020</p>
     </footer>
 <?php } ?>

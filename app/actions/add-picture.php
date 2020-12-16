@@ -52,7 +52,7 @@
             //przekierowani na stronę główną
             
 
-            header("Location: index.php?page=homepage");
+            header("Location: _RHOME");
         }
         
     }

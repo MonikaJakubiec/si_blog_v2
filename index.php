@@ -1,33 +1,77 @@
 <?php
+session_start();
 
-define('_ROOT_PATH', dirname(__FILE__));
-require_once(_ROOT_PATH . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'private' . DIRECTORY_SEPARATOR . 'config.php');
-define('_RESOURCES_PATH', 'app' . DIRECTORY_SEPARATOR . 'resources');
-define('_VIEWS_PATH', _ROOT_PATH . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'views');
-define('_ACTIONS_PATH', _ROOT_PATH . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'actions');
-define('_CLASS_PATH', _ROOT_PATH . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'classes');
-define('_REPOSITORIES_PATH', _ROOT_PATH . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'repositories');
-define('_PDO_PATH', _ROOT_PATH . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'pdo');
-define('_UPLOADS_PATH', realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR . 'uploads');
+/** katalog w ktorym znajduje się aplikajca */
+$routingCurrDir = str_replace("index.php", "", $_SERVER['SCRIPT_NAME']);
 
-session_start(); //rozpoczęcie sesji
 
+/** katalog w ktorym znajduje się aplikajca */
+define('_RHOME', $routingCurrDir);
+require_once('app' . DIRECTORY_SEPARATOR . 'private' . DIRECTORY_SEPARATOR . 'config.php');
+
+/** katalog z widokami */
+define('_VIEWS_PATH',  'app' . DIRECTORY_SEPARATOR . 'views'.DIRECTORY_SEPARATOR);
+
+/** katalog z kontrolerami */
+define('_ACTIONS_PATH',  'app' . DIRECTORY_SEPARATOR . 'actions'.DIRECTORY_SEPARATOR);
+
+/** katalog z clasmai */
+define('_CLASS_PATH', 'app' . DIRECTORY_SEPARATOR . 'classes'.DIRECTORY_SEPARATOR);
+
+/** katalog z zasobami css/js/images */
+define('_RESOURCES_PATH', _RHOME . 'app' . DIRECTORY_SEPARATOR . 'resources'.DIRECTORY_SEPARATOR);//TODO:
+
+/** katalog z wgranymi plikami */
+define('_UPLOADS_PATH', 'uploads');
+
+
+
+require_once(_VIEWS_PATH  . 'partials' . DIRECTORY_SEPARATOR . 'head.php');
+require_once(_VIEWS_PATH  . 'partials' . DIRECTORY_SEPARATOR . 'header.php');
+require_once(_VIEWS_PATH  . 'partials' . DIRECTORY_SEPARATOR . 'footer.php');
+
+
+/**
+ * Żądanie użytkownika od katalogu, w ktorym znajduje sie aplikacja
+ * @var string
+ */
+$routingRequest = str_replace(_RHOME, "", $_SERVER['REQUEST_URI']);
+/** Adres zasobu żądanego przez użytkownika */
+
+
+/**
+ * Żądana strona (bez parametrów)
+ * @var string
+ */
+$routingRequestPage = str_replace("index.php", "", $routingRequest);
+$routingRequestPage = explode('?', $routingRequestPage, 2)[0];
+$routingRequestPage = explode('&', $routingRequestPage, 2)[0];
+$routingRequestPage = explode('#', $routingRequestPage, 2)[0];
+$routingRequestPage = trim($routingRequestPage, "/");
+
+/**
+ * Dostępne strony
+ * @var array
+ */
 $pages = array('add-article', 'delete-article', 'edit-article', 'homepage', 'login', 'logout', 'admin-panel', 'preview-article', 'add-picture', 'listing', 'article');
 
-if (array_key_exists('page', $_GET)) {
-
-    if (in_array($_GET['page'], $pages)) {
-        $page = $_GET['page']; //przypisanie zmiennej action wartosci przesłanej za pomocą metody GET
-    } else {
+if (in_array($routingRequestPage, $pages)) {
+    /**
+     * Strona do załadowania
+     * @var string
+     */
+    $page = $routingRequestPage;
+} else {
+    if ($routingRequestPage == "")
+        $page = "listing";
+    else {
         $page = 'page-not-found';
     }
-} else {
-
-    $page = 'listing';
 }
 
-$action = _ACTIONS_PATH . DIRECTORY_SEPARATOR . $page . '.php';
-$view = _VIEWS_PATH . DIRECTORY_SEPARATOR . $page . '.php';
+
+$action = _ACTIONS_PATH . $page . '.php';
+$view = _VIEWS_PATH . $page . '.php';
 
 if (file_exists($action)) {
     include($action);
