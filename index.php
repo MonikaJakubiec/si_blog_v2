@@ -4,6 +4,7 @@ session_start();
 /** katalog w ktorym znajduje się aplikajca */
 $routingCurrDir = str_replace("index.php", "", $_SERVER['SCRIPT_NAME']);
 
+
 /** katalog w ktorym znajduje się aplikajca */
 define('_RHOME', $routingCurrDir);
 require_once('app' . DIRECTORY_SEPARATOR . 'private' . DIRECTORY_SEPARATOR . 'config.php');
