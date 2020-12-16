@@ -1,6 +1,7 @@
 body {
   font: 100% cursive, Helvetica, sans-serif;
-  background: #000a51;
+  background: #485add;
+  background: repeating-radial-gradient(#e40303, #ff8c00, #ffed00, #008026, #004dff, #750787 100px);
   color: #000;
   margin: 0px;
 }
@@ -79,7 +80,7 @@ a.button:hover, input.button:hover {
 
 .button:active,
 a.button:active, input.button:active {
-  background: #000a51;
+  background: #485add;
   -webkit-transition-duration: 0s;
           transition-duration: 0s;
 }
