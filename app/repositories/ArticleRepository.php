@@ -1,5 +1,7 @@
 <?php
 require_once 'app' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'Article.php';
+require_once 'app' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'Photo.php';
+require_once 'app' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'User.php';
 require_once 'app' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'CreateArticleRequest.php';
 
 final class ArticleRepository {
@@ -34,13 +36,27 @@ final class ArticleRepository {
 	public function getNumberOfArticlesStartingFromOffset($number, $offset) {
 		require 'app' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
 		$articles = [];
-		$stmt = $db->prepare('SELECT * FROM Article ORDER BY published_timestamp DESC LIMIT :number OFFSET :offset');
+		$stmt = $db->prepare('SELECT Article.id as article_id, Article.user_id, Article.photo_id, Article.is_featured, Article.status, Article.title, Article.published_timestamp, Article.content, Photo.path as photo_path, Photo.alt as photo_alt, User.name as user_name, User.role as user_role FROM Article LEFT JOIN Photo ON Article.photo_id = Photo.id LEFT JOIN User ON Article.user_id = User.id ORDER BY published_timestamp DESC LIMIT :number OFFSET :offset');
 		$stmt->bindValue(':number', $number, PDO::PARAM_INT);
 		$stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
 		$stmt->execute();
 		while ($articleInfo = $stmt->fetch()) {
-			$article = new Article($articleInfo['id'], $articleInfo['title'], $articleInfo['content'], $articleInfo['published_timestamp'], $articleInfo['status'], $articleInfo['is_featured'], $articleInfo['user_id'], $articleInfo['photo_id']);
-			array_push($articles, $article);
+			$article = new Article($articleInfo['article_id'], $articleInfo['title'], $articleInfo['content'], $articleInfo['published_timestamp'], $articleInfo['status'], $articleInfo['is_featured'], $articleInfo['user_id'], $articleInfo['photo_id']);
+			$user = new User($articleInfo['user_id'], $articleInfo['user_name'], "", $articleInfo['user_role']);
+			if ($articleInfo['photo_id'] != NULL) {
+				$photo = new Photo($articleInfo['photo_id'], $articleInfo['photo_path'], $articleInfo['photo_alt']);
+				$articlePhotoUser = array(
+					"article" => $article,
+					"photo" => $photo,
+					"user" => $user,
+				);
+			} else {
+				$articlePhotoUser = array(
+					"article" => $article,
+					"user" => $user,
+				);
+			}
+			array_push($articles, $articlePhotoUser);
 		}
 		$stmt->closeCursor();
 		$db = null;
