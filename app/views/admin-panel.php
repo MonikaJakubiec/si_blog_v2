@@ -1,27 +1,11 @@
 <!DOCTYPE html>
 <html lang="pl">
 <?php
-if (isset($_GET['added-article'])) {
-    if ($_GET['added-article'] == 'true') {
-?>
-        <script>
-            var message = "Pomyślnie dodano artykuł";
-        </script>
-    <?php
-    } else {
-    ?>
-        <script>
-            var message = "Nie udało się dodać artykułu z powodu istniejącego takiego samego tytułu na blogu";
-        </script>
-<?php
-    }
-}
-
 require_once(_VIEWS_PATH . 'partials' . DIRECTORY_SEPARATOR . 'admin-menu.php');
 showHtmlHead("Panel administratora", null, null, true,);
 ?>
 
-<body class="admin" onload="if(typeof message !== 'undefined') alert(message);">
+<body class="admin">
     <?php
     showHtmlHeader();
     ?>

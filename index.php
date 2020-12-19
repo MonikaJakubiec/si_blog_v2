@@ -27,14 +27,9 @@ define('_RESOURCES_PATH', _RHOME . 'app' . DIRECTORY_SEPARATOR . 'resources'.DIR
 /** katalog z wgranymi plikami */
 define('_UPLOADS_PATH', 'uploads');
 
-
-
 require_once(_VIEWS_PATH  . 'partials' . DIRECTORY_SEPARATOR . 'head.php');
 require_once(_VIEWS_PATH  . 'partials' . DIRECTORY_SEPARATOR . 'header.php');
 require_once(_VIEWS_PATH  . 'partials' . DIRECTORY_SEPARATOR . 'footer.php');
-
-require_once(_REPOSITORIES_PATH . 'ArticleRepository.php');
-require_once(_CLASSES_PATH . 'Article.php');
 
 /**
  * Żądanie użytkownika od katalogu, w ktorym znajduje sie aplikacja
@@ -75,8 +70,8 @@ if (in_array($routingRequestPage, $pages)) {
 }
 
 
-$action = _ACTIONS_PATH . $page . '-controller.php';
-$view = _VIEWS_PATH . $page . '-view.php';
+$action = _ACTIONS_PATH . $page . '.php';
+$view = _VIEWS_PATH . $page . '.php';
 
 if (file_exists($action)) {
     include($action);
