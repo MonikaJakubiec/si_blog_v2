@@ -15,8 +15,11 @@ define('_VIEWS_PATH',  'app' . DIRECTORY_SEPARATOR . 'views'.DIRECTORY_SEPARATOR
 /** katalog z kontrolerami */
 define('_ACTIONS_PATH',  'app' . DIRECTORY_SEPARATOR . 'actions'.DIRECTORY_SEPARATOR);
 
-/** katalog z clasmai */
-define('_CLASS_PATH', 'app' . DIRECTORY_SEPARATOR . 'classes'.DIRECTORY_SEPARATOR);
+/** katalog z clasami */
+define('_CLASSES_PATH', 'app' . DIRECTORY_SEPARATOR . 'classes'.DIRECTORY_SEPARATOR);
+
+/** katalog z repozytoriami */
+define('_REPOSITORIES_PATH', 'app' . DIRECTORY_SEPARATOR . 'repositories'.DIRECTORY_SEPARATOR);
 
 /** katalog z zasobami css/js/images */
 define('_RESOURCES_PATH', _RHOME . 'app' . DIRECTORY_SEPARATOR . 'resources'.DIRECTORY_SEPARATOR);//TODO:
@@ -30,6 +33,8 @@ require_once(_VIEWS_PATH  . 'partials' . DIRECTORY_SEPARATOR . 'head.php');
 require_once(_VIEWS_PATH  . 'partials' . DIRECTORY_SEPARATOR . 'header.php');
 require_once(_VIEWS_PATH  . 'partials' . DIRECTORY_SEPARATOR . 'footer.php');
 
+require_once(_REPOSITORIES_PATH . 'ArticleRepository.php');
+require_once(_CLASSES_PATH . 'Article.php');
 
 /**
  * Żądanie użytkownika od katalogu, w ktorym znajduje sie aplikacja
@@ -53,7 +58,7 @@ $routingRequestPage = trim($routingRequestPage, "/");
  * Dostępne strony
  * @var array
  */
-$pages = array('add-article', 'delete-article', 'edit-article', 'homepage', 'login', 'logout', 'admin-panel', 'preview-article', 'add-picture', 'listing', 'article');
+$pages = array('edit-article', 'delete-article', 'homepage', 'login', 'logout', 'admin-panel', 'preview-article', 'add-picture', 'listing', 'article');
 
 if (in_array($routingRequestPage, $pages)) {
     /**
@@ -70,8 +75,8 @@ if (in_array($routingRequestPage, $pages)) {
 }
 
 
-$action = _ACTIONS_PATH . $page . '.php';
-$view = _VIEWS_PATH . $page . '.php';
+$action = _ACTIONS_PATH . $page . '-controller.php';
+$view = _VIEWS_PATH . $page . '-view.php';
 
 if (file_exists($action)) {
     include($action);

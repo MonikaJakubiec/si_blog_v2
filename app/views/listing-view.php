@@ -1,5 +1,5 @@
 <?php
-require_once(_CLASS_PATH  . 'Article.php');
+require_once(_CLASSES_PATH  . 'Article.php');
 require_once(_VIEWS_PATH .'partials'.DIRECTORY_SEPARATOR.'article-grid-item.php')
 ?>
 <!DOCTYPE html>
