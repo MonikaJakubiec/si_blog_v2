@@ -52,7 +52,7 @@
             //przekierowani na stronę główną
             
 
-            header("Location: _RHOME");
+            header("Location: "._RHOME);
         }
         
     }
