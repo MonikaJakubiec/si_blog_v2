@@ -39,7 +39,10 @@ final class UserRepository {
 		$stmt->bindValue(':role', $createUserRequest->getRole(), PDO::PARAM_STR);
 		$stmt->execute();
 		$stmt->closeCursor();
+		$lastInsertId = $db->lastInsertId();
 		$db = null;
+
+		return $lastInsertId;
 	}
 
 	public function updateUser($user) {
