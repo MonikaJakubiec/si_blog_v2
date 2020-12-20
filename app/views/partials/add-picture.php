@@ -27,10 +27,10 @@ function showFileInput($errors)
 function showGalleryInput()
 {
 ?>
-    <table style="color: black;">
+    <table style="color: black; overflow: auto; height: 100px; display: block;">
         <tr>
             <td>
-                <input type="radio" id="none-picture" name="picture-id" onclick="showHideAddingPicture()" checked>
+                <input type="radio" name="picture-id" onclick="showHideAddingPicture()" checked>
             </td>
             <td>nie wyberam zdjecia</td>
             <td></td>
@@ -44,56 +44,56 @@ function showGalleryInput()
         </tr>
         <tr>
             <td>
-                <input type="radio" class="picture-from-gallery" name="picture-id" onclick="showHideAddingPicture()">
+                <input type="radio" name="picture-id" onclick="showHideAddingPicture()">
             </td>
             <td>photo</td>
             <td>description</td>
         </tr>
         <tr>
             <td>
-                <input type="radio" class="picture-from-gallery" name="picture-id" onclick="showHideAddingPicture()">
+                <input type="radio" name="picture-id" onclick="showHideAddingPicture()">
             </td>
             <td>photo</td>
             <td>description</td>
         </tr>
         <tr>
             <td>
-                <input type="radio" class="picture-from-gallery" name="picture-id" onclick="showHideAddingPicture()">
+                <input type="radio" name="picture-id" onclick="showHideAddingPicture()">
             </td>
             <td>photo</td>
             <td>description</td>
         </tr>
         <tr>
             <td>
-                <input type="radio" class="picture-from-gallery" name="picture-id" onclick="showHideAddingPicture()">
+                <input type="radio" name="picture-id" onclick="showHideAddingPicture()">
             </td>
             <td>photo</td>
             <td>description</td>
         </tr>
         <tr>
             <td>
-                <input type="radio" class="picture-from-gallery" name="picture-id" onclick="showHideAddingPicture()">
+                <input type="radio" name="picture-id" onclick="showHideAddingPicture()">
             </td>
             <td>photo</td>
             <td>description</td>
         </tr>
         <tr>
             <td>
-                <input type="radio" class="picture-from-gallery" name="picture-id" onclick="showHideAddingPicture()">
+                <input type="radio" name="picture-id" onclick="showHideAddingPicture()">
             </td>
             <td>photo</td>
             <td>description</td>
         </tr>
         <tr>
             <td>
-                <input type="radio" class="picture-from-gallery" name="picture-id" onclick="showHideAddingPicture()">
+                <input type="radio" name="picture-id" onclick="showHideAddingPicture()">
             </td>
             <td>photo</td>
             <td>description</td>
         </tr>
         <tr>
             <td>
-                <input type="radio" class="picture-from-gallery" name="picture-id" onclick="showHideAddingPicture()">
+                <input type="radio" name="picture-id" onclick="showHideAddingPicture()">
             </td>
             <td>photo</td>
             <td>description</td>

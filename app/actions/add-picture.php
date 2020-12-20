@@ -1,8 +1,9 @@
 <?php
-    function validatePicture($errors) {
+    function validatePicture() {
         $fields['alt'] = array_key_exists('alt', $_POST) ? $_POST['alt'] : ''; //ustawienie zmiennej title w tablicy fields
         
-        $errors = array();
+        //$errors = array(); niepotrzebne raczej TODO usun
+        
         //sprawdzanie, czy tablica metody POST jest większa od 0
         if(count($_POST) > 0)
         {
@@ -44,5 +45,6 @@
                 header("Location: "._RHOME);
             }   
         }
+        return $errors;
     }
 ?>
