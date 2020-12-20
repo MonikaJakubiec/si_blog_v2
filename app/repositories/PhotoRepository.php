@@ -8,7 +8,12 @@ final class PhotoRepository {
 		require 'app' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
 		$stmt = $db->prepare('SELECT * FROM Photo WHERE id = :photoId');
 		$stmt->bindValue(':photoId', $photoId, PDO::PARAM_INT);
-		$stmt->execute();
+		$success = $stmt->execute();
+		if (!$success) {
+			$stmt->closeCursor();
+			$db = null;
+			return null;
+		}
 		$photoInfo = $stmt->fetch();
 		$photo = new Photo($photoInfo['id'], $photoInfo['path'], $photoInfo['alt']);
 		$stmt->closeCursor();
@@ -21,6 +26,10 @@ final class PhotoRepository {
 		require 'app' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
 		$photos = [];
 		$stmt = $db->query('SELECT * FROM Photo ORDER BY id');
+		if (!$stmt) {
+			$db = null;
+			return null;
+		}
 		while ($photoInfo = $stmt->fetch()) {
 			$photo = new Photo($photoInfo['id'], $photoInfo['path'], $photoInfo['alt']);
 			array_push($photos, $photo);
@@ -36,7 +45,12 @@ final class PhotoRepository {
 		$stmt = $db->prepare('INSERT INTO Photo (path, alt) VALUES (:path, :alt)');
 		$stmt->bindValue(':path', $addPhotoRequest->getPath(), PDO::PARAM_STR);
 		$stmt->bindValue(':alt', $addPhotoRequest->getAlt(), PDO::PARAM_STR);
-		$stmt->execute();
+		$success = $stmt->execute();
+		if (!$success) {
+			$stmt->closeCursor();
+			$db = null;
+			return null;
+		}
 		$stmt->closeCursor();
 		$lastInsertId = $db->lastInsertId();
 		$db = null;
@@ -50,7 +64,12 @@ final class PhotoRepository {
 		$stmt->bindValue(':path', $photo->getPath(), PDO::PARAM_STR);
 		$stmt->bindValue(':alt', $photo->getAlt(), PDO::PARAM_STR);
 		$stmt->bindValue(':photoId', $photo->getId(), PDO::PARAM_INT);
-		$stmt->execute();
+		$success = $stmt->execute();
+		if (!$success) {
+			$stmt->closeCursor();
+			$db = null;
+			return null;
+		}
 		$stmt->closeCursor();
 		$db = null;
 	}

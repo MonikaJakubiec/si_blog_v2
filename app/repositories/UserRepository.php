@@ -8,7 +8,12 @@ final class UserRepository {
 		require 'app' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
 		$stmt = $db->prepare('SELECT * FROM User WHERE id = :userId');
 		$stmt->bindValue(':userId', $userId, PDO::PARAM_INT);
-		$stmt->execute();
+		$success = $stmt->execute();
+		if (!$success) {
+			$stmt->closeCursor();
+			$db = null;
+			return null;
+		}
 		$userInfo = $stmt->fetch();
 		$user = new User($userInfo['id'], $userInfo['name'], $userInfo['password'], $userInfo['role']);
 		$stmt->closeCursor();
@@ -21,6 +26,10 @@ final class UserRepository {
 		require 'app' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
 		$users = [];
 		$stmt = $db->query('SELECT * FROM User ORDER BY id');
+		if (!$stmt) {
+			$db = null;
+			return null;
+		}
 		while ($userInfo = $stmt->fetch()) {
 			$user = new User($userInfo['id'], $userInfo['name'], $userInfo['password'], $userInfo['role']);
 			array_push($users, $user);
@@ -37,7 +46,12 @@ final class UserRepository {
 		$stmt->bindValue(':name', $createUserRequest->getName(), PDO::PARAM_STR);
 		$stmt->bindValue(':password', $createUserRequest->getPassword(), PDO::PARAM_STR);
 		$stmt->bindValue(':role', $createUserRequest->getRole(), PDO::PARAM_STR);
-		$stmt->execute();
+		$success = $stmt->execute();
+		if (!$success) {
+			$stmt->closeCursor();
+			$db = null;
+			return null;
+		}
 		$stmt->closeCursor();
 		$lastInsertId = $db->lastInsertId();
 		$db = null;
@@ -52,7 +66,12 @@ final class UserRepository {
 		$stmt->bindValue(':password', $user->getPassword(), PDO::PARAM_STR);
 		$stmt->bindValue(':role', $user->getRole(), PDO::PARAM_STR);
 		$stmt->bindValue(':userId', $user->getId(), PDO::PARAM_INT);
-		$stmt->execute();
+		$success = $stmt->execute();
+		if (!$success) {
+			$stmt->closeCursor();
+			$db = null;
+			return null;
+		}
 		$stmt->closeCursor();
 		$db = null;
 	}
