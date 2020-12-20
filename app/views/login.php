@@ -4,33 +4,37 @@
 showHtmlHead("Zaloguj", null, null, false);
 ?>
 
-<body>
+<body class="login">
 	<?php
 	showHtmlHeader();
 	?>
-	<div style="padding-left: 350px;">
-		<form method="post" action="<?php echo _RHOME; ?>login">
+	<div id="login-box">
+		<h2>Zaloguj się</h2>
+		<form method="post" action="<?php echo _RHOME; ?>login" class="login-form">
 			<!-- Okno z możliwością wpisania nazwy użytkownika -->
-			<div><label for="username">Nazwa użytkownika</label></div>
-			<div><input type="text" name="username" value="" /></div>
+			<div class="login-part">
+				<label for="username">Nazwa użytkownika</label>
+				<input type="text" name="username" value="" />
+			</div>
 
 			<!-- Okno z możliwością wpisania hasła użytkownika -->
-			<div><label for="password">Hasło</label></div>
-			<div><input type="password" name="password" value="" /></div>
+			<div class="login-part">
+				<label for="password">Hasło</label>
+				<input type="password" name="password" value="" />
+			</div>
 
 			<!-- Wypisanie błędów z talbicy errors -->
 			<?php if (array_key_exists('login-validation', $errors)) : ?>
-				<div class="error"><?=$errors['login-validation']?></div><?php endif; ?>
+				<div class="error"><?= $errors['login-validation'] ?></div><?php endif; ?>
 
 			<!-- Przycisk potwierdzający wysłanie danych -->
-			<div><input type="submit" value="Zaloguj" /></div>
+			<div class="login-part">
+				<input class="button login" type="submit" value="Zaloguj" />
+			</div>
 		</form>
 	</div>
-	<div>
-		<?php
-		showHtmlFooter();
-		?>
-	</div>
+	<a class="return" href="<?php echo _RHOME; ?>"><< Wróć na stronę główną</a>
+
 </body>
 
 </html>

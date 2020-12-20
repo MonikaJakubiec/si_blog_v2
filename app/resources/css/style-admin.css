@@ -47,14 +47,25 @@ body.admin form.edit-article textarea#content {
   margin: 4px;
 }
 
+body.admin #photo-selection, body.admin #add-picture-from-file {
+  color: #fff;
+  border: 1px solid #aaa;
+}
+
 body.admin #photo-selection {
   display: block;
-  max-height: 300px;
-  color: #fff;
-  border: 1px solid #fff;
+  max-height: 200px;
+  overflow-y: scroll;
+  overflow-x: auto;
+  text-align: left;
 }
 
 body.admin #photo-selection .photo-selection-option {
   display: block;
+}
+
+body.admin #photo-selection img.file-selection {
+  max-width: 200px;
+  max-height: 200px;
 }
 /*# sourceMappingURL=style-admin.css.map */

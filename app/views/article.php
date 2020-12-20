@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pl">
-<?php showHtmlHead("Tytuł artykułu", "Zobacz najnowszy artykuł", "JohnMuller"); ?>
+<?php showHtmlHead($articleData["article"]->getTitle(), "Zobacz najnowszy artykuł", "JohnMuller"); ?>
 
 <body>
     <?php showHtmlHeader(); ?>

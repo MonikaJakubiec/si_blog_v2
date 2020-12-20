@@ -4,12 +4,11 @@ $primary-color: #000a51;
 $font-primary-color: #fff;
 $article-background: #fff;
 $button-background: #8bc34a;
-$green-dark:#4caf50;
+$green-dark: #4caf50;
 $button-color: #fff;
 $max-width-default: 1200px;
 $article-listing-gap: 30px;
 $article-listing-cols: 3;
-
 
 body {
   font: 100% $font-stack;
@@ -21,11 +20,11 @@ body {
 .m-auto {
   margin: 0 auto;
 }
-.t-center{
+.t-center {
   text-align: center;
 }
 
-main#content{
+main#content {
   max-width: $max-width-default;
   margin-left: auto;
   margin-right: auto;
@@ -59,13 +58,14 @@ footer {
     margin: 0px;
   }
 }
-.no-bcg{
-  color:$font-primary-color;
+.no-bcg {
+  color: $font-primary-color;
 }
 
 /*BUTTONS*/
 .button,
-a.button, input.button {
+a.button,
+input.button {
   background-color: $button-background;
   color: $button-color;
   padding: 4px;
@@ -76,7 +76,7 @@ a.button, input.button {
   text-align: center;
 
   &:hover {
-    background:$green-dark;
+    background: $green-dark;
     transition-duration: 0.4s;
     box-shadow: inset 1px 1px 4px 0px #000;
   }
@@ -85,7 +85,7 @@ a.button, input.button {
     background: $primary-color;
     transition-duration: 0s;
   }
-  &.button-red{
+  &.button-red {
     background-color: red;
   }
 }
@@ -98,10 +98,7 @@ a.button, input.button {
   display: grid;
   $article-listing-element-width: ($max-width-default / $article-listing-cols) -
     (($article-listing-cols - 1) * $article-listing-gap) / $article-listing-cols;
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax($article-listing-element-width, 1fr)
-  );
+  grid-template-columns: repeat(auto-fill, minmax($article-listing-element-width, 1fr));
   grid-gap: $article-listing-gap;
 
   @media only screen and (max-width: $article-listing-element-width+2*$article-listing-gap) {
@@ -147,35 +144,73 @@ a.button, input.button {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   column-gap: 8px;
-  row-gap:8px;
+  row-gap: 8px;
 
-div, article, aside {
-  background: white;
-
-}
-div h1, article, aside {
-  padding:4px;
-}
-
-.main-article-info {
-  grid-column: 1 / 4;
-  text-align:center;
-
-  img.featured{
-    max-width: 100%;
+  div,
+  article,
+  aside {
+    background: white;
   }
-iframe{
-  width: 100%;
-}
-}
-.main-article-content {
-  grid-column: 1 / 3;
-  
-}
+  div h1,
+  article,
+  aside {
+    padding: 4px;
+  }
+
+  .main-article-info {
+    grid-column: 1 / 4;
+    text-align: center;
+
+    img.featured {
+      max-width: 100%;
+    }
+    iframe {
+      width: 100%;
+    }
+  }
+  .main-article-content {
+    grid-column: 1 / 3;
+  }
 }
 
-.list-header{
+.list-header {
   font-weight: bold;
+}
+
+body.login {
+  header {
+    text-align: center;
+  }
+  #login-box {
+    background-color: #fff;
+    color: black;
+    border-radius: 20px;
+    display: block;
+    margin: auto;
+    text-align: center;
+    padding: 16px 32px;
+    width: max-content;
+    font-size: 18px;
+
+    .button.login,
+    input {
+      width: 100%;
+      display: inline-block;
+      text-align: center;
+      font-size: 24px;
+    }
+
+    .login-part {
+      margin: 20px 8px;
+    }
+  }
+  a.return {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    margin: auto;
+    text-align: center;
+  }
 }
 
 //temp to test TODO change MKu

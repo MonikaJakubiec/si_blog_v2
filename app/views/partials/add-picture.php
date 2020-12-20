@@ -23,7 +23,7 @@ function showFileInput($errors)
 function showGalleryInput()
 {
     $photoRepo = new PhotoRepository();
-    $allPhotos = $photoRepo -> getAllPhotos();
+    $allPhotos = $photoRepo->getAllPhotos();
 
 ?>
 
@@ -72,30 +72,24 @@ function showGalleryInput()
             <input type="radio" name="picture-id" id="picture-from-file" onclick="showHideAddingPicture()">
             <label for="picture-from-file">Zdjęcie z pliku</label>
         </div>
-
-        <tr>
-            <td>
-                <input type="radio" id="picture-from-file" name="picture-id" onclick="showHideAddingPicture()">
-            </td>
-            <td>Wgranie zdjęcia na serwer</td>
-            <td></td>
-        </tr>
         <?php
         foreach ($allPhotos as $photo) {
         ?>
-            <tr>
-                <td>
-                    <input type="radio" name="picture-id" onclick="showHideAddingPicture()" value="<?= $photo->getId() ?>">
-                </td>
+            <div class="photo-selection-option">
+                <input type="radio" name="picture-id" id="<?= $photo->getId(); ?>" onclick="showHideAddingPicture()" value="<?= $photo->getId(); ?>">
                 <?php
-                if (file_exists($photo->getPath())) { ?>
-                    <td><img src="<?= _RHOME . $photo->getPath() ?>" height="200" width="350"></td>
+                //todo: check file exist
+                if (file_exists($photo->getPath())) {
+                ?>
+                    <label for="<?php echo $photo->getId(); ?>">
+                        <img src="<?= _RHOME . $photo->getPath() ?>" class="file-selection" alt="<?php echo $photo->getAlt(); ?>" title="<?php echo $photo->getAlt(); ?>">
+                    </label>
                 <?php
-                } ?>
-                <td><?= $photo->getAlt() ?></td>
-            </tr>
+                }
+                ?>
+            </div>
         <?php } ?>
-        </table>
+    </div>
 
 
 
@@ -111,6 +105,6 @@ function showGalleryInput()
 
 
 
-    <?php
+<?php
 }
-    ?>
+?>

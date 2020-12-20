@@ -57,7 +57,8 @@ footer p {
 
 /*BUTTONS*/
 .button,
-a.button, input.button {
+a.button,
+input.button {
   background-color: #8bc34a;
   color: #fff;
   padding: 4px;
@@ -69,7 +70,8 @@ a.button, input.button {
 }
 
 .button:hover,
-a.button:hover, input.button:hover {
+a.button:hover,
+input.button:hover {
   background: #4caf50;
   -webkit-transition-duration: 0.4s;
           transition-duration: 0.4s;
@@ -78,14 +80,16 @@ a.button:hover, input.button:hover {
 }
 
 .button:active,
-a.button:active, input.button:active {
+a.button:active,
+input.button:active {
   background: #000a51;
   -webkit-transition-duration: 0s;
           transition-duration: 0s;
 }
 
 .button.button-red,
-a.button.button-red, input.button.button-red {
+a.button.button-red,
+input.button.button-red {
   background-color: red;
 }
 
@@ -158,11 +162,15 @@ a.button.button-red, input.button.button-red {
   row-gap: 8px;
 }
 
-#main-article div, #main-article article, #main-article aside {
+#main-article div,
+#main-article article,
+#main-article aside {
   background: white;
 }
 
-#main-article div h1, #main-article article, #main-article aside {
+#main-article div h1,
+#main-article article,
+#main-article aside {
   padding: 4px;
 }
 
@@ -189,6 +197,44 @@ a.button.button-red, input.button.button-red {
 
 .list-header {
   font-weight: bold;
+}
+
+body.login header {
+  text-align: center;
+}
+
+body.login #login-box {
+  background-color: #fff;
+  color: black;
+  border-radius: 20px;
+  display: block;
+  margin: auto;
+  text-align: center;
+  padding: 16px 32px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  font-size: 18px;
+}
+
+body.login #login-box .button.login,
+body.login #login-box input {
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  font-size: 24px;
+}
+
+body.login #login-box .login-part {
+  margin: 20px 8px;
+}
+
+body.login a.return {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  margin: auto;
+  text-align: center;
 }
 
 .error {

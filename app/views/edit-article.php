@@ -35,19 +35,18 @@ showHtmlHead("Dodawanie artykułu", null, null, true);
                 <input type="checkbox" name="featured" id="featured">
                 <label for="featured">Polecany</label>
             </div>
-            <div style="float:left; width: 800px; padding-left: 50px;">
-                <?php showGalleryInput() ?>
-            <div id="add-picture-from-file" style="float: right; padding-right: 50px; display: none;">
+            <div id="add-picture-from-file">
                 <?php showFileInput($errors); ?>
             </div>
-            <div style="clear: both;"></div>
-            <div style="float: left; padding-left: 50px;">
+            <?php showGalleryInput(); ?>
+            <script>
+                document.getElementById('add-picture-from-file').style.display = "none";
+            </script>
+
                 <input type="submit" value="Zapisz" class="button">
-            </div>
-            <div style="float: left; padding-left: 50px;">
                 <input type="submit" value="Publikuj" class="button">
-            </div>
-            <div style="clear: both;"></div>
+
+
     </main>
     <?php
     showHtmlFooter();
