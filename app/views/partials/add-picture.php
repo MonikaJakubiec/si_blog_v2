@@ -2,10 +2,6 @@
 function showFileInput($errors)
 {
 ?>
-    <!-- Wypisanie błędów z talbicy errors -->
-    <?php if (array_key_exists('all', $errors)) : ?>
-        <div class="error"><?php echo $errors['all'] ?></div><?php endif; ?>
-
     <!-- Okno z możliwością wpisania tytułu książki -->
     <div><label for="alt">Opis</label></div>
     <div><input type="text" name="alt" value="" /></div>
@@ -27,7 +23,8 @@ function showFileInput($errors)
 function showGalleryInput()
 {
     $photoRepo = new PhotoRepository();
-    $allPhotos = $photoRepo->getAllPhotos();
+    $allPhotos = $photoRepo -> getAllPhotos();
+
 ?>
     <table style="color: black; overflow: auto; height: 200px; display: block;">
         <tr>
@@ -53,7 +50,7 @@ function showGalleryInput()
                 </td>
                 <?php
                 if (file_exists($photo->getPath())) { ?>
-                    <td><img src="<?= $photo->getPath() ?>" height="200" width="350"></td>
+                    <td><img src="<?= $photo->getPath() ?>" height="200"></td>
                 <?php
                 } ?>
                 <td><?= $photo->getAlt() ?></td>
