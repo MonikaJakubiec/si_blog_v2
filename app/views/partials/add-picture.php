@@ -74,37 +74,21 @@ function showGalleryInput()
         </div>
         <?php
         foreach ($allPhotos as $photo) {
+            //todo: check file exist
+            if (file_exists($photo->getPath())) {
         ?>
-            <div class="photo-selection-option">
-                <input type="radio" name="picture-id" id="<?= $photo->getId(); ?>" onclick="showHideAddingPicture()" value="<?= $photo->getId(); ?>">
-                <?php
-                //todo: check file exist
-                if (file_exists($photo->getPath())) {
-                ?>
+                <div class="photo-selection-option">
+                    <input type="radio" name="picture-id" id="<?= $photo->getId(); ?>" onclick="showHideAddingPicture()" value="<?= $photo->getId(); ?>">
+
                     <label for="<?php echo $photo->getId(); ?>">
                         <img src="<?= _RHOME . $photo->getPath() ?>" class="file-selection" alt="<?php echo $photo->getAlt(); ?>" title="<?php echo $photo->getAlt(); ?>">
                     </label>
-                <?php
-                }
-                ?>
-            </div>
+                </div>
+            <?php
+            }
+            ?>
         <?php } ?>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <?php
 }
 ?>
