@@ -40,7 +40,7 @@ $routingRequest = str_replace(_RHOME, "", $_SERVER['REQUEST_URI']);
 
 
 /**
- * Żądana strona (bez parametrów)
+ * Żądana strona (bez parametrów) z danymi po slashu
  * @var string
  */
 $routingRequestPage = str_replace("index.php", "", $routingRequest);
@@ -50,19 +50,31 @@ $routingRequestPage = explode('#', $routingRequestPage, 2)[0];
 $routingRequestPage = trim($routingRequestPage, "/");
 
 /**
+ * Tablica żądanych danych (dane w url rozdzielone slashami)
+ * @var string
+ */
+$routingRequestPageWithData=explode("/",$routingRequestPage);
+
+/**
+ * Żądana strona (bez parametrów) bez danych po slashu
+ * @var string
+ */
+$routingRequestPageWithoutData=$routingRequestPageWithData[0];
+
+/**
  * Dostępne strony
  * @var array
  */
-$pages = array('edit-article', 'delete-article', 'homepage', 'login', 'logout', 'admin-panel', 'preview-article', 'add-picture', 'listing', 'article');
+$pages = array('edit-article', 'delete-article', 'homepage', 'login', 'logout', 'admin-panel', 'show-article', 'add-picture', 'listing', 'article');
 
-if (in_array($routingRequestPage, $pages)) {
+if (in_array($routingRequestPageWithoutData, $pages)) {
     /**
      * Strona do załadowania
      * @var string
      */
-    $page = $routingRequestPage;
+    $page = $routingRequestPageWithoutData;
 } else {
-    if ($routingRequestPage == "")
+    if ($routingRequestPageWithoutData == "")
         $page = "listing";
     else {
         $page = 'page-not-found';
