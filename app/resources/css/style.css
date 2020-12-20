@@ -148,6 +148,10 @@ a.button.button-red, input.button.button-red {
   margin-top: auto;
 }
 
+.error {
+  color: red;
+}
+
 /*
 .article-listing {
   padding: auto;
