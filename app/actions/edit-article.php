@@ -1,14 +1,16 @@
 <?php
+$errors = [];
 require_once(_ACTIONS_PATH . 'add-picture.php');
 
 //post z form
 if(isset($_POST['title'])) {
-    validateArticle($errors);
-    $errors = validatePicture();
+    validateArticle();
+    validatePicture($errors);
+
     $_SESSION['picture-id'] = $_POST['picture-id'];
 }
 
-function validateArticle($errors) {
+function validateArticle() {
     $isDataCorrect = true;
 
     $articleTitle = testInput($_POST['title']);
