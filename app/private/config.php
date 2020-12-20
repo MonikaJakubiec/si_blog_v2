@@ -1,1 +1,1 @@
-<?php define("_SITE_NAME", "Techblog");
+<?php define("_SITE_NAME", "TechBLoG");

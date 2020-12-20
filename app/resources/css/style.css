@@ -1,6 +1,6 @@
 body {
   font: 100% cursive, Helvetica, sans-serif;
-  background: #000a51;
+  background: #485add;
   color: #000;
   margin: 0px;
 }
@@ -79,7 +79,7 @@ a.button:hover, input.button:hover {
 
 .button:active,
 a.button:active, input.button:active {
-  background: #000a51;
+  background: #485add;
   -webkit-transition-duration: 0s;
           transition-duration: 0s;
 }
@@ -146,6 +146,10 @@ a.button.button-red, input.button.button-red {
   display: block;
   text-align: center;
   margin-top: auto;
+}
+
+.error {
+  color: red;
 }
 
 /*
