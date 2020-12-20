@@ -13,15 +13,11 @@ function validateArticle($errors) {
 
     $articleTitle = testInput($_POST['title']);
     $articleContent = testInput($_POST['content']);
-    $photoId 
 
     if($articleTitle == '') {
         $isDataCorrect = false;
         $errors['title'] = "Należy uzupełnić pole tytuł";
     }
-
-    if()
-    
 }
 
 /**
