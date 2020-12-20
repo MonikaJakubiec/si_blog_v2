@@ -16,7 +16,7 @@ function showFileInput($errors)
 
     <!-- Okno z możliwością wybrania pliku (okładki książki) -->
     <div><label for="file">Plik</label></div>
-    <div><input type="file" name="file" accept="image/jpeg,image/gif" /></div>
+    <div><input type="file" name="file" accept="image/jpeg,image/png,image/jpg" /></div>
     <!-- Wypisanie błędów z talbicy errors -->
     <?php if (array_key_exists('file', $errors)) : ?>
         <div class="error"><?php echo $errors['file'] ?></div><?php endif; ?>
@@ -34,14 +34,14 @@ function showGalleryInput()
             <td>
                 <input type="radio" name="picture-id" onclick="showHideAddingPicture()" checked>
             </td>
-            <td>nie wyberam zdjecia</td>
+            <td>Artykuł bez zdjęcia</td>
             <td></td>
         </tr>
         <tr>
             <td>
                 <input type="radio" id="picture-from-file" name="picture-id" onclick="showHideAddingPicture()">
             </td>
-            <td>zdjecie z pliku</td>
+            <td>Wgranie zdjęcia na serwer</td>
             <td></td>
         </tr>
         <?php
@@ -53,7 +53,7 @@ function showGalleryInput()
                 </td>
                 <?php
                 if (file_exists($photo->getPath())) { ?>
-                    <td><img src="<?= $photo->getPath() ?>" height="100" width="200"></td>
+                    <td><img src="<?= $photo->getPath() ?>" height="200" width="350"></td>
                 <?php
                 } ?>
                 <td><?= $photo->getAlt() ?></td>
