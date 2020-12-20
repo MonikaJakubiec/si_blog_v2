@@ -30,7 +30,7 @@ require_once _REPOSITORIES_PATH . DIRECTORY_SEPARATOR . 'PhotoRepository.php';
                 $fileName = $_FILES['file']['name']; //zmienna przechowywująca nazwę pliku
                 $extension = getFileExtension($fileName);
                 $dirForCurrentFileUpload = _UPLOADS_PATH. DIRECTORY_SEPARATOR .$today;
-                $fileRoot = $dirForCurrentFileUpload. DIRECTORY_SEPARATOR .$fileName.'.'.$extension; //ścieżka dostępu do pliku
+                $fileRoot = $dirForCurrentFileUpload. DIRECTORY_SEPARATOR .$fileName; //ścieżka dostępu do pliku
                 if(in_array($extension, $allowedExtensions))
                 {
                     if(!file_exists($dirForCurrentFileUpload))
