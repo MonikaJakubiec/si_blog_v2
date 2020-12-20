@@ -62,7 +62,7 @@ final class ArticleRepository {
 					"user" => $user,
 				);
 			}
-			array_push($$articlesWithPhotoAndUserInfo, $articlePhotoUser);
+			array_push($articlesWithPhotoAndUserInfo, $articlePhotoUser);
 		}
 		$stmt->closeCursor();
 		$db = null;
@@ -98,12 +98,12 @@ final class ArticleRepository {
 					"user" => $user,
 				);
 			}
-			array_push($$articlesWithPhotoAndUserInfo, $articlePhotoUser);
+			array_push($articlesWithPhotoAndUserInfo, $articlePhotoUser);
 		}
 		$stmt->closeCursor();
 		$db = null;
 
-		return $$articlesWithPhotoAndUserInfo;
+		return $articlesWithPhotoAndUserInfo;
 	}
 
 	public function getFeaturedArticles() {
@@ -130,7 +130,7 @@ final class ArticleRepository {
 					"user" => $user,
 				);
 			}
-			array_push($$articlesWithPhotoAndUserInfo, $articlePhotoUser);
+			array_push($articlesWithPhotoAndUserInfo, $articlePhotoUser);
 		}
 		$stmt->closeCursor();
 		$db = null;
@@ -141,6 +141,19 @@ final class ArticleRepository {
 	public function getFeaturedArticlesCount() {
 		require 'app' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
 		$stmt = $db->query('SELECT COUNT(*) FROM Article WHERE is_featured = 1');
+		if (!$stmt) {
+			$db = null;
+			return null;
+		}
+		$count = $stmt->fetchColumn();
+		$db = null;
+		
+		return $count;
+	}
+
+	public function getArticlesCount() {
+		require 'app' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
+		$stmt = $db->query('SELECT COUNT(*) FROM Article');
 		if (!$stmt) {
 			$db = null;
 			return null;
