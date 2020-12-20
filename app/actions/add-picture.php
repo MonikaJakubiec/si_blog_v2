@@ -2,11 +2,9 @@
 require_once _CLASSES_PATH . DIRECTORY_SEPARATOR . 'AddPhotoRequest.php';
 require_once _REPOSITORIES_PATH . DIRECTORY_SEPARATOR . 'PhotoRepository.php';
 
-    function validatePicture() {
-        $pictureIdAndErrors = [];
+    function validatePicture(&$errors) {
         $fields['alt'] = array_key_exists('alt', $_POST) ? $_POST['alt'] : ''; //ustawienie zmiennej title w tablicy fields
-        
-        $errors = array(); //niepotrzebne raczej TODO usun
+        $returnId = -1;
         
         //sprawdzanie, czy tablica metody POST jest większa od 0
         if(count($_POST) > 0)
@@ -38,22 +36,13 @@ require_once _REPOSITORIES_PATH . DIRECTORY_SEPARATOR . 'PhotoRepository.php';
                 $photoRepo= new PhotoRepository();
 
                 $returnId = $photoRepo-> savePhotoFromRequest($photoRequest);
-                
-                array_push($pictureIdAndErrors, $returnId);
             }
             else
             {
                 //wypisanie błędu przy braku wybrania pliku
                 $errors['file'] = 'Plik jest wymagany.';
-            }
-            //sprawdzanie, czy tablica errors jest równa 0
-            if(count($errors) == 0)
-            {
-                //przekierowani na stronę główną
-                header("Location: "._RHOME);
-            }   
+            }  
         }
-        array_push($pictureIdAndErrors,$errors);
-        return $pictureIdAndErrors;
+        return $returnId;
     }
 ?>

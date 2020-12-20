@@ -1,20 +1,30 @@
 <?php
+$errors = [];
 require_once(_ACTIONS_PATH . 'add-picture.php');
-
-if(!isset($errors)) $errors = [];
 
 //post z form
 if(isset($_POST['title'])) {
     validateArticle();
-    $errors = validatePicture();
+    validatePicture($errors);
+
     $_SESSION['picture-id'] = $_POST['picture-id'];
 }
 
 function validateArticle() {
+    $isDataCorrect = true;
+
     $articleTitle = testInput($_POST['title']);
     $articleContent = testInput($_POST['content']);
+
+    if($articleTitle == '') {
+        $isDataCorrect = false;
+        $errors['title'] = "Należy uzupełnić pole tytuł";
+    }
 }
 
+/**
+ * konwersja tekstu na postać bezpieczna do wstawienia do bazy sql
+ */
 function testInput($data) { 
     $data = stripslashes($data); //zabezpieczenia cudzysłowów
     $data = htmlspecialchars($data); //konwersja znaków specjalnych HTML do encji HTML

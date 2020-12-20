@@ -40,7 +40,7 @@ function showGalleryInput()
         </tr>
         <tr>
             <td>
-                <input type="radio" id="picture-from-file" name="picture-id" onclick="showHideAddingPicture()">
+                <input type="radio" id="picture-from-file" name="picture-id" onclick="showHideAddingPicture()" >
             </td>
             <td>zdjecie z pliku</td>
             <td></td>
