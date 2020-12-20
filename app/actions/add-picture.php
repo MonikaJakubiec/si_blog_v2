@@ -6,7 +6,7 @@ require_once _REPOSITORIES_PATH . DIRECTORY_SEPARATOR . 'PhotoRepository.php';
         $pictureIdAndErrors = [];
         $fields['alt'] = array_key_exists('alt', $_POST) ? $_POST['alt'] : ''; //ustawienie zmiennej title w tablicy fields
         
-        //$errors = array(); niepotrzebne raczej TODO usun
+        $errors = array(); //niepotrzebne raczej TODO usun
         
         //sprawdzanie, czy tablica metody POST jest większa od 0
         if(count($_POST) > 0)

@@ -21,7 +21,7 @@ final class PhotoRepository {
 		require 'app' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
 		$photos = [];
 		$stmt = $db->query('SELECT * FROM Photo ORDER BY id');
-		while ($userInfo = $stmt->fetch()) {
+		while ($photoInfo = $stmt->fetch()) {
 			$photo = new Photo($photoInfo['id'], $photoInfo['path'], $photoInfo['alt']);
 			array_push($photos, $photo);
 		}

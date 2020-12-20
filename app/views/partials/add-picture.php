@@ -26,6 +26,9 @@ function showFileInput($errors)
 // TODO generacja divów lub tabeli na podstawie zdjec z bazy
 function showGalleryInput()
 {
+    $photoRepo = new PhotoRepository();
+    $allPhotos = $photoRepo -> getAllPhotos();
+    var_dump($allPhotos);
 ?>
     <table style="color: black; overflow: auto; height: 200px; display: block;">
         <tr>
