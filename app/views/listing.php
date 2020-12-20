@@ -23,9 +23,10 @@ require_once(_VIEWS_PATH .'partials'.DIRECTORY_SEPARATOR.'article-grid-item.php'
 
             ?>
         </div>
-
     </section>
+    <nav>
+        <
+    </nav>
     <?php showHtmlFooter(); ?>
 </body>
-
 </html>
