@@ -15,6 +15,34 @@ final class UserRepository {
 			return null;
 		}
 		$userInfo = $stmt->fetch();
+		if (!$userInfo) {
+			$stmt->closeCursor();
+			$db = null;
+			return null;
+		}
+		$user = new User($userInfo['id'], $userInfo['name'], $userInfo['password'], $userInfo['role']);
+		$stmt->closeCursor();
+		$db = null;
+		
+		return $user;
+	}
+
+	public function getUserByName($userName) {
+		require 'app' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
+		$stmt = $db->prepare('SELECT * FROM User WHERE name = :userName');
+		$stmt->bindValue(':userName', $userName, PDO::PARAM_STR);
+		$success = $stmt->execute();
+		if (!$success) {
+			$stmt->closeCursor();
+			$db = null;
+			return null;
+		}
+		$userInfo = $stmt->fetch();
+		if (!$userInfo) {
+			$stmt->closeCursor();
+			$db = null;
+			return null;
+		}
 		$user = new User($userInfo['id'], $userInfo['name'], $userInfo['password'], $userInfo['role']);
 		$stmt->closeCursor();
 		$db = null;

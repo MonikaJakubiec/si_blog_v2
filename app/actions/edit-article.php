@@ -1,16 +1,18 @@
 <?php
 $errors = [];
 require_once(_ACTIONS_PATH . 'add-picture.php');
+require_once(_CLASSES_PATH . 'CreateArticleRequest.php');
+require_once(_REPOSITORIES_PATH . 'ArticleRepository.php');
 
 //post z form
 if(isset($_POST['title'])) {
-    validateArticle();
-    validatePicture($errors);
+    $pictureId = validatePicture($errors);
+    validateArticle($errors, $pictureId);
 
     $_SESSION['picture-id'] = $_POST['picture-id'];
 }
 
-function validateArticle() {
+function validateArticle(&$errors, $pictureId) {
     $isDataCorrect = true;
 
     $articleTitle = testInput($_POST['title']);
@@ -19,6 +21,11 @@ function validateArticle() {
     if($articleTitle == '') {
         $isDataCorrect = false;
         $errors['title'] = "Należy uzupełnić pole tytuł";
+    }
+
+    if($isDataCorrect) {
+        $createArticleRequest = CreateArticleRequest::createWithPhoto($articleTitle, $articleContent, time(), "draft", true, 0, $pictureId);
+        (new ArticleRepository)->saveArticleFromRequest($createArticleRequest);
     }
 }
 

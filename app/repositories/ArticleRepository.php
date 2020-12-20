@@ -18,6 +18,11 @@ final class ArticleRepository {
 			return null;
 		}
 		$articleInfo = $stmt->fetch();
+		if (!$articleInfo) {
+			$stmt->closeCursor();
+			$db = null;
+			return null;
+		}
 		$article = new Article($articleInfo['article_id'], $articleInfo['title'], $articleInfo['content'], $articleInfo['published_timestamp'], $articleInfo['status'], $articleInfo['is_featured'], $articleInfo['user_id'], $articleInfo['photo_id']);
 		$user = new User($articleInfo['user_id'], $articleInfo['user_name'], "", $articleInfo['user_role']);
 		if ($articleInfo['photo_id'] != NULL) {
@@ -143,6 +148,19 @@ final class ArticleRepository {
 	public function getFeaturedArticlesCount() {
 		require 'app' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
 		$stmt = $db->query('SELECT COUNT(*) FROM Article WHERE is_featured = 1');
+		if (!$stmt) {
+			$db = null;
+			return null;
+		}
+		$count = $stmt->fetchColumn();
+		$db = null;
+		
+		return $count;
+	}
+
+	public function getArticlesCount() {
+		require 'app' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
+		$stmt = $db->query('SELECT COUNT(*) FROM Article');
 		if (!$stmt) {
 			$db = null;
 			return null;
