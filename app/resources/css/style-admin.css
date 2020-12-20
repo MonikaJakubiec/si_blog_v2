@@ -1,0 +1,49 @@
+body.admin nav.admin-menu {
+  max-width: 1200px;
+  background-color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin: auto;
+  margin-bottom: 4px;
+  padding: 4px;
+}
+
+body.admin table {
+  background-color: #fff;
+  width: 100%;
+}
+
+body.admin table td {
+  border: 1px solid gray;
+}
+
+body.admin table #articles {
+  border-spacing: 0px;
+  width: 100%;
+  border: 1px solid black;
+}
+
+body.admin form.edit-article {
+  padding: 4px;
+  border: 1px solid #fff;
+}
+
+body.admin form.edit-article input#title {
+  width: 90%;
+  font-size: 28px;
+  margin: 4px;
+}
+
+body.admin form.edit-article textarea#content {
+  width: 90%;
+  font-size: 14px;
+  margin: 4px;
+}
+/*# sourceMappingURL=style-admin.css.map */

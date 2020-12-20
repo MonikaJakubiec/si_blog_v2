@@ -1,9 +1,6 @@
 <?php
-require_once(_VIEWS_PATH . DIRECTORY_SEPARATOR . 'partials' . DIRECTORY_SEPARATOR . 'head.php');
-require_once(_VIEWS_PATH . DIRECTORY_SEPARATOR . 'partials' . DIRECTORY_SEPARATOR . 'header.php');
-require_once(_VIEWS_PATH . DIRECTORY_SEPARATOR . 'partials' . DIRECTORY_SEPARATOR . 'footer.php');
-require_once(_VIEWS_PATH . DIRECTORY_SEPARATOR . 'partials' . DIRECTORY_SEPARATOR . 'article-grid-item.php');
-require_once(_CLASS_PATH . DIRECTORY_SEPARATOR . 'Article.php');
+require_once(_CLASSES_PATH  . 'Article.php');
+require_once(_VIEWS_PATH .'partials'.DIRECTORY_SEPARATOR.'article-grid-item.php')
 ?>
 <!DOCTYPE html>
 <html lang="pl">

@@ -23,7 +23,7 @@ final class CreateArticleRequest {
 		return new CreateArticleRequest($title, $content, $publishedTimestamp, $status, $featured, $userId, $photoId);
 	}
 
-	public static function createWithoutPhoto($title, $content, $publishedTimestamp, $status, $featured, $userId, $photoId) {
+	public static function createWithoutPhoto($title, $content, $publishedTimestamp, $status, $featured, $userId) {
 		return new CreateArticleRequest($title, $content, $publishedTimestamp, $status, $featured, $userId, null);
 	}
 	
