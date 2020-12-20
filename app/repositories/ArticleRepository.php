@@ -90,7 +90,10 @@ final class ArticleRepository {
 		$stmt->bindValue(':photo_id', $createArticleRequest->getPhotoId(), PDO::PARAM_INT);
 		$stmt->execute();
 		$stmt->closeCursor();
+		$lastInsertId = $db->lastInsertId();
 		$db = null;
+
+		return $lastInsertId;
 	}
 
 	public function updateArticle($article) {

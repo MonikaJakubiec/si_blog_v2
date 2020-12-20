@@ -12,9 +12,10 @@ define('_UPLOADS_PATH', realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR . 'upl
 
 require_once _CLASSES_PATH . DIRECTORY_SEPARATOR . 'CreateUserRequest.php';
 require_once _REPOSITORIES_PATH . DIRECTORY_SEPARATOR . 'UserRepository.php';
-
 require_once _CLASSES_PATH . DIRECTORY_SEPARATOR . 'CreateArticleRequest.php';
 require_once _REPOSITORIES_PATH . DIRECTORY_SEPARATOR . 'ArticleRepository.php';
+require_once _CLASSES_PATH . DIRECTORY_SEPARATOR . 'AddPhotoRequest.php';
+require_once _REPOSITORIES_PATH . DIRECTORY_SEPARATOR . 'PhotoRepository.php';
 
 /*
 
@@ -42,6 +43,13 @@ $articleRepo->saveArticleFromRequest($articleRequest3);
 $articleRepo = new ArticleRepository();
 $allArticlesInfo = $articleRepo->getNumberOfArticlesStartingFromOffset(10, 0);
 var_dump($allArticlesInfo);
+*/
+
+/*
+$photoRequest = new AddPhotoRequest("/folder1/image.png", "Here should be image");
+$photoRepo = new PhotoRepository();
+$lastId = $photoRepo->savePhotoFromRequest($photoRequest);
+var_dump($lastId);
 */
 
 ?>
