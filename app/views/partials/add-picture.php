@@ -27,7 +27,7 @@ function showFileInput($errors)
 function showGalleryInput()
 {
     $photoRepo = new PhotoRepository();
-    $allPhotos = $photoRepo -> getAllPhotos();
+    $allPhotos = $photoRepo->getAllPhotos();
     var_dump($allPhotos);
 ?>
     <table style="color: black; overflow: auto; height: 200px; display: block;">
@@ -40,67 +40,26 @@ function showGalleryInput()
         </tr>
         <tr>
             <td>
-                <input type="radio" id="picture-from-file" name="picture-id" onclick="showHideAddingPicture()" >
+                <input type="radio" id="picture-from-file" name="picture-id" onclick="showHideAddingPicture()">
             </td>
             <td>zdjecie z pliku</td>
             <td></td>
         </tr>
-        <tr>
-            <td>
-                <input type="radio" name="picture-id" onclick="showHideAddingPicture()">
-            </td>
-            <td>photo</td>
-            <td>description</td>
-        </tr>
-        <tr>
-            <td>
-                <input type="radio" name="picture-id" onclick="showHideAddingPicture()">
-            </td>
-            <td>photo</td>
-            <td>description</td>
-        </tr>
-        <tr>
-            <td>
-                <input type="radio" name="picture-id" onclick="showHideAddingPicture()">
-            </td>
-            <td>photo</td>
-            <td>description</td>
-        </tr>
-        <tr>
-            <td>
-                <input type="radio" name="picture-id" onclick="showHideAddingPicture()">
-            </td>
-            <td>photo</td>
-            <td>description</td>
-        </tr>
-        <tr>
-            <td>
-                <input type="radio" name="picture-id" onclick="showHideAddingPicture()">
-            </td>
-            <td>photo</td>
-            <td>description</td>
-        </tr>
-        <tr>
-            <td>
-                <input type="radio" name="picture-id" onclick="showHideAddingPicture()">
-            </td>
-            <td>photo</td>
-            <td>description</td>
-        </tr>
-        <tr>
-            <td>
-                <input type="radio" name="picture-id" onclick="showHideAddingPicture()">
-            </td>
-            <td>photo</td>
-            <td>description</td>
-        </tr>
-        <tr>
-            <td>
-                <input type="radio" name="picture-id" onclick="showHideAddingPicture()">
-            </td>
-            <td>photo</td>
-            <td>description</td>
-        </tr>
+        <?php
+        foreach ($allPhotos as $photo) {
+        ?>
+            <tr>
+                <td>
+                    <input type="radio" name="picture-id" onclick="showHideAddingPicture()" value="<?= $photo->getId() ?>">
+                </td>
+                <?php
+                if (file_exists($photo->getPath())) { ?>
+                    <td><img src="<?= $photo->getPath() ?>" height="100" width="200"></td>
+                <?php
+                } ?>
+                <td><?= $photo->getAlt() ?></td>
+            </tr>
+        <?php } ?>
     </table>
 <?php
 }
