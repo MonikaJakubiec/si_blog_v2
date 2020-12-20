@@ -78,6 +78,13 @@ final class ArticleRepository {
 		return $articles;
 	}
 
+	public function getFeaturedArticlesCount() {
+		require 'app' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
+		$stmt = $db->query('SELECT COUNT(*) FROM Article WHERE is_featured = 1');
+		$count = $stmt->fetchColumn();
+		return $count;
+	}
+
 	public function saveArticleFromRequest($createArticleRequest) {
 		require 'app' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
 		$stmt = $db->prepare('INSERT INTO Article (user_id, photo_id, is_featured, status, title, published_timestamp, content) VALUES (:user_id, :photo_id, :is_featured, :status, :title, :published_timestamp, :content)');
