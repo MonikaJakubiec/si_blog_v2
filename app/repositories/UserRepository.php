@@ -15,6 +15,11 @@ final class UserRepository {
 			return null;
 		}
 		$userInfo = $stmt->fetch();
+		if (!$userInfo) {
+			$stmt->closeCursor();
+			$db = null;
+			return null;
+		}
 		$user = new User($userInfo['id'], $userInfo['name'], $userInfo['password'], $userInfo['role']);
 		$stmt->closeCursor();
 		$db = null;
@@ -33,6 +38,11 @@ final class UserRepository {
 			return null;
 		}
 		$userInfo = $stmt->fetch();
+		if (!$userInfo) {
+			$stmt->closeCursor();
+			$db = null;
+			return null;
+		}
 		$user = new User($userInfo['id'], $userInfo['name'], $userInfo['password'], $userInfo['role']);
 		$stmt->closeCursor();
 		$db = null;

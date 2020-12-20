@@ -15,6 +15,11 @@ final class PhotoRepository {
 			return null;
 		}
 		$photoInfo = $stmt->fetch();
+		if (!$photoInfo) {
+			$stmt->closeCursor();
+			$db = null;
+			return null;
+		}
 		$photo = new Photo($photoInfo['id'], $photoInfo['path'], $photoInfo['alt']);
 		$stmt->closeCursor();
 		$db = null;

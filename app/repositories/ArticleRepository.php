@@ -17,6 +17,11 @@ final class ArticleRepository {
 			return null;
 		}
 		$articleInfo = $stmt->fetch();
+		if (!$articleInfo) {
+			$stmt->closeCursor();
+			$db = null;
+			return null;
+		}
 		$article = new Article($articleInfo['article_id'], $articleInfo['title'], $articleInfo['content'], $articleInfo['published_timestamp'], $articleInfo['status'], $articleInfo['is_featured'], $articleInfo['user_id'], $articleInfo['photo_id']);
 		$user = new User($articleInfo['user_id'], $articleInfo['user_name'], "", $articleInfo['user_role']);
 		if ($articleInfo['photo_id'] != NULL) {
