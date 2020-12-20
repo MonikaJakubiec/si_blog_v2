@@ -1,5 +1,9 @@
 <?php
+require_once _CLASSES_PATH . DIRECTORY_SEPARATOR . 'AddPhotoRequest.php';
+require_once _REPOSITORIES_PATH . DIRECTORY_SEPARATOR . 'PhotoRepository.php';
+
     function validatePicture() {
+        $pictureIdAndErrors = [];
         $fields['alt'] = array_key_exists('alt', $_POST) ? $_POST['alt'] : ''; //ustawienie zmiennej title w tablicy fields
         
         //$errors = array(); niepotrzebne raczej TODO usun
@@ -19,19 +23,23 @@
             {
                 $today = date("Y-m-d");
                 
-                $temp_name = $_FILES['file']['tmp_name']; //zmienna do przechowywania tymczasowej nazwy
-                $file_name = $_FILES['file']['name']; //zmienna przechowywująca nazwę pliku
-                $file_create = _UPLOADS_PATH.'\\'.$today;
-                $file_root = $file_create.'\\'.$file_name; //ścieżka dostępu do pliku
-                if(!file_exists($file_create))
+                $tempName = $_FILES['file']['tmp_name']; //zmienna do przechowywania tymczasowej nazwy
+                $fileName = $_FILES['file']['name']; //zmienna przechowywująca nazwę pliku
+                $dirForCurrentFileUpload = _UPLOADS_PATH. DIRECTORY_SEPARATOR .$today;
+                $fileRoot = $dirForCurrentFileUpload. DIRECTORY_SEPARATOR .$fileName; //ścieżka dostępu do pliku
+                if(!file_exists($dirForCurrentFileUpload))
                 {
-                    mkdir($file_create,0777,true);
-                    move_uploaded_file($temp_name, $file_root); //przesunięcie pliku do folderu images
+                    mkdir($dirForCurrentFileUpload,0777,true);
+
                 }
-                else
-                {
-                    move_uploaded_file($temp_name, $file_root); //przesunięcie pliku do folderu images  
-                }
+
+                move_uploaded_file($tempName, $fileRoot); //przesunięcie pliku do folderu images
+                $photoRequest = new AddPhotoRequest($fileRoot, $fields['alt']);
+                $photoRepo= new PhotoRepository();
+
+                $returnId = $photoRepo-> savePhotoFromRequest($photoRequest);
+                
+                array_push($pictureIdAndErrors, $returnId);
             }
             else
             {
@@ -45,6 +53,7 @@
                 header("Location: "._RHOME);
             }   
         }
-        return $errors;
+        array_push($pictureIdAndErrors,$errors);
+        return $pictureIdAndErrors;
     }
 ?>
