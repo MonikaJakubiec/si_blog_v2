@@ -28,7 +28,6 @@ function showGalleryInput()
 {
     $photoRepo = new PhotoRepository();
     $allPhotos = $photoRepo->getAllPhotos();
-    var_dump($allPhotos);
 ?>
     <table style="color: black; overflow: auto; height: 200px; display: block;">
         <tr>
