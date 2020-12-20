@@ -54,7 +54,7 @@ function showGalleryInput()
                 </td>
                 <?php
                 if (file_exists($photo->getPath())) { ?>
-                    <td><img src="<?= $photo->getPath() ?>" height="200" width="350"></td>
+                    <td><img src="<?= $photo->getPath() ?>" height="200"></td>
                 <?php
                 } ?>
                 <td><?= $photo->getAlt() ?></td>
