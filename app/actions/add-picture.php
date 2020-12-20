@@ -1,8 +1,13 @@
 <?php
 require_once _CLASSES_PATH . DIRECTORY_SEPARATOR . 'AddPhotoRequest.php';
 require_once _REPOSITORIES_PATH . DIRECTORY_SEPARATOR . 'PhotoRepository.php';
-
-    function validatePicture(&$errors) {
+    function getFileExtension($filename)
+    {
+        $fileNameArray = (explode('.', $filename));
+        $extension = end($fileNameArray);
+        return $extension;
+    }
+    function validatePicture(&$errors, $allowedExtensions = array('jpg', 'jpeg', 'png')) {
         $fields['alt'] = array_key_exists('alt', $_POST) ? $_POST['alt'] : ''; //ustawienie zmiennej title w tablicy fields
         $returnId = -1;
         
@@ -23,19 +28,27 @@ require_once _REPOSITORIES_PATH . DIRECTORY_SEPARATOR . 'PhotoRepository.php';
                 
                 $tempName = $_FILES['file']['tmp_name']; //zmienna do przechowywania tymczasowej nazwy
                 $fileName = $_FILES['file']['name']; //zmienna przechowywująca nazwę pliku
+                $extension = getFileExtension($fileName);
                 $dirForCurrentFileUpload = _UPLOADS_PATH. DIRECTORY_SEPARATOR .$today;
                 $fileRoot = $dirForCurrentFileUpload. DIRECTORY_SEPARATOR .$fileName; //ścieżka dostępu do pliku
-                if(!file_exists($dirForCurrentFileUpload))
+                if(in_array($extension, $allowedExtensions))
                 {
-                    mkdir($dirForCurrentFileUpload,0777,true);
+                    if(!file_exists($dirForCurrentFileUpload))
+                    {
+                        mkdir($dirForCurrentFileUpload,0777,true);
 
+                    }
+
+                    move_uploaded_file($tempName, $fileRoot); //przesunięcie pliku do folderu images
+                    $photoRequest = new AddPhotoRequest($fileRoot, $fields['alt']);
+                    $photoRepo= new PhotoRepository();
+
+                    $returnId = $photoRepo-> savePhotoFromRequest($photoRequest);
                 }
-
-                move_uploaded_file($tempName, $fileRoot); //przesunięcie pliku do folderu images
-                $photoRequest = new AddPhotoRequest($fileRoot, $fields['alt']);
-                $photoRepo= new PhotoRepository();
-
-                $returnId = $photoRepo-> savePhotoFromRequest($photoRequest);
+                else
+                {
+                    $errors['file'] = 'Dozwolone tylko pliki z rozszerzeniem: ' . implode(', ', $allowedExtensions);
+                }
             }
             else
             {
