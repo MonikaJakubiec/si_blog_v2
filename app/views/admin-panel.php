@@ -26,22 +26,20 @@ showHtmlHead("Panel administratora", null, null, true,);
                 <?php
                 $lorem = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores ducimus ab, voluptates provident porro aspernatur quod excepturi voluptas, facilis inventore dicta eaque ratione iure neque laudantium quis distinctio voluptatem animi';
                 $tempRand = rand(0, 100);
-
-
-                for ($i = 0; $i < 10; $i++) { ?>
+                foreach($allArticles as $articleData) { 
+                    ?>
                     <tr>
-                        <td><?php $start = rand(0, 50);
-                            echo substr($lorem, $start, rand(1, 50)); ?></td>
-                        <td><?php $start = rand(0, 50);
-                            echo substr($lorem, $start, rand(8, 20)); ?></td>
-                        <td><?php $start = rand(0, 0);
-                            echo substr($lorem, $start, rand(8, 8)); ?></td>
+                        <td><?php echo $articleData['article']->getTitle();?></td>
+                        <td><?php echo $articleData['user']->getName();?></td>
+                        <td><?php echo $articleData['article']->getPublishedTimestamp();?></td>
                         <td class="actions">
-                            <a class="button" href="<?= _RHOME ?>preview-article/">Zobacz artykuł</a>
+                            <a class="button" href="<?= _RHOME ?>article/<?php echo $articleData['article']->getId();?>">Zobacz artykuł</a>
                             <a class="button" href="<?= _RHOME ?>edit-article/">Edytuj artykuł</a>
                             <a class="button button-red" href="#" onClick="confirmArticleDelete('<?= _RHOME ?>');">Usuń artykuł</a></td>
                     </tr>
-                <?php } ?>
+                <?php 
+            } ?>
+
             </tbody>
         </table>
     </main>

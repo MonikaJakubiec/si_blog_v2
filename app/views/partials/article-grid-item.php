@@ -8,9 +8,9 @@ $tempRand=rand(0,100);
 
 <img class="featured" src="https://via.placeholder.com/<?php echo rand(100,1600);?>x<?php echo rand(100,1600);?>" alt="">
 
-<h2><?php echo substr($lorem,$tempRand, rand($tempRand+1,$tempRand+100));?></h2>
-<p class="post-excerpt"><?php echo substr($lorem, rand(0,50), rand(0,strlen($lorem)-50));?></p>
-<a href="#" class="button read-more m-auto">Czytaj dalej!</a>
+<h2><?php echo $article['article']->getTitle();?></h2>
+<p class="post-excerpt"><?php echo substr(Strip_tags($article['article']->getContent()), 0, 200);?>...</p>
+<a href="<?php echo _RHOME . 'article/' . $article['article']->getId(); ?>/" class="button read-more m-auto">Czytaj dalej!</a>
 </article>
 <?php
 }?>

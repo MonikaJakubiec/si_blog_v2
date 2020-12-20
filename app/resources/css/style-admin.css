@@ -46,4 +46,15 @@ body.admin form.edit-article textarea#content {
   font-size: 14px;
   margin: 4px;
 }
+
+body.admin #photo-selection {
+  display: block;
+  max-height: 300px;
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+body.admin #photo-selection .photo-selection-option {
+  display: block;
+}
 /*# sourceMappingURL=style-admin.css.map */

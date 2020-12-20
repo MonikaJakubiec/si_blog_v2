@@ -12,10 +12,14 @@ require_once(_VIEWS_PATH .'partials'.DIRECTORY_SEPARATOR.'article-grid-item.php'
     <section id="main">
         <div class="article-listing">
             <?php
-            for ($counter = 0; $counter < 30; $counter++) {
+            foreach ($newestArticles as $article) {
+                renderArticleElement($article);
+                }
+
+            /*for ($counter = 0; $counter < 30; $counter++) {
                 $article = NULL;
                 renderArticleElement($article);
-            }
+            }*/
 
             ?>
         </div>

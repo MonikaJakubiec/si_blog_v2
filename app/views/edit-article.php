@@ -24,9 +24,7 @@ showHtmlHead("Dodawanie artykułu", null, null, true);
                 <label for="title">Treść</label><br>
                 <textarea id="content" name="content" placeholder="Wpisz treść" rows=30></textarea>
             </div>
-            <div style="float:left; width: 800px; padding-left: 50px;">
                 <?php showGalleryInput() ?>
-            </div>
             <div id="add-picture-from-file" style="float: right; padding-right: 50px; display: none;">
                 <?php showFileInput($errors); ?>
             </div>

@@ -2,9 +2,6 @@ $max-width-default: 1200px;
 $font-primary-color: #fff;
 
 body.admin {
-
-
-
   nav.admin-menu {
     max-width: $max-width-default;
     background-color: $font-primary-color;
@@ -31,22 +28,32 @@ body.admin {
     }
   }
 
-form.edit-article{
-    padding:4px;
-    border:1px solid $font-primary-color;
-input#title{
-    width:90%;
-    font-size:28px;
-    margin:4px;
-}
-textarea#content{
-    width: 90%;
-    font-size:14px;
-    margin:4px;
-}
+  form.edit-article {
+    padding: 4px;
+    border: 1px solid $font-primary-color;
+    input#title {
+      width: 90%;
+      font-size: 28px;
+      margin: 4px;
+    }
+    textarea#content {
+      width: 90%;
+      font-size: 14px;
+      margin: 4px;
+    }
+  }
 
-}
 
+  #photo-selection
+  {
+    display:block;
+    max-height: 300px;
+    color:#fff;
+    border:1px solid #fff;
 
+    .photo-selection-option{
+      display:block;
+    }
+  }
 
 }

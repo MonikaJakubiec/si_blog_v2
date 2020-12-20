@@ -19,7 +19,8 @@ for($counter=0;$counter<count($routingRequestPageWithData)-1;$counter++)
 }
 if($articleId){
 $articleData=$articleRepository->getArticleById($articleId);
-$allArticles=$articleRepository->getAllArticles();
+$currentPage=1;//todo:change
+$newestArticles=$articleRepository->getNumberOfArticlesStartingFromOffset(10,($currentPage-1)*$postPerPage);
 }
 else
 {

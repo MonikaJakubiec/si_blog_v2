@@ -29,6 +29,9 @@ function showGalleryInput()
     $photoRepo = new PhotoRepository();
     $allPhotos = $photoRepo->getAllPhotos();
 ?>
+
+    <?php
+    /*
     <table style="color: black; overflow: auto; height: 200px; display: block;">
         <tr>
             <td>
@@ -53,13 +56,64 @@ function showGalleryInput()
                 </td>
                 <?php
                 if (file_exists($photo->getPath())) { ?>
-                    <td><img src="<?= $photo->getPath() ?>" height="200" width="350"></td>
+                    <td><img src="<?= _RHOME . $photo->getPath() ?>" height="200" width="350"></td>
                 <?php
                 } ?>
                 <td><?= $photo->getAlt() ?></td>
             </tr>
         <?php } ?>
     </table>
-<?php
+
+    <?php */ ?>
+
+    <div id="photo-selection">
+        <div class="photo-selection-option">
+            <input type="radio" name="picture-id" id="without-photo" onclick="showHideAddingPicture()" checked>
+            <label for="without-photo">Artykuł bez zdjęcia</label>
+        </div>
+        <div class="photo-selection-option">
+            <input type="radio" name="picture-id" id="picture-from-file" onclick="showHideAddingPicture()">
+            <label for="picture-from-file">Zdjęcie z pliku</label>
+        </div>
+
+        <tr>
+            <td>
+                <input type="radio" id="picture-from-file" name="picture-id" onclick="showHideAddingPicture()">
+            </td>
+            <td>Wgranie zdjęcia na serwer</td>
+            <td></td>
+        </tr>
+        <?php
+        foreach ($allPhotos as $photo) {
+        ?>
+            <tr>
+                <td>
+                    <input type="radio" name="picture-id" onclick="showHideAddingPicture()" value="<?= $photo->getId() ?>">
+                </td>
+                <?php
+                if (file_exists($photo->getPath())) { ?>
+                    <td><img src="<?= _RHOME . $photo->getPath() ?>" height="200" width="350"></td>
+                <?php
+                } ?>
+                <td><?= $photo->getAlt() ?></td>
+            </tr>
+        <?php } ?>
+        </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <?php
 }
-?>
+    ?>
