@@ -2,10 +2,6 @@
 function showFileInput($errors)
 {
 ?>
-    <!-- Wypisanie błędów z talbicy errors -->
-    <?php if (array_key_exists('all', $errors)) : ?>
-        <div class="error"><?php echo $errors['all'] ?></div><?php endif; ?>
-
     <!-- Okno z możliwością wpisania tytułu książki -->
     <div><label for="alt">Opis</label></div>
     <div><input type="text" name="alt" value="" /></div>
