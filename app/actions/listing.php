@@ -1,8 +1,12 @@
 <?php
 require_once(_CLASSES_PATH  . 'Article.php');
 require_once(_REPOSITORIES_PATH  . 'ArticleRepository.php');
-$articleRepository=new ArticleRepository;
+$articleRepository = new ArticleRepository;
 
-$articleId=false;
-
-$newestArticles=$articleRepository->getNumberOfArticlesStartingFromOffset(10,0);
+$articleId = false;
+if (isset($_GET['page'])) {
+    $page = $_GET['page'];
+} else {
+    $page = 1;
+}
+$newestArticles = $articleRepository->getNumberOfArticlesStartingFromOffset($postPerPage, ($page-1)*$postPerPage);
