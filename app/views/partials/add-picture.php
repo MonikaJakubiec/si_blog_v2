@@ -27,7 +27,7 @@ function showFileInput($errors)
 function showGalleryInput()
 {
 ?>
-    <table style="color: black; overflow: auto; height: 100px; display: block;">
+    <table style="color: black; overflow: auto; height: 200px; display: block;">
         <tr>
             <td>
                 <input type="radio" name="picture-id" onclick="showHideAddingPicture()" checked>

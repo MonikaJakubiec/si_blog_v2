@@ -80,3 +80,4 @@ if (file_exists($action)) {
 if (file_exists($view)) {
     include($view);
 }
+?>
