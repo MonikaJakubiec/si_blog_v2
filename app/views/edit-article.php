@@ -20,9 +20,20 @@ showHtmlHead("Dodawanie artykułu", null, null, true);
                 <label for="title">Tytuł</label><br>
                 <input type="text" value="" id="title" name="title" placeholder="Wpisz tytuł" autofocus="true">
             </div>
+            <div class="error">
+                <?php
+                if (key_exists('title', $errors)) {
+                    echo $errors['title'];
+                }
+                ?>
+            </div>
             <div>
-                <label for="title">Treść</label><br>
+                <label for="content">Treść</label><br>
                 <textarea id="content" name="content" placeholder="Wpisz treść" rows=30></textarea>
+            </div>
+            <div>
+                <input type="checkbox" name="featured" id="featured">
+                <label for="featured">Polecany</label>
             </div>
             <div style="float:left; width: 800px; padding-left: 50px;">
                 <?php showGalleryInput() ?>
@@ -31,9 +42,13 @@ showHtmlHead("Dodawanie artykułu", null, null, true);
                 <?php showFileInput($errors); ?>
             </div>
             <div style="clear: both;"></div>
-            <div>
-                <input type="submit" value="Dodaj" class="button">
+            <div style="float: left; padding-left: 50px;">
+                <input type="submit" value="Zapisz" class="button">
             </div>
+            <div style="float: left; padding-left: 50px;">
+                <input type="submit" value="Publikuj" class="button">
+            </div>
+            <div style="clear: both;"></div>
     </main>
     <?php
     showHtmlFooter();
