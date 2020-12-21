@@ -9,7 +9,7 @@ require_once _REPOSITORIES_PATH . DIRECTORY_SEPARATOR . 'PhotoRepository.php';
     }
     function validatePicture(&$errors, $allowedExtensions = array('jpg', 'jpeg', 'png')) {
         $fields['alt'] = array_key_exists('alt', $_POST) ? $_POST['alt'] : ''; //ustawienie zmiennej title w tablicy fields
-        $returnId = -1;
+        $returnId = 0;
         
         //sprawdzanie, czy tablica metody POST jest większa od 0
         if(count($_POST) > 0)

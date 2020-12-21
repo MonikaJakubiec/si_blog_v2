@@ -67,6 +67,7 @@ input.button {
   text-decoration: unset;
   min-width: 100px;
   text-align: center;
+  margin: 2px;
 }
 
 .button:hover,
@@ -91,6 +92,12 @@ input.button:active {
 a.button.button-red,
 input.button.button-red {
   background-color: red;
+}
+
+.button.button-gray,
+a.button.button-gray,
+input.button.button-gray {
+  background-color: gray;
 }
 
 .article-listing {
@@ -235,6 +242,17 @@ body.login a.return {
   text-decoration: none;
   margin: auto;
   text-align: center;
+}
+
+.pagination {
+  display: block;
+  margin: 24px auto;
+  text-align: center;
+}
+
+.pagination a.button {
+  padding: 4px 16px;
+  border: 2px solid #fff;
 }
 
 .error {
