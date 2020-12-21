@@ -81,7 +81,6 @@ if (in_array($routingRequestPageWithoutData, $pages)) {
     }
 }
 
-
 $action = _ACTIONS_PATH . $page . '.php';
 $view = _VIEWS_PATH . $page . '.php';
 

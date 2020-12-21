@@ -17,6 +17,7 @@ for($counter=0;$counter<count($routingRequestPageWithData)-1;$counter++)
         break;
     }
 }
+
 if($articleId){
 $articleData=$articleRepository->getArticleById($articleId);
 $currentPage=1;//todo:change

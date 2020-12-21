@@ -24,10 +24,24 @@ body.admin table td {
   border: 1px solid gray;
 }
 
-body.admin table #articles {
+body.admin table#articles {
   border-spacing: 0px;
   width: 100%;
   border: 1px solid black;
+}
+
+body.admin table#articles td.actions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+body.admin table#articles td.actions a.button {
+  padding: 0px;
 }
 
 body.admin form.edit-article {
@@ -47,7 +61,8 @@ body.admin form.edit-article textarea#content {
   margin: 4px;
 }
 
-body.admin #photo-selection, body.admin #add-picture-from-file {
+body.admin #photo-selection,
+body.admin #add-picture-from-file {
   color: #fff;
   border: 1px solid #aaa;
 }
