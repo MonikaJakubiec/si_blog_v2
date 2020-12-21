@@ -23,8 +23,8 @@ function validateArticle(&$errors, $pictureId) {
         $errors['title'] = "Należy uzupełnić pole tytuł";
     }
 
-    if($isDataCorrect) {
-        $createArticleRequest = CreateArticleRequest::createWithPhoto($articleTitle, $articleContent, time(), "draft", true, 0, $pictureId);
+    if($isDataCorrect) {//todo: edit time
+        $createArticleRequest = CreateArticleRequest::createWithPhoto($articleTitle, $articleContent, NULL, "draft", true, 0, $pictureId);
         (new ArticleRepository)->saveArticleFromRequest($createArticleRequest);
     }
 }

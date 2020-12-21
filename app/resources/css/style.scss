@@ -74,6 +74,7 @@ input.button {
   text-decoration: unset;
   min-width: 100px;
   text-align: center;
+  margin: 2px;
 
   &:hover {
     background: $green-dark;
@@ -87,6 +88,9 @@ input.button {
   }
   &.button-red {
     background-color: red;
+  }
+  &.button-gray {
+    background-color:gray;
   }
 }
 
@@ -210,6 +214,17 @@ body.login {
     text-decoration: none;
     margin: auto;
     text-align: center;
+  }
+}
+
+.pagination{
+  display:block;
+  margin: 24px auto;
+  text-align: center;
+
+  a.button{
+    padding:4px 16px;
+    border: 2px solid #fff;
   }
 }
 

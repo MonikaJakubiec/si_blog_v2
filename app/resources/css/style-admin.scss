@@ -17,14 +17,25 @@ body.admin {
     background-color: $font-primary-color;
     width: 100%;
 
+
+
     td {
       border: 1px solid gray;
     }
 
-    #articles {
+    &#articles {
       border-spacing: 0px;
       width: 100%;
       border: 1px solid black;
+
+      td.actions {
+        display: flex;
+        flex-direction: column;
+        
+        a.button {
+          padding: 0px;
+        }
+      }
     }
   }
 
@@ -42,26 +53,24 @@ body.admin {
       margin: 4px;
     }
   }
-  #photo-selection, #add-picture-from-file
-  {
-    color:#fff;
-    border:1px solid #aaa;
+  #photo-selection,
+  #add-picture-from-file {
+    color: #fff;
+    border: 1px solid #aaa;
   }
-  #photo-selection
-  {
-    display:block;
+  #photo-selection {
+    display: block;
     max-height: 200px;
     overflow-y: scroll;
     overflow-x: auto;
     text-align: left;
 
-    .photo-selection-option{
-      display:block;
+    .photo-selection-option {
+      display: block;
     }
-    img.file-selection{
+    img.file-selection {
       max-width: 200px;
       max-height: 200px;
     }
   }
-
 }
