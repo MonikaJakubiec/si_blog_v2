@@ -2,7 +2,7 @@
 <html lang="pl">
 <?php
 require_once(_VIEWS_PATH . 'partials' . DIRECTORY_SEPARATOR . 'admin-menu.php');
-showHtmlHead("Panel administratora", null, null, true,);
+showHtmlHead("Panel administratora", null, null, true);
 ?>
 
 <body class="admin">

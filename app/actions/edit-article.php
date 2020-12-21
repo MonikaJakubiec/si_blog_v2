@@ -24,7 +24,7 @@ function validateArticle(&$errors, $pictureId) {
     }
 
     if($isDataCorrect) {
-        $createArticleRequest = CreateArticleRequest::createWithPhoto($articleTitle, $articleContent, time(), "draft", true, 0, $pictureId);
+        $createArticleRequest = CreateArticleRequest::createWithPhoto($articleTitle, $articleContent, null, "draft", true, 0, $pictureId);
         (new ArticleRepository)->saveArticleFromRequest($createArticleRequest);
     }
 }
