@@ -23,7 +23,7 @@ function showFileInput($errors)
 function showGalleryInput($pictureId)
 {
     $photoRepo = new PhotoRepository();
-    $allPhotos = $photoRepo->getAllPhotos();
+    $allPhotos = array_reverse($photoRepo->getAllPhotos());
 
 ?>
 
