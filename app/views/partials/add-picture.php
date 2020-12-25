@@ -65,11 +65,11 @@ function showGalleryInput()
 
     <div id="photo-selection">
         <div class="photo-selection-option">
-            <input type="radio" name="picture-id" id="without-photo" onclick="showHideAddingPicture()" checked>
+            <input type="radio" name="picture-id" id="without-photo" onclick="showHideAddingPicture()" value="without-picture" checked>
             <label for="without-photo">Artykuł bez zdjęcia</label>
         </div>
         <div class="photo-selection-option">
-            <input type="radio" name="picture-id" id="picture-from-file" onclick="showHideAddingPicture()">
+            <input type="radio" name="picture-id" id="picture-from-file" onclick="showHideAddingPicture()" value="picture-from-file">
             <label for="picture-from-file">Zdjęcie z pliku</label>
         </div>
         <?php
@@ -78,7 +78,7 @@ function showGalleryInput()
             if (file_exists($photo->getPath())) {
         ?>
                 <div class="photo-selection-option">
-                    <input type="radio" name="picture-id" id="<?= $photo->getId(); ?>" onclick="showHideAddingPicture()" value="<?= $photo->getId(); ?>">
+                    <input type="radio" name="picture-id" id="<?= $photo->getId(); ?>" onclick="showHideAddingPicture()" value="<?= $photo->getId() ?>">
 
                     <label for="<?php echo $photo->getId(); ?>">
                         <img src="<?= _RHOME . $photo->getPath() ?>" class="file-selection" alt="<?php echo $photo->getAlt(); ?>" title="<?php echo $photo->getAlt(); ?>">

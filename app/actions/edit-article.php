@@ -6,7 +6,19 @@ require_once(_REPOSITORIES_PATH . 'ArticleRepository.php');
 
 //post z form
 if(isset($_POST['title'])) {
-    $pictureId = validatePicture($errors);
+    switch($_POST['picture-id']) {
+        case 'picture-from-file':
+            $pictureId = validatePicture($errors);
+            break;
+
+        case 'without-picture':
+            $pictureId = null;
+            break;
+
+        default:
+            $pictureId = $_POST['picture-id'];
+            break;
+    }    
     validateArticle($errors, $pictureId);
 
     $_SESSION['picture-id'] = $_POST['picture-id'];
@@ -25,9 +37,17 @@ function validateArticle(&$errors, $pictureId) {
         $errors['title'] = "Należy uzupełnić pole tytuł";
     }
 
+    $status = $isPublishButtonClicked ? "published" : "draft";
+
     if($isDataCorrect) {
-        $createArticleRequest = CreateArticleRequest::createWithPhoto($articleTitle, $articleContent, null, $isPublishButtonClicked ? "published" : "draft", $isArticleFeatured, 0, $pictureId);
-        (new ArticleRepository)->saveArticleFromRequest($createArticleRequest);
+        if($pictureId != null) {
+            $createArticleRequest = CreateArticleRequest::createWithPhoto($articleTitle, $articleContent, null, $status, $isArticleFeatured, 0, $pictureId);
+            (new ArticleRepository)->saveArticleFromRequest($createArticleRequest);
+        }
+        else {
+            $createArticleRequest = CreateArticleRequest::createWithoutPhoto($articleTitle, $articleContent, null, $status, $isArticleFeatured, 0);
+            (new ArticleRepository)->saveArticleFromRequest($createArticleRequest);
+        }
     }
 }
 
@@ -39,4 +59,3 @@ function testInput($data) {
     $data = htmlspecialchars($data); //konwersja znaków specjalnych HTML do encji HTML
     return $data;
   }
-?>
