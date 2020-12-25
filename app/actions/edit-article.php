@@ -28,8 +28,8 @@ function validateArticle(&$errors, $pictureId) {
     $_SESSION['title'] = $articleTitle = testInput($_POST['title']);
     $_SESSION['content'] = $articleContent = testInput($_POST['content']);
     $_SESSION['featured'] = $isArticleFeatured = isset($_POST['featured']);
-    $_SESSION['picture-id'] = $_POST['picture-id'];
-    
+    $_SESSION['picture-id'] = $pictureId;
+
     $isPublishButtonClicked = isset($_POST['publish-button']);
 
     if($articleTitle == '') {

@@ -8,6 +8,7 @@ showHtmlHead("Dodawanie artykułu", null, null, true);
 ?>
 
 <body class="admin">
+    <script src="<?= _RESOURCES_PATH . 'js' . DIRECTORY_SEPARATOR . 'manage-article.js' ?>"></script>
     <script src="<?= _RESOURCES_PATH . 'js' . DIRECTORY_SEPARATOR . 'unload-support.js' ?>"></script>
     <?php
     showHtmlHeader();
@@ -28,9 +29,18 @@ showHtmlHead("Dodawanie artykułu", null, null, true);
             unset($_SESSION['content']);
         }
 
-        $isArticleFeatured = isset($_SESSION['featured']);
-        if($isArticleFeatured) {
+        $isArticleFeatured = false;
+        if(isset($_SESSION['featured'])) {
+            if($_SESSION['featured']){
+                $isArticleFeatured = true;
+            }
             unset($_SESSION['featured']);
+        }
+
+        $pictureId = "without-picture";
+        if(isset($_SESSION['picture-id'])) {
+            $pictureId = $_SESSION['picture-id'];
+            unset($_SESSION['picture-id']);
         }
         
         ?>
@@ -52,15 +62,17 @@ showHtmlHead("Dodawanie artykułu", null, null, true);
                 <textarea id="content" name="content" placeholder="Wpisz treść" rows=30><?=$articleContent?></textarea>
             </div>
             <div>
-                <input type="checkbox" name="featured" id="featured" <?=$isArticleFeatured ? 'checked' : ''?>>
+                <input type="checkbox" name="featured" id="featured" <?php if($isArticleFeatured) echo "checked"; ?>>
                 <label for="featured">Polecany</label>
             </div>
             <div id="add-picture-from-file">
                 <?php showFileInput($errors); ?>
             </div>
-            <?php showGalleryInput(); ?>
+            <?php showGalleryInput($pictureId); ?>
             <script>
-                document.getElementById('add-picture-from-file').style.display = "none";
+                if("<?=$pictureId?>" != "picture-from-file") {
+                    document.getElementById('add-picture-from-file').style.display = "none";
+                }
             </script>
 
                 <input type="submit" name="save-button" value="Zapisz" class="button" onclick="formSubmit()">
