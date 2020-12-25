@@ -43,8 +43,8 @@ showHtmlHead("Dodawanie artykułu", null, null, true);
                 document.getElementById('add-picture-from-file').style.display = "none";
             </script>
 
-                <input type="submit" value="Zapisz" class="button">
-                <input type="submit" value="Publikuj" class="button">
+                <input type="submit" name="save-button" value="Zapisz" class="button">
+                <input type="submit" name="publish-button" value="Publikuj" class="button">
 
 
     </main>

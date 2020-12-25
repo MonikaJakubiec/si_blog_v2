@@ -18,6 +18,7 @@ function validateArticle(&$errors, $pictureId) {
     $articleTitle = testInput($_POST['title']);
     $articleContent = testInput($_POST['content']);
     $isArticleFeatured = isset($_POST['featured']);
+    $isPublishButtonClicked = isset($_POST['publish-button']);
 
     if($articleTitle == '') {
         $isDataCorrect = false;
@@ -25,7 +26,7 @@ function validateArticle(&$errors, $pictureId) {
     }
 
     if($isDataCorrect) {
-        $createArticleRequest = CreateArticleRequest::createWithPhoto($articleTitle, $articleContent, null, "draft", $isArticleFeatured, 0, $pictureId);
+        $createArticleRequest = CreateArticleRequest::createWithPhoto($articleTitle, $articleContent, null, $isPublishButtonClicked ? "published" : "draft", $isArticleFeatured, 0, $pictureId);
         (new ArticleRepository)->saveArticleFromRequest($createArticleRequest);
     }
 }
