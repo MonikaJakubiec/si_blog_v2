@@ -8,17 +8,37 @@ showHtmlHead("Dodawanie artykułu", null, null, true);
 ?>
 
 <body class="admin">
-    <script src="<?= _RESOURCES_PATH . 'js' . DIRECTORY_SEPARATOR . 'manage-article.js' ?>"></script>
+    <script src="<?= _RESOURCES_PATH . 'js' . DIRECTORY_SEPARATOR . 'unload-support.js' ?>"></script>
     <?php
     showHtmlHeader();
     ?>
     <main id="content">
-        <?php showHtmlAdminMenu(); ?>
+        <?php
+        showHtmlAdminMenu();
+        
+        $articleTitle = $articleContent = '';
+
+        if(isset($_SESSION['title'])) {
+            $articleTitle = $_SESSION['title'];
+            unset($_SESSION['title']);
+        }
+
+        if(isset($_SESSION['content'])) {
+            $articleContent = $_SESSION['content'];
+            unset($_SESSION['content']);
+        }
+
+        $isArticleFeatured = isset($_SESSION['featured']);
+        if($isArticleFeatured) {
+            unset($_SESSION['featured']);
+        }
+        
+        ?>
         <h2 class="no-bcg t-center">Dodaj artykuł</h2>
         <form class="edit-article no-bcg t-center" method="post" action="edit-article" enctype="multipart/form-data">
             <div>
                 <label for="title">Tytuł</label><br>
-                <input type="text" value="" id="title" name="title" placeholder="Wpisz tytuł" autofocus="true">
+                <input type="text" value="" id="title" name="title" placeholder="Wpisz tytuł" autofocus="true" value="<?=$articleTitle?>">
             </div>
             <div class="error">
                 <?php
@@ -29,10 +49,10 @@ showHtmlHead("Dodawanie artykułu", null, null, true);
             </div>
             <div>
                 <label for="content">Treść</label><br>
-                <textarea id="content" name="content" placeholder="Wpisz treść" rows=30></textarea>
+                <textarea id="content" name="content" placeholder="Wpisz treść" rows=30><?=$articleContent?></textarea>
             </div>
             <div>
-                <input type="checkbox" name="featured" id="featured">
+                <input type="checkbox" name="featured" id="featured" <?=$isArticleFeatured ? 'checked' : ''?>>
                 <label for="featured">Polecany</label>
             </div>
             <div id="add-picture-from-file">
@@ -43,8 +63,8 @@ showHtmlHead("Dodawanie artykułu", null, null, true);
                 document.getElementById('add-picture-from-file').style.display = "none";
             </script>
 
-                <input type="submit" name="save-button" value="Zapisz" class="button">
-                <input type="submit" name="publish-button" value="Publikuj" class="button">
+                <input type="submit" name="save-button" value="Zapisz" class="button" onclick="formSubmit()">
+                <input type="submit" name="publish-button" value="Publikuj" class="button" onclick="formSubmit()">
 
 
     </main>

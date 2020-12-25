@@ -20,16 +20,16 @@ if(isset($_POST['title'])) {
             break;
     }    
     validateArticle($errors, $pictureId);
-
-    $_SESSION['picture-id'] = $_POST['picture-id'];
 }
 
 function validateArticle(&$errors, $pictureId) {
     $isDataCorrect = true;
 
-    $articleTitle = testInput($_POST['title']);
-    $articleContent = testInput($_POST['content']);
-    $isArticleFeatured = isset($_POST['featured']);
+    $_SESSION['title'] = $articleTitle = testInput($_POST['title']);
+    $_SESSION['content'] = $articleContent = testInput($_POST['content']);
+    $_SESSION['featured'] = $isArticleFeatured = isset($_POST['featured']);
+    $_SESSION['picture-id'] = $_POST['picture-id'];
+    
     $isPublishButtonClicked = isset($_POST['publish-button']);
 
     if($articleTitle == '') {
