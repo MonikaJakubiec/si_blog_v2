@@ -48,3 +48,6 @@ showHtmlHead("Panel administratora", null, null, true);
     ?>
 </body>
 </html>
+<script>
+    window.onload = addArtStatusAlert;
+</script>

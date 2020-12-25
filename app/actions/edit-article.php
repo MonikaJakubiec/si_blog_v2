@@ -48,6 +48,7 @@ function validateArticle(&$errors, $pictureId) {
             $createArticleRequest = CreateArticleRequest::createWithoutPhoto($articleTitle, $articleContent, null, $status, $isArticleFeatured, 0);
             (new ArticleRepository)->saveArticleFromRequest($createArticleRequest);
         }
+        header("Location: admin-panel?add-art-status=$status");
     }
 }
 

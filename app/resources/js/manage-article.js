@@ -15,3 +15,18 @@ function showHideAddingPicture() {
         pInput.style.display = 'none';
     }
 }
+
+function addArtStatusAlert() {
+    var url = new URL(window.location.href);
+    var addArtStatus = url.searchParams.get("add-art-status");
+    if(addArtStatus != null) {
+        switch(addArtStatus) {
+            case 'draft':
+                alert("Artykuł został zapisany jako wersja robocza");
+                break;
+            case 'published':
+                alert("Artykuł został opublikowany na blogu");
+                break;
+        }   
+    }
+}
