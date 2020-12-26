@@ -48,7 +48,7 @@ showHtmlHead("Dodawanie artykułu", null, null, true);
         <form class="edit-article no-bcg t-center" method="post" action="edit-article" enctype="multipart/form-data">
             <div>
                 <label for="title">Tytuł</label><br>
-                <input type="text" value="" id="title" name="title" placeholder="Wpisz tytuł" autofocus="true" value="<?=$articleTitle?>">
+                <input type="text" id="title" name="title" placeholder="Wpisz tytuł" autofocus="true" value="<?=$articleTitle?>">
             </div>
             <div class="error">
                 <?php
@@ -74,10 +74,9 @@ showHtmlHead("Dodawanie artykułu", null, null, true);
                     document.getElementById('add-picture-from-file').style.display = "none";
                 }
             </script>
-
+                <a class="button button-red" href="admin-panel">Anuluj</a>
                 <input type="submit" name="save-button" value="Zapisz" class="button" onclick="formSubmit()">
                 <input type="submit" name="publish-button" value="Publikuj" class="button" onclick="formSubmit()">
-
 
     </main>
     <?php
