@@ -19,6 +19,7 @@ function showFileInput($errors)
 <?php
 }
 
+//Mateusz Kus - czemu w widoku pobieramy dane ???
 // TODO generacja divów lub tabeli na podstawie zdjec z bazy
 function showGalleryInput($pictureId)
 {
