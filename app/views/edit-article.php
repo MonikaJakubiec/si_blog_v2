@@ -48,7 +48,7 @@ showHtmlHead("Dodawanie artykułu", null, null, true);
         <form class="edit-article no-bcg t-center" method="post" action="edit-article" enctype="multipart/form-data">
             <div>
                 <label for="title">Tytuł</label><br>
-                <input type="text" value="" id="title" name="title" placeholder="Wpisz tytuł" autofocus="true" value="<?=$articleTitle?>">
+                <input type="text" id="title" name="title" placeholder="Wpisz tytuł" autofocus="true" value="<?=$articleTitle?>">
             </div>
             <div class="error">
                 <?php

@@ -1,5 +1,6 @@
 <?php
 $errors = [];
+$articleToEdit = null;
 require_once(_ACTIONS_PATH . 'add-picture.php');
 require_once(_CLASSES_PATH . 'CreateArticleRequest.php');
 require_once(_REPOSITORIES_PATH . 'ArticleRepository.php');
@@ -21,14 +22,20 @@ if(isset($_POST['title'])) {
     }    
     validateArticle($errors, $pictureId);
 }
+else {
+    if(isset($_GET['edit-article'])) {
+        $articleToEdit = (new ArticleRepository)->getArticleById($_GET['edit-article'])['article'];
+        saveArticleDataToSession($articleToEdit->getTitle(), $articleToEdit->getContent(), $articleToEdit->isFeatured(), $articleToEdit->getPhotoId());
+    }
+}
 
 function validateArticle(&$errors, $pictureId) {
     $isDataCorrect = true;
 
-    $_SESSION['title'] = $articleTitle = testInput($_POST['title']);
-    $_SESSION['content'] = $articleContent = testInput($_POST['content']);
-    $_SESSION['featured'] = $isArticleFeatured = isset($_POST['featured']);
-    $_SESSION['picture-id'] = $pictureId;
+    $articleTitle = testInput($_POST['title']);
+    $articleContent = testInput($_POST['content']);
+    $isArticleFeatured = isset($_POST['featured']);
+    saveArticleDataToSession($articleTitle, $articleContent, $isArticleFeatured, $pictureId);
 
     $isPublishButtonClicked = isset($_POST['publish-button']);
 
@@ -59,4 +66,11 @@ function testInput($data) {
     $data = stripslashes($data); //zabezpieczenia cudzysłowów
     $data = htmlspecialchars($data); //konwersja znaków specjalnych HTML do encji HTML
     return $data;
+  }
+
+  function saveArticleDataToSession($title, $content, $isFeatured, $pictureId) {
+    $_SESSION['title'] = $title;
+    $_SESSION['content'] = $content;
+    $_SESSION['featured'] = $isFeatured;
+    $_SESSION['picture-id'] = $pictureId;
   }
