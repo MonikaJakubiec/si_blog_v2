@@ -9,6 +9,7 @@ if(isset($_POST['username'])) {
 
     $user = (new UserRepository)->getUserByName($username);
     if($user != null && $user->getPassword() === $password) {
+      $_SESSION['login'] = $user;
       header('Location: ' . _RHOME . 'admin-panel');
       exit();
     }
@@ -16,6 +17,13 @@ if(isset($_POST['username'])) {
       $errors['login-validation'] = "Podano niewłaściwe dane logowania!";
     }
 
+}
+
+function isUserLoggedIn() {
+  if(!isset($_SESSION['login'])) {
+    header("Location: " . _RHOME . 'login/');
+    exit();
+  }
 }
 
 function testInput($data) { 

@@ -38,3 +38,9 @@ require_once(_VIEWS_PATH . 'partials' . DIRECTORY_SEPARATOR . 'article-grid-item
 </body>
 
 </html>
+
+<script>
+    if((new URL(window.location.href)).searchParams.get("logout") != null) {
+        alert("Pomyślnie wylogowano");
+    }
+</script>
