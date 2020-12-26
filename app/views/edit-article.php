@@ -42,6 +42,11 @@ showHtmlHead("Dodawanie artykułu", null, null, true);
             $pictureId = $_SESSION['picture-id'];
             unset($_SESSION['picture-id']);
         }
+
+        if(isset($_SESSION['status'])) {
+            $articleStatus = $_SESSION['status'];
+            unset($_SESSION['status']);
+        }
         
         ?>
         <h2 class="no-bcg t-center">Dodaj artykuł</h2>
@@ -68,16 +73,22 @@ showHtmlHead("Dodawanie artykułu", null, null, true);
             <div id="add-picture-from-file">
                 <?php showFileInput($errors); ?>
             </div>
-            <?php showGalleryInput($pictureId); ?>
+            <?php 
+            showGalleryInput($pictureId); 
+            $publishButtonText = "Publikuj";
+            if(isset($_GET['edit-article']) && $articleStatus != null && $articleStatus == 'published') $publishButtonText = "Przestań publikować, oznacz jako wersja robocza";
+            ?>
             <script>
                 if("<?=$pictureId?>" != "picture-from-file") {
                     document.getElementById('add-picture-from-file').style.display = "none";
                 }
             </script>
                 <a class="button button-red" href="admin-panel">Anuluj</a>
-                <input type="submit" name="save-button" value="Zapisz" class="button" onclick="formSubmit()">
-                <input type="submit" name="publish-button" value="Publikuj" class="button" onclick="formSubmit()">
+                <input type="submit" name="save-button" value=<?= isset($_GET['edit-article']) ? "Zaktualizuj" : "Zapisz" ?> class="button" onclick="formSubmit()">
+                <input type="submit" name="publish-button" value=<?= $publishButtonText ?> class="button" onclick="formSubmit()">
 
+                <input type="hidden" name="edit-article" value="<?php if(isset($_GET['edit-article'])) echo $_GET['edit-article']; ?>">
+        </form>
     </main>
     <?php
     showHtmlFooter();
