@@ -35,7 +35,7 @@ showHtmlHead("Panel administratora", null, null, true);
                         <td class="actions">
                             <a class="button" href="<?= _RHOME ?>article/<?php echo $articleData['article']->getId();?>">Zobacz artykuł</a>
                             <a class="button" href="<?= _RHOME ?>edit-article/">Edytuj artykuł</a>
-                            <a class="button button-red" href="#" onClick="confirmArticleDelete('<?= _RHOME ?>');">Usuń artykuł</a></td>
+                            <a class="button button-red" href="#" onClick="confirmArticleDelete('<?= _RHOME ?>', <?= $articleData['article']->getId() ?>);">Usuń artykuł</a></td>
                     </tr>
                 <?php 
             } ?>

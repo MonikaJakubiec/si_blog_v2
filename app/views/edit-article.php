@@ -74,10 +74,9 @@ showHtmlHead("Dodawanie artykułu", null, null, true);
                     document.getElementById('add-picture-from-file').style.display = "none";
                 }
             </script>
-
+                <a class="button button-red" href="admin-panel">Anuluj</a>
                 <input type="submit" name="save-button" value="Zapisz" class="button" onclick="formSubmit()">
                 <input type="submit" name="publish-button" value="Publikuj" class="button" onclick="formSubmit()">
-
 
     </main>
     <?php

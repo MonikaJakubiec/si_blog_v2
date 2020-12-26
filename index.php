@@ -65,7 +65,7 @@ $routingRequestPageWithoutData=$routingRequestPageWithData[0];
  * Dostępne strony
  * @var array
  */
-$pages = array('edit-article', 'delete-article', 'homepage', 'login', 'logout', 'admin-panel', 'show-article', 'add-picture', 'listing', 'article');
+$pages = array('edit-article', 'homepage', 'login', 'logout', 'admin-panel', 'show-article', 'add-picture', 'listing', 'article');
 
 if (in_array($routingRequestPageWithoutData, $pages)) {
     /**
