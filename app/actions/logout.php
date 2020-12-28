@@ -1,5 +1,5 @@
 <?php
-require_once(_ACTIONS_PATH . 'login.php');
+require_once(_ACTIONS_PATH . 'redirects.php');
 redirectIfNotLoggedIn();
 
 unset($_SESSION['login']);

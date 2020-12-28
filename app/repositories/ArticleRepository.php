@@ -250,11 +250,11 @@ final class ArticleRepository {
 		$db = null;
 	}
 
-	public function deleteArticle($article) {
+	public function deleteArticle($articleId) {
 		require 'app' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
 		$stmt = $db->prepare('UPDATE Article SET status = :status WHERE id = :articleId');
 		$stmt->bindValue(':status', "archived", PDO::PARAM_STR);
-		$stmt->bindValue(':articleId', $article->getId(), PDO::PARAM_INT);
+		$stmt->bindValue(':articleId', $articleId, PDO::PARAM_INT);
 		$success = $stmt->execute();
 		if (!$success) {
 			$stmt->closeCursor();

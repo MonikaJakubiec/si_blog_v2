@@ -24,45 +24,9 @@ function showFileInput($errors)
 function showGalleryInput($pictureId)
 {
     $photoRepo = new PhotoRepository();
-    $allPhotos = array_reverse($photoRepo->getAllPhotos());
+    $allPhotos = $photoRepo->getAllPhotos();
 
 ?>
-
-    <?php
-    /*
-    <table style="color: black; overflow: auto; height: 200px; display: block;">
-        <tr>
-            <td>
-                <input type="radio" name="picture-id" onclick="showHideAddingPicture()" checked>
-            </td>
-            <td>Artykuł bez zdjęcia</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>
-                <input type="radio" id="picture-from-file" name="picture-id" onclick="showHideAddingPicture()">
-            </td>
-            <td>Wgranie zdjęcia na serwer</td>
-            <td></td>
-        </tr>
-        <?php
-        foreach ($allPhotos as $photo) {
-        ?>
-            <tr>
-                <td>
-                    <input type="radio" name="picture-id" onclick="showHideAddingPicture()" value="<?= $photo->getId() ?>">
-                </td>
-                <?php
-                if (file_exists($photo->getPath())) { ?>
-                    <td><img src="<?= _RHOME . $photo->getPath() ?>" height="200" width="350"></td>
-                <?php
-                } ?>
-                <td><?= $photo->getAlt() ?></td>
-            </tr>
-        <?php } ?>
-    </table>
-
-    <?php */ ?>
 
     <div id="photo-selection">
         <div class="photo-selection-option">

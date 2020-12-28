@@ -30,7 +30,7 @@ final class PhotoRepository {
 	public function getAllPhotos() {
 		require 'app' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
 		$photos = [];
-		$stmt = $db->query('SELECT * FROM Photo ORDER BY id');
+		$stmt = $db->query('SELECT * FROM Photo ORDER BY id DESC');
 		if (!$stmt) {
 			$db = null;
 			return null;

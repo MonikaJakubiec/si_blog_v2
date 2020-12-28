@@ -47,6 +47,10 @@ function validateArticle(&$errors, $pictureId, $articleToEdit) {
         $errors['title'] = "Należy uzupełnić pole tytuł";
     }
 
+    if(count($errors) > 0) {
+        $isDataCorrect = false;
+    }
+
     if($articleToEdit == null) {
         $status = $isPublishButtonClicked ? "published" : "draft";
     }
