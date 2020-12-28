@@ -50,7 +50,7 @@ showHtmlHead("Dodawanie artykułu", null, null, true);
         
         ?>
         <h2 class="no-bcg t-center">Dodaj artykuł</h2>
-        <form class="edit-article no-bcg t-center" method="post" action="edit-article" enctype="multipart/form-data">
+        <form class="edit-article no-bcg t-center" method="post" action="<?=_RHOME?>edit-article/" enctype="multipart/form-data">
             <div>
                 <label for="title">Tytuł</label><br>
                 <input type="text" id="title" name="title" placeholder="Wpisz tytuł" autofocus="true" value="<?=$articleTitle?>">
@@ -83,7 +83,7 @@ showHtmlHead("Dodawanie artykułu", null, null, true);
                     document.getElementById('add-picture-from-file').style.display = "none";
                 }
             </script>
-                <a class="button button-red" href="admin-panel">Anuluj</a>
+                <a class="button button-red" href="<?= _RHOME ?>admin-panel/">Anuluj</a>
                 <input type="submit" name="save-button" value=<?= isset($_GET['edit-article']) ? "Zaktualizuj" : "Zapisz" ?> class="button" onclick="formSubmit()">
                 <input type="submit" name="publish-button" value=<?= $publishButtonText ?> class="button" onclick="formSubmit()">
 

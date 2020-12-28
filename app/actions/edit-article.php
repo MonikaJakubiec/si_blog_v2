@@ -88,7 +88,7 @@ function validateArticle(&$errors, $pictureId, $articleToEdit) {
             (new ArticleRepository)->updateArticle($articleToEdit);
         }
 
-        header("Location: admin-panel?add-art-status=$status");
+        header("Location: " . _RHOME . "admin-panel/?add-art-status=$status");
     }
 }
 

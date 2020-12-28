@@ -27,11 +27,11 @@ require_once(_VIEWS_PATH . 'partials' . DIRECTORY_SEPARATOR . 'article-grid-item
     <nav class="pagination">
         <?php 
         if ($page > 1) : ?>
-            <a href="<?php echo _RHOME . '?page=' . (intval($page) - 1); ?>" class="button button-gray">Poprzednia strona</a>
+            <a href="<?= _RHOME . '?page=' . (intval($page) - 1) ?>" class="button button-gray">Poprzednia strona</a>
         <?php endif;
         $nextPageNumber = (intval($page) + 1);
         if ($nextPageNumber <= $lastPageNumber) : ?>
-            <a href="<?php echo _RHOME . '?page=' . (intval($page) + 1); ?>" class="button">Następna strona</a>
+            <a href="<?= _RHOME . '?page=' . (intval($page) + 1) ?>" class="button">Następna strona</a>
         <?php endif; ?>
     </nav>
     <?php showHtmlFooter(); ?>

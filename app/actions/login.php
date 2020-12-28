@@ -13,7 +13,7 @@ if(isset($_POST['username'])) {
     $user = (new UserRepository)->getUserByName($username);
     if($user != null && $user->getPassword() === $password) {
       $_SESSION['login'] = $user->getId();
-      header('Location: ' . _RHOME . 'admin-panel');
+      header('Location: ' . _RHOME . 'admin-panel/');
       exit();
     }
     else {
