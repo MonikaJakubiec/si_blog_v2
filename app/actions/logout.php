@@ -1,6 +1,6 @@
 <?php
-require_once('app' . DIRECTORY_SEPARATOR . 'actions' . DIRECTORY_SEPARATOR . 'login.php');
-isUserLoggedIn();
+require_once(_ACTIONS_PATH . 'login.php');
+redirectIfNotLoggedIn();
 
 unset($_SESSION['login']);
 session_unset();

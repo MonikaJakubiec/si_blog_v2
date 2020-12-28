@@ -1,6 +1,6 @@
 <?php 
-require_once('app' . DIRECTORY_SEPARATOR . 'actions' . DIRECTORY_SEPARATOR . 'login.php');
-isUserLoggedIn();
+require_once(_ACTIONS_PATH . 'login.php');
+redirectIfNotLoggedIn();
 
 require_once(_CLASSES_PATH  . 'Article.php');
 require_once(_REPOSITORIES_PATH  . 'ArticleRepository.php');

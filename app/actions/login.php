@@ -19,7 +19,7 @@ if(isset($_POST['username'])) {
 
 }
 
-function isUserLoggedIn() {
+function redirectIfNotLoggedIn() {
   if(!isset($_SESSION['login'])) {
     header("Location: " . _RHOME . 'login/');
     exit();

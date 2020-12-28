@@ -67,11 +67,11 @@ function validateArticle(&$errors, $pictureId, $articleToEdit) {
     if($isDataCorrect) {
         if($articleToEdit == null) {
             if($pictureId != null) {
-                $createArticleRequest = CreateArticleRequest::createWithPhoto($articleTitle, $articleContent, null, $status, $isArticleFeatured, 0, $pictureId);
+                $createArticleRequest = CreateArticleRequest::createWithPhoto($articleTitle, $articleContent, time(), $status, $isArticleFeatured, 0, $pictureId);
                 (new ArticleRepository)->saveArticleFromRequest($createArticleRequest);
             }
             else {
-                $createArticleRequest = CreateArticleRequest::createWithoutPhoto($articleTitle, $articleContent, null, $status, $isArticleFeatured, 0);
+                $createArticleRequest = CreateArticleRequest::createWithoutPhoto($articleTitle, $articleContent, time(), $status, $isArticleFeatured, 0);
                 (new ArticleRepository)->saveArticleFromRequest($createArticleRequest);
             }
         }
