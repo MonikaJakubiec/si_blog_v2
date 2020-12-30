@@ -22,6 +22,9 @@ define('_CLASSES_PATH', 'app' . DIRECTORY_SEPARATOR . 'classes'.DIRECTORY_SEPARA
 /** katalog z repozytoriami */
 define('_REPOSITORIES_PATH', 'app' . DIRECTORY_SEPARATOR . 'repositories'.DIRECTORY_SEPARATOR);
 
+/** katalog z repozytoriami */
+define('_PDO_FILE', 'app' . DIRECTORY_SEPARATOR . 'pdo'.DIRECTORY_SEPARATOR.'pdo.php');
+
 /** katalog z zasobami css/js/images */
 define('_RESOURCES_PATH', _RHOME . 'app' . DIRECTORY_SEPARATOR . 'resources'.DIRECTORY_SEPARATOR);//TODO:
 

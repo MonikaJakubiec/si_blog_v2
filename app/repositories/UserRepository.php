@@ -1,11 +1,11 @@
 <?php
-require_once 'app' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'User.php';
-require_once 'app' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'CreateUserRequest.php';
+require_once _CLASSES_PATH . DIRECTORY_SEPARATOR . 'User.php';
+require_once _CLASSES_PATH . DIRECTORY_SEPARATOR . 'CreateUserRequest.php';
 
 final class UserRepository {
 	
 	public function getUserById($userId) {
-		require 'app' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
+		require _PDO_FILE;
 		$stmt = $db->prepare('SELECT * FROM User WHERE id = :userId');
 		$stmt->bindValue(':userId', $userId, PDO::PARAM_INT);
 		$success = $stmt->execute();
@@ -28,7 +28,7 @@ final class UserRepository {
 	}
 
 	public function getUserByName($userName) {
-		require 'app' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
+		require _PDO_FILE;
 		$stmt = $db->prepare('SELECT * FROM User WHERE name = :userName');
 		$stmt->bindValue(':userName', $userName, PDO::PARAM_STR);
 		$success = $stmt->execute();
@@ -51,7 +51,7 @@ final class UserRepository {
 	}
 
 	public function getAllUsers() {
-		require 'app' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
+		require _PDO_FILE;
 		$users = [];
 		$stmt = $db->query('SELECT * FROM User ORDER BY id');
 		if (!$stmt) {
@@ -69,7 +69,7 @@ final class UserRepository {
 	}
 
 	public function saveUserFromRequest($createUserRequest) {
-		require 'app' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
+		require _PDO_FILE;
 		$stmt = $db->prepare('INSERT INTO User (name, password, role) VALUES (:name, :password, :role)');
 		$stmt->bindValue(':name', $createUserRequest->getName(), PDO::PARAM_STR);
 		$stmt->bindValue(':password', $createUserRequest->getPassword(), PDO::PARAM_STR);
@@ -88,7 +88,7 @@ final class UserRepository {
 	}
 
 	public function updateUser($user) {
-		require 'app' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
+		require _PDO_FILE;
 		$stmt = $db->prepare('UPDATE User SET name = :name, password = :password, role = :role WHERE id = :userId');
 		$stmt->bindValue(':name', $user->getName(), PDO::PARAM_STR);
 		$stmt->bindValue(':password', $user->getPassword(), PDO::PARAM_STR);

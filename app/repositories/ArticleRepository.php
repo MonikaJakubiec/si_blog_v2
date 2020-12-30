@@ -1,13 +1,13 @@
 <?php
-require_once 'app' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'Article.php';
-require_once 'app' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'Photo.php';
-require_once 'app' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'User.php';
-require_once 'app' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'CreateArticleRequest.php';
+require_once _CLASSES_PATH . DIRECTORY_SEPARATOR . 'Article.php';
+require_once _CLASSES_PATH . DIRECTORY_SEPARATOR . 'Photo.php';
+require_once _CLASSES_PATH . DIRECTORY_SEPARATOR . 'User.php';
+require_once _CLASSES_PATH . DIRECTORY_SEPARATOR . 'CreateArticleRequest.php';
 
 final class ArticleRepository {
 	
 	public function getArticleById($articleId) {
-		require 'app' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
+		require _PDO_FILE;
 		$stmt = $db->prepare('SELECT Article.id as article_id, Article.user_id, Article.photo_id, Article.is_featured, Article.status, Article.title, Article.published_timestamp, Article.content, Photo.path as photo_path, Photo.alt as photo_alt, User.name as user_name, User.role as user_role FROM Article LEFT JOIN Photo ON Article.photo_id = Photo.id LEFT JOIN User ON Article.user_id = User.id WHERE Article.id = :articleId AND Article.status != "archived"');
 		$stmt->bindValue(':articleId', $articleId, PDO::PARAM_INT);
 		$success = $stmt->execute();
@@ -45,7 +45,7 @@ final class ArticleRepository {
 	}
 
 	public function getAllArticles() {
-		require 'app' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
+		require _PDO_FILE;
 		$articlesWithPhotoAndUserInfo = [];
 		$stmt = $db->query('SELECT Article.id as article_id, Article.user_id, Article.photo_id, Article.is_featured, Article.status, Article.title, Article.published_timestamp, Article.content, Photo.path as photo_path, Photo.alt as photo_alt, User.name as user_name, User.role as user_role FROM Article LEFT JOIN Photo ON Article.photo_id = Photo.id LEFT JOIN User ON Article.user_id = User.id WHERE Article.status != "archived" ORDER BY Article.id DESC');
 		if (!$stmt) {
@@ -78,7 +78,7 @@ final class ArticleRepository {
 	}
 
 	public function getNumberOfArticlesStartingFromOffset($number, $offset, $onlyPublishedStatus=false) {
-		require 'app' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
+		require _PDO_FILE;
 		$articlesWithPhotoAndUserInfo = [];
 		if($onlyPublishedStatus)
 			$filterByStatus='Article.status = "published"';
@@ -119,7 +119,7 @@ final class ArticleRepository {
 	}
 
 	public function getFeaturedArticles() {
-		require 'app' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
+		require _PDO_FILE;
 		$articlesWithPhotoAndUserInfo = [];
 		$stmt = $db->query('SELECT Article.id as article_id, Article.user_id, Article.photo_id, Article.is_featured, Article.status, Article.title, Article.published_timestamp, Article.content, Photo.path as photo_path, Photo.alt as photo_alt, User.name as user_name, User.role as user_role FROM Article LEFT JOIN Photo ON Article.photo_id = Photo.id LEFT JOIN User ON Article.user_id = User.id WHERE is_featured = 1 AND Article.status != "archived" ORDER BY published_timestamp DESC');
 		if (!$stmt) {
@@ -151,7 +151,7 @@ final class ArticleRepository {
 	}
 
 	public function getArticlesCreatedByUser($userId) {
-		require 'app' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
+		require _PDO_FILE;
 		$articlesWithPhotoAndUserInfo = [];
 		$stmt = $db->prepare('SELECT Article.id as article_id, Article.user_id, Article.photo_id, Article.is_featured, Article.status, Article.title, Article.published_timestamp, Article.content, Photo.path as photo_path, Photo.alt as photo_alt, User.name as user_name, User.role as user_role FROM Article LEFT JOIN Photo ON Article.photo_id = Photo.id LEFT JOIN User ON Article.user_id = User.id WHERE Article.user_id = :userId AND Article.status != "archived" ORDER BY published_timestamp DESC');
 		$stmt->bindValue(':userId', $userId, PDO::PARAM_INT);
@@ -186,7 +186,7 @@ final class ArticleRepository {
 	}
 
 	public function getFeaturedArticlesCount() {
-		require 'app' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
+		require _PDO_FILE;
 		$stmt = $db->query('SELECT COUNT(*) FROM Article WHERE is_featured = 1 AND Article.status != "archived"');
 		if (!$stmt) {
 			$db = null;
@@ -199,7 +199,7 @@ final class ArticleRepository {
 	}
 
 	public function getArticlesCount() {
-		require 'app' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
+		require _PDO_FILE;
 		$stmt = $db->query('SELECT COUNT(*) FROM Article WHERE Article.status != "archived"');
 		if (!$stmt) {
 			$db = null;
@@ -212,7 +212,7 @@ final class ArticleRepository {
 	}
 
 	public function saveArticleFromRequest($createArticleRequest) {
-		require 'app' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
+		require _PDO_FILE;
 		$stmt = $db->prepare('INSERT INTO Article (user_id, photo_id, is_featured, status, title, published_timestamp, content) VALUES (:user_id, :photo_id, :is_featured, :status, :title, :published_timestamp, :content)');
 		$stmt->bindValue(':title', $createArticleRequest->getTitle(), PDO::PARAM_STR);
 		$stmt->bindValue(':content', $createArticleRequest->getContent(), PDO::PARAM_STR);
@@ -235,7 +235,7 @@ final class ArticleRepository {
 	}
 
 	public function updateArticle($article) {
-		require 'app' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
+		require _PDO_FILE;
 		$stmt = $db->prepare('UPDATE Article SET title = :title, content = :content, published_timestamp = :published_timestamp, status = :status, is_featured = :is_featured, user_id = :user_id, photo_id = :photo_id WHERE id = :articleId');
 		$stmt->bindValue(':title', $article->getTitle(), PDO::PARAM_STR);
 		$stmt->bindValue(':content', $article->getContent(), PDO::PARAM_STR);
@@ -256,7 +256,7 @@ final class ArticleRepository {
 	}
 
 	public function deleteArticle($articleId) {
-		require 'app' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
+		require _PDO_FILE;
 		$stmt = $db->prepare('UPDATE Article SET status = :status WHERE id = :articleId');
 		$stmt->bindValue(':status', "archived", PDO::PARAM_STR);
 		$stmt->bindValue(':articleId', $articleId, PDO::PARAM_INT);
