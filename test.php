@@ -1,6 +1,6 @@
 <?php
 
-#define('_ROOT_PATH', dirname(__FILE__));
+define('_ROOT_PATH', dirname(__FILE__));
 require_once(_ROOT_PATH . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'private' . DIRECTORY_SEPARATOR . 'config.php');
 define('_RESOURCES_PATH', 'app' . DIRECTORY_SEPARATOR . 'resources');
 define('_VIEWS_PATH', _ROOT_PATH . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'views');
