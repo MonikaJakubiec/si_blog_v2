@@ -1,1 +1,1 @@
-<?php $tinyId = ""; ?>
+<?php $tinyId = "2..."; ?>
