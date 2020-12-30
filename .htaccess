@@ -1,6 +1,12 @@
 RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-
-RewriteRule (.*) index.php [QSA,L]
+# Redirect all to index.php
+#except indexphp
+RewriteCond %{REQUEST_URI} !=index.php
+#except images:
+RewriteCond %{REQUEST_URI} !\.(png|jpg|jpeg|webp|gif|)$
+#except js:
+RewriteCond %{REQUEST_URI} !\.(js)$
+#except css:
+RewriteCond %{REQUEST_URI} !\.(css)$
+RewriteRule .* index.php
 
