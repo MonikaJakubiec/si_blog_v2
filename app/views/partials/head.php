@@ -14,6 +14,8 @@ function showHtmlHead($title=_SITE_NAME,$description=null,$author=null,$adminCss
     <?php if($adminCss):?>
         <link rel="stylesheet" href="<?php echo _RESOURCES_PATH;?>css/style-admin.css">
     <?php endif;?>
+    <link rel="stylesheet" type="text/css" href="<?php echo _RESOURCES_PATH;?>css/prism.css">
+    <script src="<?= _RESOURCES_PATH . 'js' . DIRECTORY_SEPARATOR . 'prism.js' ?>"></script>
     <?php if($description):?>
         <meta name="description" content="<?php echo $description;?>">
     <?php endif;?>

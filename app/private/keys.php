@@ -1,1 +1,1 @@
-<?php $tinyId = "2..."; ?>
+<?php $tinyId = "random";?>

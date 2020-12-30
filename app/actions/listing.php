@@ -9,9 +9,9 @@ if (isset($_GET['page'])) {
 } else {
     $page =1;
 }
-$numOfArticles=$articleRepository->getArticlesCount();
+$numOfArticles=$articleRepository->getArticlesCount(true);
 $lastPageNumber = ceil($numOfArticles / $postPerPage);
-if($page>$lastPageNumber)
-$page=$lastPageNumber;
+/*if($page>$lastPageNumber)
+$page=$lastPageNumber;*///todo:show 404
 $offset=($page-1)*$postPerPage;
 $newestArticles = $articleRepository->getNumberOfArticlesStartingFromOffset($postPerPage, $offset,true);

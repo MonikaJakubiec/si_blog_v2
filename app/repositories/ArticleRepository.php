@@ -6,9 +6,13 @@ require_once _CLASSES_PATH . DIRECTORY_SEPARATOR . 'CreateArticleRequest.php';
 
 final class ArticleRepository {
 	
-	public function getArticleById($articleId) {
+	public function getArticleById($articleId,$onlyPublished=false) {
 		require _PDO_FILE;
-		$stmt = $db->prepare('SELECT Article.id as article_id, Article.user_id, Article.photo_id, Article.is_featured, Article.status, Article.title, Article.published_timestamp, Article.content, Photo.path as photo_path, Photo.alt as photo_alt, User.name as user_name, User.role as user_role FROM Article LEFT JOIN Photo ON Article.photo_id = Photo.id LEFT JOIN User ON Article.user_id = User.id WHERE Article.id = :articleId AND Article.status != "archived"');
+		if($onlyPublished)
+			$filterByStatus='Article.status = "published"';
+		else
+			$filterByStatus='Article.status != "archived"';
+		$stmt = $db->prepare('SELECT Article.id as article_id, Article.user_id, Article.photo_id, Article.is_featured, Article.status, Article.title, Article.published_timestamp, Article.content, Photo.path as photo_path, Photo.alt as photo_alt, User.name as user_name, User.role as user_role FROM Article LEFT JOIN Photo ON Article.photo_id = Photo.id LEFT JOIN User ON Article.user_id = User.id WHERE Article.id = :articleId AND '.$filterByStatus);
 		$stmt->bindValue(':articleId', $articleId, PDO::PARAM_INT);
 		$success = $stmt->execute();
 
@@ -44,10 +48,14 @@ final class ArticleRepository {
 		return $articlePhotoUser;
 	}
 
-	public function getAllArticles() {
+	public function getAllArticles($onlyPublished=false) {
 		require _PDO_FILE;
 		$articlesWithPhotoAndUserInfo = [];
-		$stmt = $db->query('SELECT Article.id as article_id, Article.user_id, Article.photo_id, Article.is_featured, Article.status, Article.title, Article.published_timestamp, Article.content, Photo.path as photo_path, Photo.alt as photo_alt, User.name as user_name, User.role as user_role FROM Article LEFT JOIN Photo ON Article.photo_id = Photo.id LEFT JOIN User ON Article.user_id = User.id WHERE Article.status != "archived" ORDER BY Article.id DESC');
+		if($onlyPublished)
+			$filterByStatus='Article.status = "published"';
+		else
+			$filterByStatus='Article.status != "archived"';
+		$stmt = $db->query('SELECT Article.id as article_id, Article.user_id, Article.photo_id, Article.is_featured, Article.status, Article.title, Article.published_timestamp, Article.content, Photo.path as photo_path, Photo.alt as photo_alt, User.name as user_name, User.role as user_role FROM Article LEFT JOIN Photo ON Article.photo_id = Photo.id LEFT JOIN User ON Article.user_id = User.id WHERE '.$filterByStatus.' ORDER BY Article.id DESC');
 		if (!$stmt) {
 			echo "error";
 			$db = null;
@@ -77,10 +85,10 @@ final class ArticleRepository {
 		return $articlesWithPhotoAndUserInfo;
 	}
 
-	public function getNumberOfArticlesStartingFromOffset($number, $offset, $onlyPublishedStatus=false) {
+	public function getNumberOfArticlesStartingFromOffset($number, $offset, $onlyPublished=false) {
 		require _PDO_FILE;
 		$articlesWithPhotoAndUserInfo = [];
-		if($onlyPublishedStatus)
+		if($onlyPublished)
 			$filterByStatus='Article.status = "published"';
 		else
 			$filterByStatus='Article.status != "archived"';
@@ -118,10 +126,15 @@ final class ArticleRepository {
 		return $articlesWithPhotoAndUserInfo;
 	}
 
-	public function getFeaturedArticles() {
+	public function getFeaturedArticles($onlyPublished=false) {
 		require _PDO_FILE;
 		$articlesWithPhotoAndUserInfo = [];
-		$stmt = $db->query('SELECT Article.id as article_id, Article.user_id, Article.photo_id, Article.is_featured, Article.status, Article.title, Article.published_timestamp, Article.content, Photo.path as photo_path, Photo.alt as photo_alt, User.name as user_name, User.role as user_role FROM Article LEFT JOIN Photo ON Article.photo_id = Photo.id LEFT JOIN User ON Article.user_id = User.id WHERE is_featured = 1 AND Article.status != "archived" ORDER BY published_timestamp DESC');
+		if($onlyPublished)
+			$filterByStatus='Article.status = "published"';
+		else
+			$filterByStatus='Article.status != "archived"';
+			
+		$stmt = $db->query('SELECT Article.id as article_id, Article.user_id, Article.photo_id, Article.is_featured, Article.status, Article.title, Article.published_timestamp, Article.content, Photo.path as photo_path, Photo.alt as photo_alt, User.name as user_name, User.role as user_role FROM Article LEFT JOIN Photo ON Article.photo_id = Photo.id LEFT JOIN User ON Article.user_id = User.id WHERE is_featured = 1 AND '.$filterByStatus.' ORDER BY published_timestamp DESC');
 		if (!$stmt) {
 			$db = null;
 			return null;
@@ -198,9 +211,13 @@ final class ArticleRepository {
 		return $count;
 	}
 
-	public function getArticlesCount() {
+	public function getArticlesCount($onlyPublished=false) {
 		require _PDO_FILE;
-		$stmt = $db->query('SELECT COUNT(*) FROM Article WHERE Article.status != "archived"');
+		if($onlyPublished)
+			$filterByStatus='Article.status = "published"';
+		else
+			$filterByStatus='Article.status != "archived"';
+		$stmt = $db->query('SELECT COUNT(*) FROM Article WHERE '.$filterByStatus);
 		if (!$stmt) {
 			$db = null;
 			return null;

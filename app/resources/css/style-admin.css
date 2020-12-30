@@ -59,20 +59,19 @@ body.admin form.edit-article input#title {
   margin: 4px;
 }
 
-body.admin form.edit-article div#content-wyswig {
-  background: white;
-  color: black;
+body.admin form.edit-article .wyswig {
+  display: none;
 }
 
-body.admin form.edit-article div#content-wyswig > div {
-  display: block;
-  margin: auto;
-}
-
-body.admin form.edit-article textarea#content, body.admin form.edit-article #contentNice {
+body.admin form.edit-article .wyswig-parent {
+  background: #fff;
   width: 90%;
-  font-size: 14px;
-  margin: 4px;
+  margin: 0px auto;
+}
+
+body.admin form.edit-article .wyswig-parent,
+body.admin form.edit-article .tox.tox-tinymce {
+  min-height: 360px;
 }
 
 body.admin #photo-selection,

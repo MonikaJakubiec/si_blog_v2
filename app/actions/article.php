@@ -21,7 +21,7 @@ for($counter=0;$counter<count($routingRequestPageWithData)-1;$counter++)
 if($articleId){
 $articleData=$articleRepository->getArticleById($articleId);
 $currentPage=1;//todo:change
-$newestArticles=$articleRepository->getNumberOfArticlesStartingFromOffset(10,($currentPage-1)*$postPerPage);
+$newestArticles=$articleRepository->getNumberOfArticlesStartingFromOffset(10,($currentPage-1)*$postPerPage, true);
 }
 else
 {

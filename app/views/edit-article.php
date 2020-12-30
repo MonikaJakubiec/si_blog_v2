@@ -10,6 +10,10 @@ showHtmlHead("Dodawanie artykułu", null, null, true);
 <body class="admin">
     <script src="<?= _RESOURCES_PATH . 'js' . DIRECTORY_SEPARATOR . 'manage-article.js' ?>"></script>
     <script src="<?= _RESOURCES_PATH . 'js' . DIRECTORY_SEPARATOR . 'unload-support.js' ?>"></script>
+
+
+
+
     <?php
     showHtmlHeader();
     ?>
@@ -54,7 +58,7 @@ showHtmlHead("Dodawanie artykułu", null, null, true);
         <form class="edit-article no-bcg t-center" method="post" action="<?= _RHOME ?>edit-article/" enctype="multipart/form-data">
             <div>
                 <label for="title">Tytuł</label><br>
-                <input type="text" id="title" name="title" placeholder="Wpisz tytuł" autofocus="true" value="<?= $articleTitle ?>">
+                <input type="text" id="title" name="title" placeholder="Wpisz tytuł"  spellcheck="false "autofocus="true" value="<?= $articleTitle ?>">
             </div>
             <div class="error">
                 <?php
@@ -63,21 +67,11 @@ showHtmlHead("Dodawanie artykułu", null, null, true);
                 }
                 ?>
             </div>
-            <div id="content-wyswig">
-                <label for="content">Treść</label><br>
-                <p>textarea</p>
-                <textarea id="content" class="wyswig" name="content" placeholder="Wpisz treść" rows=30><?= $articleContent ?></textarea>
-                <hr>
-                <p>contentTiny</p>
-                <textarea id="contenttiny" class="wyswig" name="contenttiny" placeholder="Wpisz treść" rows=30><?= $articleContent ?></textarea>
-                <hr>
-                <p>contentNice</p>
-                <textarea id="contentNice" class="wyswig" name="content" placeholder="Wpisz treść" rows=30><?= $articleContent ?></textarea>
-                <hr>
-                <p>contentCK</p>
-                <div id="toolbar-container"></div>
-                <textarea id="contentCk" class="wyswig" name="content" placeholder="Wpisz treść" rows=30><?= $articleContent ?></textarea>
 
+            <label for="content">Treść</label><br>
+            <div class="wyswig-parent">
+                <div class="loader"></div>
+                <textarea id="content" class="wyswig" name="content" placeholder="Wpisz treść" rows=30><?= $articleContent ?></textarea>
             </div>
             <div>
                 <input type="checkbox" name="featured" id="featured" <?php if ($isArticleFeatured) echo "checked"; ?>>
@@ -89,7 +83,7 @@ showHtmlHead("Dodawanie artykułu", null, null, true);
             <?php
             showGalleryInput($pictureId);
             $publishButtonText = "Publikuj";
-            if (isset($_GET['edit-article']) && $articleStatus != null && $articleStatus == 'published') $publishButtonText = "Przestań publikować, oznacz jako wersja robocza";
+            if (isset($_GET['edit-article']) && $articleStatus != null && $articleStatus == 'published') $publishButtonText = "Cofnij publikację";
             ?>
             <script>
                 if ("<?= $pictureId ?>" != "picture-from-file") {
@@ -105,43 +99,18 @@ showHtmlHead("Dodawanie artykułu", null, null, true);
     </main>
 
     <!--WYSWIG START-->
-    <!--local: <script src="<?php echo _RESOURCES_PATH . DIRECTORY_SEPARATOR . 'wyswig' . DIRECTORY_SEPARATOR . 'nicEdit.js'; ?>" type="text/javascript"></script>-->
-
-    <!--NICE EDIT START-->
-    <script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        bkLib.onDomLoaded(function() {
-            new nicEditor().panelInstance('contentNice');
-        });
-    </script>
-    <!--NICE EDIT END-->
-
-    <!--TINY MCE START-->
     <script src="https://cdn.tiny.cloud/1/<?php echo $tinyId; ?>/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
         tinymce.init({
-            selector: '#contenttiny',
-            plugins: 'a11ychecker advcode casechange formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker',
-            toolbar: 'a11ycheck addcomment showcomments casechange checklist code formatpainter pageembed permanentpen table',
-            toolbar_mode: 'floating',
-            tinycomments_mode: 'embedded',
-            tinycomments_author: 'Author name',
+            selector: '.wyswig',
+            plugins: [
+                'advlist autolink lists link image charmap preview anchor',
+                'visualblocks code codesample fullscreen powerpaste',
+                'insertdatetime media table paste imagetools wordcount'
+            ],
+            toolbar: 'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | subscript superscript | undo redo |',
         });
     </script>
-    <!--TINY MCE END-->
-
-
-    <!--CK EDITOR START-->
-    <script src="https://cdn.ckeditor.com/ckeditor5/24.0.0/classic/ckeditor.js"></script>
-    <script>
-        ClassicEditor
-            .create(document.querySelector('#contentCk'))
-            .catch(error => {
-                console.error(error);
-            });
-    </script>
-    <!--CK EDITOR END-->
-
     <!--WYSWIG END-->
     <?php
     showHtmlFooter();

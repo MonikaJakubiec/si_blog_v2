@@ -40,7 +40,6 @@ body.admin {
           color: #888;
         }
       }
-
     }
   }
 
@@ -52,20 +51,17 @@ body.admin {
       font-size: 28px;
       margin: 4px;
     }
-
-    div#content-wyswig {
-      background: white;
-      color: black;
-      &>div{
-        display:block;
-        margin:auto;
-      }
+    .wyswig {
+      display: none;
     }
-
-    textarea#content, #contentNice {
+    .wyswig-parent {
+      background: #fff;
       width: 90%;
-      font-size: 14px;
-      margin: 4px;
+      margin:0px auto;
+    }
+    .wyswig-parent,
+    .tox.tox-tinymce {
+      min-height: 360px;
     }
   }
   #photo-selection,

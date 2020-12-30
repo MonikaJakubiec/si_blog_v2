@@ -10,7 +10,7 @@ $tempRand=rand(0,100);
 
 
 <h2><?php echo $article['article']->getTitle();?></h2>
-<p class="post-excerpt"><?php echo substr(Strip_tags($article['article']->getContent()), 0, 200);?>...</p>
+<p class="post-excerpt"><?php echo substr(Strip_tags(html_entity_decode($article['article']->getContent())), 0, 200);?>...</p>
 <a href="<?php echo _RHOME . 'article/' . $article['article']->getId(); ?>/" class="button read-more m-auto">Czytaj dalej!</a>
 </article>
 <?php

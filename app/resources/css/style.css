@@ -13,7 +13,7 @@ body {
   text-align: center;
 }
 
-main#content {
+main#content-box {
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
@@ -318,4 +318,46 @@ body.login a.return {
   }
 }
 */
+/*inspiorowane https://www.w3schools.com/howto/howto_css_loader.asp */
+.loader {
+  border: 16px solid #dfdfdf;
+  /* Light grey */
+  border-top: 16px solid #000a51;
+  /* Blue */
+  border-radius: 50%;
+  -webkit-animation: spin 1s cubic-bezier(0.65, 0.05, 0.36, 1) infinite;
+          animation: spin 1s cubic-bezier(0.65, 0.05, 0.36, 1) infinite;
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  margin: auto;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
 /*# sourceMappingURL=style.css.map */

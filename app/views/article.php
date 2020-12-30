@@ -4,11 +4,11 @@
 
 <body class="article">
     <?php showHtmlHeader(); ?>
-    <main id="content">
+    <main id="content-box">
         <div id="main-article">
             <div class="main-article-info">
                 <h1><?php echo $articleData["article"]->getTitle(); ?></h1>
-                <?php echo $articleData["user"]->getName();?>
+                <p class="author"><?php echo $articleData["user"]->getName();?></p>
                 <time datetime="<?= strftime("%F",$articleData["article"]->getPublishedTimestamp()) ?>"><?= strftime("%A, %e %B %Y %H:%M",$articleData["article"]->getPublishedTimestamp()) ?></time>
                 <?php /* if ($articleData['photo']->getPath()) :?>
                     <img src="<?php echo $articleData['photo']->getPath(); ?>" alt="">
@@ -41,8 +41,6 @@
                 }
 
                 ?>
-
-
             </aside>
         </div>
     </main>
