@@ -68,6 +68,12 @@ input.button {
   min-width: 100px;
   text-align: center;
   margin: 2px;
+  outline: none;
+  font-size: 14px;
+  line-height: 1.6;
+  font-family: arial;
+  border: 1px solid #444;
+  cursor: pointer;
 }
 
 .button:hover,
@@ -188,8 +194,13 @@ input.button.button-gray {
   text-align: center;
 }
 
+#main-article .main-article-info time {
+  display: block;
+}
+
 #main-article .main-article-info img.featured {
   max-width: 100%;
+  vertical-align: middle;
 }
 
 #main-article .main-article-info iframe {

@@ -2,18 +2,20 @@
 <html lang="pl">
 <?php showHtmlHead($articleData["article"]->getTitle(), "Zobacz najnowszy artykuł", "JohnMuller"); ?>
 
-<body>
+<body class="article">
     <?php showHtmlHeader(); ?>
     <main id="content">
         <div id="main-article">
             <div class="main-article-info">
                 <h1><?php echo $articleData["article"]->getTitle(); ?></h1>
-                <time datetime="<?= $articleData["article"]->getPublishedTimestamp() ?>"><?= date('d.m.Y',strtotime($articleData["article"]->getPublishedTimestamp())) ?></time>
+                <?php echo $articleData["user"]->getName();?>
+                <time datetime="<?= strftime("%F",$articleData["article"]->getPublishedTimestamp()) ?>"><?= strftime("%A, %e %B %Y %H:%M",$articleData["article"]->getPublishedTimestamp()) ?></time>
                 <?php /* if ($articleData['photo']->getPath()) :?>
                     <img src="<?php echo $articleData['photo']->getPath(); ?>" alt="">
                     <?php endif; */?>
-                    <!--todo: delete-->
-                        <img class="featured" src="https://via.placeholder.com/<?= rand(1500,1600) ?>x<?= rand(400,600) ?>" alt="">
+                    <!--todo: delete--><?php $randomWidth=rand(100,2000); $randomHeight=rand(100,800);$seed=$articleData['article']->getId();?>
+                        <img class="featured" src="https://picsum.photos/seed/<?=$seed?>/<?= $randomWidth ?>/<?=$randomHeight?>.webp?" alt="placeholder" title="random image">
+
                     <!--end todo: delete-->
             </div>
             <article class="main-article-content"><?= $articleData['article']->getContent() ?></article>

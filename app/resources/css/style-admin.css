@@ -44,6 +44,10 @@ body.admin table#articles td.actions a.button {
   padding: 0px;
 }
 
+body.admin table#articles .article.not-published {
+  color: #888;
+}
+
 body.admin form.edit-article {
   padding: 4px;
   border: 1px solid #fff;

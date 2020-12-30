@@ -13,4 +13,5 @@ $numOfArticles=$articleRepository->getArticlesCount();
 $lastPageNumber = ceil($numOfArticles / $postPerPage);
 if($page>$lastPageNumber)
 $page=$lastPageNumber;
-$newestArticles = $articleRepository->getNumberOfArticlesStartingFromOffset($postPerPage, ($page-1)*$postPerPage);
+$offset=($page-1)*$postPerPage;
+$newestArticles = $articleRepository->getNumberOfArticlesStartingFromOffset($postPerPage, $offset,true);

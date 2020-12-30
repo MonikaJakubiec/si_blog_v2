@@ -85,7 +85,7 @@ showHtmlHead("Dodawanie artykułu", null, null, true);
             </script>
                 <a class="button button-red" href="<?= _RHOME ?>admin-panel/">Anuluj</a>
                 <input type="submit" name="save-button" value=<?= isset($_GET['edit-article']) ? "Zaktualizuj" : "Zapisz" ?> class="button" onclick="formSubmit()">
-                <input type="submit" name="publish-button" value=<?= $publishButtonText ?> class="button" onclick="formSubmit()">
+                <input type="submit" name="publish-button" value="<?= $publishButtonText ?>" class="button" onclick="formSubmit()">
 
                 <input type="hidden" name="edit-article" value="<?php if(isset($_GET['edit-article'])) echo $_GET['edit-article']; ?>">
         </form>

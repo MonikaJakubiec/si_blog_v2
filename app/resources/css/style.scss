@@ -1,6 +1,6 @@
 $font-stack: cursive, Helvetica, sans-serif;
 $primary-color: #000a51;
-//$primary-color: #485add;//todo:delete
+//$primary-color: #ccc;
 $font-primary-color: #fff;
 $article-background: #fff;
 $button-background: #8bc34a;
@@ -75,6 +75,12 @@ input.button {
   min-width: 100px;
   text-align: center;
   margin: 2px;
+  outline: none;
+  font-size: 14px;
+  line-height: 1.6;
+  font-family: arial;
+  border: 1px solid #444;
+  cursor: pointer;
 
   &:hover {
     background: $green-dark;
@@ -90,7 +96,7 @@ input.button {
     background-color: red;
   }
   &.button-gray {
-    background-color:gray;
+    background-color: gray;
   }
 }
 
@@ -165,8 +171,13 @@ input.button {
     grid-column: 1 / 4;
     text-align: center;
 
+    time {
+      display: block;
+    }
+
     img.featured {
       max-width: 100%;
+      vertical-align: middle;
     }
     iframe {
       width: 100%;
@@ -217,13 +228,13 @@ body.login {
   }
 }
 
-.pagination{
-  display:block;
+.pagination {
+  display: block;
   margin: 24px auto;
   text-align: center;
 
-  a.button{
-    padding:4px 16px;
+  a.button {
+    padding: 4px 16px;
     border: 2px solid #fff;
   }
 }

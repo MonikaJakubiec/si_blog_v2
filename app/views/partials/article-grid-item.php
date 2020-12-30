@@ -5,8 +5,9 @@
 $tempRand=rand(0,100);
 ?>
 
+<?php $randomWidth=rand(100,1600); $randomHeight=rand(100,1600);$seed=$article['article']->getId();?>
+                        <img class="featured" src="https://picsum.photos/seed/<?=$seed?>/<?= $randomWidth ?>/<?=$randomHeight?>.webp?" alt="placeholder" title="random image">
 
-<img class="featured" src="https://via.placeholder.com/<?php echo rand(100,1600);?>x<?php echo rand(100,1600);?>" alt="">
 
 <h2><?php echo $article['article']->getTitle();?></h2>
 <p class="post-excerpt"><?php echo substr(Strip_tags($article['article']->getContent()), 0, 200);?>...</p>

@@ -17,8 +17,6 @@ body.admin {
     background-color: $font-primary-color;
     width: 100%;
 
-
-
     td {
       border: 1px solid gray;
     }
@@ -31,11 +29,18 @@ body.admin {
       td.actions {
         display: flex;
         flex-direction: column;
-        
+
         a.button {
           padding: 0px;
         }
       }
+
+      .article {
+        &.not-published {
+          color: #888;
+        }
+      }
+
     }
   }
 

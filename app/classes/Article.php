@@ -80,5 +80,12 @@ class Article {
 	public function setPhotoId($photoId) {
 		$this->photoId = $photoId;
 	}
+
+	public function isPublished() {
+		if($this->status=="published")
+			return true;
+		else
+			return false;
+	}
 }
 ?>

@@ -1,5 +1,6 @@
 <?php
 session_start();
+setlocale(LC_ALL, 'pl_pl.UTF8','pol.UTF-8','plk.UTF-8');//ustawienie dla formatowania dat
 
 /** katalog w ktorym znajduje się aplikajca */
 $routingCurrDir = str_replace("index.php", "", $_SERVER['SCRIPT_NAME']);

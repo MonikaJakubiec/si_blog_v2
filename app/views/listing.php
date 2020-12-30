@@ -8,24 +8,29 @@ require_once(_VIEWS_PATH . 'partials' . DIRECTORY_SEPARATOR . 'article-grid-item
 
 <body>
     <?php showHtmlHeader(); ?>
-
     <section id="main">
-        <div class="article-listing">
-            <?php
-            foreach ($newestArticles as $article) {
-                renderArticleElement($article);
+        <?php
+        if (is_array($newestArticles)) {
+            if (count($newestArticles) > 0) {
+        ?>
+                <div class="article-listing">
+                    <?php
+                    foreach ($newestArticles as $article) {
+                        renderArticleElement($article);
+                    }
+                    ?>
+                </div>
+        <?php
+            } else {
+                echo '<p class="t-center">Wystąpił błąd - nie znaleziono artykułów.</p>';
             }
-
-            /*for ($counter = 0; $counter < 30; $counter++) {
-                $article = NULL;
-                renderArticleElement($article);
-            }*/
-
-            ?>
-        </div>
+        } else {
+            echo '<p class="t-center">Wystąpił błąd. Przepraszamy. Spróbuj ponownie później.</p>';
+        }
+        ?>
     </section>
     <nav class="pagination">
-        <?php 
+        <?php
         if ($page > 1) : ?>
             <a href="<?= _RHOME . '?page=' . (intval($page) - 1) ?>" class="button button-gray">Poprzednia strona</a>
         <?php endif;
@@ -40,7 +45,10 @@ require_once(_VIEWS_PATH . 'partials' . DIRECTORY_SEPARATOR . 'article-grid-item
 </html>
 
 <script>
-    if((new URL(window.location.href)).searchParams.get("logout") != null) {
+    if ((new URL(window.location.href)).searchParams.get("logout") != null) {
         alert("Pomyślnie wylogowano");
     }
+    
+
+    
 </script>
