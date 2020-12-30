@@ -19,6 +19,9 @@ define('_ACTIONS_PATH',  'app' . DIRECTORY_SEPARATOR . 'actions'.DIRECTORY_SEPAR
 /** katalog z clasami */
 define('_CLASSES_PATH', 'app' . DIRECTORY_SEPARATOR . 'classes'.DIRECTORY_SEPARATOR);
 
+/** katalog z danymi prywatnymi */
+define('_PRIVATE_PATH', 'app' . DIRECTORY_SEPARATOR . 'private'.DIRECTORY_SEPARATOR);
+
 /** katalog z repozytoriami */
 define('_REPOSITORIES_PATH', 'app' . DIRECTORY_SEPARATOR . 'repositories'.DIRECTORY_SEPARATOR);
 

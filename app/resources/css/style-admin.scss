@@ -52,7 +52,17 @@ body.admin {
       font-size: 28px;
       margin: 4px;
     }
-    textarea#content {
+
+    div#content-wyswig {
+      background: white;
+      color: black;
+      &>div{
+        display:block;
+        margin:auto;
+      }
+    }
+
+    textarea#content, #contentNice {
       width: 90%;
       font-size: 14px;
       margin: 4px;

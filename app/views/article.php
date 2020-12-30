@@ -18,7 +18,7 @@
 
                     <!--end todo: delete-->
             </div>
-            <article class="main-article-content"><?= $articleData['article']->getContent() ?></article>
+            <article class="main-article-content"><?= html_entity_decode ($articleData['article']->getContent()); ?></article>
             <aside class="see-also">
                 <p class="list-header">Zobacz najnowsze wpisy:</p>
                 <?php

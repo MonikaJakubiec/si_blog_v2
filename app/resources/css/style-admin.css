@@ -59,7 +59,17 @@ body.admin form.edit-article input#title {
   margin: 4px;
 }
 
-body.admin form.edit-article textarea#content {
+body.admin form.edit-article div#content-wyswig {
+  background: white;
+  color: black;
+}
+
+body.admin form.edit-article div#content-wyswig > div {
+  display: block;
+  margin: auto;
+}
+
+body.admin form.edit-article textarea#content, body.admin form.edit-article #contentNice {
   width: 90%;
   font-size: 14px;
   margin: 4px;
