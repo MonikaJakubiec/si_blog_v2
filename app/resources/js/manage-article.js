@@ -1,6 +1,6 @@
-function confirmArticleDelete(homePage="") {
+function confirmArticleDelete(homePage="", articleId) {
     if (confirm("Czy na pewno chcesz usunąć artykuł? Zmiany są nieodwracalne!")) {
-        window.location.href = homePage+"delete-article";
+        window.location.href = homePage + "admin-panel?delete-article=" + articleId;
     }
 }
 
@@ -13,5 +13,20 @@ function showHideAddingPicture() {
     }
     else {
         pInput.style.display = 'none';
+    }
+}
+
+function addArtStatusAlert() {
+    var url = new URL(window.location.href);
+    var addArtStatus = url.searchParams.get("add-art-status");
+    if(addArtStatus != null) {
+        switch(addArtStatus) {
+            case 'draft':
+                alert("Artykuł został zapisany jako wersja robocza");
+                break;
+            case 'published':
+                alert("Artykuł został opublikowany na blogu");
+                break;
+        }   
     }
 }

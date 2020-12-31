@@ -10,7 +10,7 @@ showHtmlHead("Zaloguj", null, null, false);
 	?>
 	<div id="login-box">
 		<h2>Zaloguj się</h2>
-		<form method="post" action="<?php echo _RHOME; ?>login" class="login-form">
+		<form method="post" action="<?= _RHOME; ?>login/" class="login-form">
 			<!-- Okno z możliwością wpisania nazwy użytkownika -->
 			<div class="login-part">
 				<label for="username">Nazwa użytkownika</label>
@@ -33,7 +33,7 @@ showHtmlHead("Zaloguj", null, null, false);
 			</div>
 		</form>
 	</div>
-	<a class="return" href="<?php echo _RHOME; ?>"><< Wróć na stronę główną</a>
+	<a class="return" href="<?= _RHOME ?>"><< Wróć na stronę główną</a>
 
 </body>
 

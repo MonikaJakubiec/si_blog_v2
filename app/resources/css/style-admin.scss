@@ -17,8 +17,6 @@ body.admin {
     background-color: $font-primary-color;
     width: 100%;
 
-
-
     td {
       border: 1px solid gray;
     }
@@ -31,9 +29,15 @@ body.admin {
       td.actions {
         display: flex;
         flex-direction: column;
-        
+
         a.button {
           padding: 0px;
+        }
+      }
+
+      .article {
+        &.not-published {
+          color: #888;
         }
       }
     }
@@ -47,10 +51,17 @@ body.admin {
       font-size: 28px;
       margin: 4px;
     }
-    textarea#content {
+    .wyswig {
+      display: none;
+    }
+    .wyswig-parent {
+      background: #fff;
       width: 90%;
-      font-size: 14px;
-      margin: 4px;
+      margin:0px auto;
+    }
+    .wyswig-parent,
+    .tox.tox-tinymce {
+      min-height: 360px;
     }
   }
   #photo-selection,

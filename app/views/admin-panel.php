@@ -2,7 +2,7 @@
 <html lang="pl">
 <?php
 require_once(_VIEWS_PATH . 'partials' . DIRECTORY_SEPARATOR . 'admin-menu.php');
-showHtmlHead("Panel administratora", null, null, true,);
+showHtmlHead("Panel administratora", null, null, true);
 ?>
 
 <body class="admin">
@@ -11,7 +11,7 @@ showHtmlHead("Panel administratora", null, null, true,);
     ?>
     <script src="<?= _RESOURCES_PATH . 'js' . DIRECTORY_SEPARATOR . 'manage-article.js' ?>"></script>
 
-    <main id="content">
+    <main id="content-box">
         <?php showHtmlAdminMenu(); ?>
         <table id="articles">
             <thead>
@@ -24,21 +24,25 @@ showHtmlHead("Panel administratora", null, null, true,);
             </thead>
             <tbody>
                 <?php
-                $lorem = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores ducimus ab, voluptates provident porro aspernatur quod excepturi voluptas, facilis inventore dicta eaque ratione iure neque laudantium quis distinctio voluptatem animi';
-                $tempRand = rand(0, 100);
-                foreach($allArticles as $articleData) { 
-                    ?>
-                    <tr>
-                        <td><?php echo $articleData['article']->getTitle();?></td>
-                        <td><?php echo $articleData['user']->getName();?></td>
-                        <td><?php echo $articleData['article']->getPublishedTimestamp();?></td>
+                foreach ($allArticles as $articleData) {
+                ?>
+                    <tr class="article <?php if (!$articleData['article']->isPublished()) {
+                                            echo " not-published";
+                                        } ?>">
+                        <td class="title"><?php echo $articleData['article']->getTitle(); ?></td>
+                        <td><?php echo $articleData['user']->getName(); ?></td>
+                        <td><?php if ($articleData['article']->isPublished()) {
+                                echo strftime("%c", $articleData['article']->getPublishedTimestamp());
+                            } else {
+                                echo "nie opublikowano";
+                            } ?></td>
                         <td class="actions">
-                            <a class="button" href="<?= _RHOME ?>article/<?php echo $articleData['article']->getId();?>">Zobacz artykuł</a>
-                            <a class="button" href="<?= _RHOME ?>edit-article/">Edytuj artykuł</a>
-                            <a class="button button-red" href="#" onClick="confirmArticleDelete('<?= _RHOME ?>');">Usuń artykuł</a></td>
+                            <?php if ($articleData['article']->isPublished()) : ?><a class="button" href="<?= _RHOME ?>article/<?= $articleData['article']->getId() ?>">Zobacz</a><?php endif; ?>
+                            <a class="button" href="<?= _RHOME ?>edit-article/?edit-article=<?= $articleData['article']->getId() ?>">Edytuj</a>
+                            <a class="button button-red" href="#" onClick="confirmArticleDelete('<?= _RHOME ?>', <?= $articleData['article']->getId() ?>);">Usuń</a></td>
                     </tr>
-                <?php 
-            } ?>
+                <?php
+                } ?>
 
             </tbody>
         </table>
@@ -47,4 +51,8 @@ showHtmlHead("Panel administratora", null, null, true,);
     showHtmlFooter();
     ?>
 </body>
+
 </html>
+<script>
+    window.onload = addArtStatusAlert;
+</script>

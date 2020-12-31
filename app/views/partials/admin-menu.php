@@ -3,9 +3,10 @@
     {
     ?>
         <nav class="admin-menu">
-            <a class="button" href="<?php echo _RHOME;?>edit-article">Dodaj artykuł</a>
-            <a class="button button-red" href="<?php echo _RHOME;?>logout">Wyloguj</a>
+            <a class="button" href="<?= _RHOME ?>edit-article/">Dodaj artykuł</a>
+            <a class="button button-red" href="<?= _RHOME ?>logout/">Wyloguj</a>
         </nav>
     <?php
     }
     ?>
+  

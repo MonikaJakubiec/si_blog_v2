@@ -1,5 +1,6 @@
 <?php
 session_start();
+setlocale(LC_ALL, 'pl_pl.UTF8','pol.UTF-8','plk.UTF-8');//ustawienie dla formatowania dat
 
 /** katalog w ktorym znajduje się aplikajca */
 $routingCurrDir = str_replace("index.php", "", $_SERVER['SCRIPT_NAME']);
@@ -18,8 +19,14 @@ define('_ACTIONS_PATH',  'app' . DIRECTORY_SEPARATOR . 'actions'.DIRECTORY_SEPAR
 /** katalog z clasami */
 define('_CLASSES_PATH', 'app' . DIRECTORY_SEPARATOR . 'classes'.DIRECTORY_SEPARATOR);
 
+/** katalog z danymi prywatnymi */
+define('_PRIVATE_PATH', 'app' . DIRECTORY_SEPARATOR . 'private'.DIRECTORY_SEPARATOR);
+
 /** katalog z repozytoriami */
 define('_REPOSITORIES_PATH', 'app' . DIRECTORY_SEPARATOR . 'repositories'.DIRECTORY_SEPARATOR);
+
+/** katalog z repozytoriami */
+define('_PDO_FILE', 'app' . DIRECTORY_SEPARATOR . 'pdo'.DIRECTORY_SEPARATOR.'pdo.php');
 
 /** katalog z zasobami css/js/images */
 define('_RESOURCES_PATH', _RHOME . 'app' . DIRECTORY_SEPARATOR . 'resources'.DIRECTORY_SEPARATOR);//TODO:
@@ -65,7 +72,7 @@ $routingRequestPageWithoutData=$routingRequestPageWithData[0];
  * Dostępne strony
  * @var array
  */
-$pages = array('edit-article', 'delete-article', 'homepage', 'login', 'logout', 'admin-panel', 'show-article', 'add-picture', 'listing', 'article');
+$pages = array('edit-article', 'homepage', 'login', 'logout', 'admin-panel', 'show-article', 'add-picture', 'listing', 'article');
 
 if (in_array($routingRequestPageWithoutData, $pages)) {
     /**
@@ -80,7 +87,6 @@ if (in_array($routingRequestPageWithoutData, $pages)) {
         $page = 'page-not-found';
     }
 }
-
 
 $action = _ACTIONS_PATH . $page . '.php';
 $view = _VIEWS_PATH . $page . '.php';

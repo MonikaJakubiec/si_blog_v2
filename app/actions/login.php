@@ -1,4 +1,7 @@
 <?php
+require_once(_ACTIONS_PATH . 'redirects.php');
+redirectIfLoggedIn();
+
 require_once(_REPOSITORIES_PATH . 'UserRepository.php');
 
 $errors = [];
@@ -9,7 +12,8 @@ if(isset($_POST['username'])) {
 
     $user = (new UserRepository)->getUserByName($username);
     if($user != null && $user->getPassword() === $password) {
-      header('Location: ' . _RHOME . 'admin-panel');
+      $_SESSION['login'] = $user->getId();
+      header('Location: ' . _RHOME . 'admin-panel/');
       exit();
     }
     else {

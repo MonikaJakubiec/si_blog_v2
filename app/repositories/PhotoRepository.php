@@ -1,11 +1,11 @@
 <?php
-require_once 'app' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'Photo.php';
-require_once 'app' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'AddPhotoRequest.php';
+require_once _CLASSES_PATH . DIRECTORY_SEPARATOR . 'Photo.php';
+require_once _CLASSES_PATH . DIRECTORY_SEPARATOR . 'AddPhotoRequest.php';
 
 final class PhotoRepository {
 	
 	public function getPhotoById($photoId) {
-		require 'app' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
+		require _PDO_FILE;
 		$stmt = $db->prepare('SELECT * FROM Photo WHERE id = :photoId');
 		$stmt->bindValue(':photoId', $photoId, PDO::PARAM_INT);
 		$success = $stmt->execute();
@@ -28,9 +28,9 @@ final class PhotoRepository {
 	}
 
 	public function getAllPhotos() {
-		require 'app' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
+		require _PDO_FILE;
 		$photos = [];
-		$stmt = $db->query('SELECT * FROM Photo ORDER BY id');
+		$stmt = $db->query('SELECT * FROM Photo ORDER BY id DESC');
 		if (!$stmt) {
 			$db = null;
 			return null;
@@ -46,7 +46,7 @@ final class PhotoRepository {
 	}
 
 	public function savePhotoFromRequest($addPhotoRequest) {
-		require 'app' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
+		require _PDO_FILE;
 		$stmt = $db->prepare('INSERT INTO Photo (path, alt) VALUES (:path, :alt)');
 		$stmt->bindValue(':path', $addPhotoRequest->getPath(), PDO::PARAM_STR);
 		$stmt->bindValue(':alt', $addPhotoRequest->getAlt(), PDO::PARAM_STR);
@@ -64,7 +64,7 @@ final class PhotoRepository {
 	}
 
 	public function updatePhoto($photo) {
-		require 'app' . DIRECTORY_SEPARATOR . 'pdo'. DIRECTORY_SEPARATOR . 'PDO.php';
+		require _PDO_FILE;
 		$stmt = $db->prepare('UPDATE Photo SET path = :path, alt = :alt WHERE id = :photoId');
 		$stmt->bindValue(':path', $photo->getPath(), PDO::PARAM_STR);
 		$stmt->bindValue(':alt', $photo->getAlt(), PDO::PARAM_STR);

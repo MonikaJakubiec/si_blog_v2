@@ -44,6 +44,10 @@ body.admin table#articles td.actions a.button {
   padding: 0px;
 }
 
+body.admin table#articles .article.not-published {
+  color: #888;
+}
+
 body.admin form.edit-article {
   padding: 4px;
   border: 1px solid #fff;
@@ -55,10 +59,19 @@ body.admin form.edit-article input#title {
   margin: 4px;
 }
 
-body.admin form.edit-article textarea#content {
+body.admin form.edit-article .wyswig {
+  display: none;
+}
+
+body.admin form.edit-article .wyswig-parent {
+  background: #fff;
   width: 90%;
-  font-size: 14px;
-  margin: 4px;
+  margin: 0px auto;
+}
+
+body.admin form.edit-article .wyswig-parent,
+body.admin form.edit-article .tox.tox-tinymce {
+  min-height: 360px;
 }
 
 body.admin #photo-selection,
