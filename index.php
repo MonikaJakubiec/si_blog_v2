@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 setlocale(LC_ALL, 'pl_pl.UTF8','pol.UTF-8','plk.UTF-8');//ustawienie dla formatowania dat
 
 /** katalog w ktorym znajduje się aplikajca */
@@ -37,6 +38,8 @@ define('_UPLOADS_PATH', 'uploads');
 require_once(_VIEWS_PATH  . 'partials' . DIRECTORY_SEPARATOR . 'head.php');
 require_once(_VIEWS_PATH  . 'partials' . DIRECTORY_SEPARATOR . 'header.php');
 require_once(_VIEWS_PATH  . 'partials' . DIRECTORY_SEPARATOR . 'footer.php');
+require_once(_ACTIONS_PATH  . 'functions.php');
+
 
 /**
  * Żądanie użytkownika od katalogu, w ktorym znajduje sie aplikacja
@@ -61,7 +64,7 @@ $routingRequestPage = trim($routingRequestPage, "/");
  * @var string
  */
 $routingRequestPageWithData=explode("/",$routingRequestPage);
-
+$routingRequestPageWithDataForArticle=explode("/",str_replace(",","/",$routingRequestPage));
 /**
  * Żądana strona (bez parametrów) bez danych po slashu
  * @var string
@@ -98,4 +101,5 @@ if (file_exists($action)) {
 if (file_exists($view)) {
     include($view);
 }
+
 ?>

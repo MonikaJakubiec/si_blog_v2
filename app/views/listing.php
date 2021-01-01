@@ -1,15 +1,18 @@
 <?php
 require_once(_CLASSES_PATH  . 'Article.php');
-require_once(_VIEWS_PATH . 'partials' . DIRECTORY_SEPARATOR . 'article-grid-item.php')
+require_once(_VIEWS_PATH . 'partials' . DIRECTORY_SEPARATOR . 'article-grid-item.php');
+require_once(_ACTIONS_PATH  . 'functions.php');
 ?>
 <!DOCTYPE html>
 <html lang="pl">
 <?php showHtmlHead(_SITE_NAME . "— Strona główna", "Zobacz najnowsze artykuły", null); ?>
 
 <body>
-    <?php showHtmlHeader(); ?>
+    <?php renderHtmlHeader(array("page"=>"listing")); ?>
     <section id="main">
+   
         <?php
+         renderFeaturedSlider($featuredForSlider,"");
         if (is_array($newestArticles)) {
             if (count($newestArticles) > 0) {
         ?>
@@ -41,14 +44,4 @@ require_once(_VIEWS_PATH . 'partials' . DIRECTORY_SEPARATOR . 'article-grid-item
     </nav>
     <?php showHtmlFooter(); ?>
 </body>
-
 </html>
-
-<script>
-    if ((new URL(window.location.href)).searchParams.get("logout") != null) {
-        alert("Pomyślnie wylogowano");
-    }
-    
-
-    
-</script>

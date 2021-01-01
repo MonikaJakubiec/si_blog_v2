@@ -87,8 +87,17 @@ function validateArticle(&$errors, $pictureId, $articleToEdit) {
             $articleToEdit->setStatus($status);
             (new ArticleRepository)->updateArticle($articleToEdit);
         }
-
-        header("Location: " . _RHOME . "admin-panel/?add-art-status=$status");
+        switch($status) {
+            case 'draft':
+                addAlert("Artykuł został zapisany jako wersja robocza.","success");
+                break;
+            case 'published':
+                echo "addAlert";
+                addAlert('Artykuł został opublikowany na blogu.',"success");
+                break;
+        }   
+        header("Location: " . _RHOME . "admin-panel/");
+        exit(); 
     }
 }
 

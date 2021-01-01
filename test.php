@@ -41,7 +41,7 @@ $articleRepo->saveArticleFromRequest($articleRequest3);
 
 /*
 $articleRepo = new ArticleRepository();
-$allArticlesInfo = $articleRepo->getNumberOfArticlesStartingFromOffset(10, 0);
+$allArticlesInfo = $articleRepo->getArticles(false, false, 10, 0);
 var_dump($allArticlesInfo);
 */
 

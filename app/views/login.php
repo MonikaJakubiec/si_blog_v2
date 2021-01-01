@@ -6,7 +6,7 @@ showHtmlHead("Zaloguj", null, null, false);
 
 <body class="login">
 	<?php
-	showHtmlHeader();
+	renderHtmlHeader(array("page"=>"login"));
 	?>
 	<div id="login-box">
 		<h2>Zaloguj się</h2>

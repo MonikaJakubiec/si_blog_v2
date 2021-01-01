@@ -2,17 +2,6 @@ $max-width-default: 1200px;
 $font-primary-color: #fff;
 
 body.admin {
-  nav.admin-menu {
-    max-width: $max-width-default;
-    background-color: $font-primary-color;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    margin: auto;
-    margin-bottom: 4px;
-    padding: 4px;
-  }
-
   table {
     background-color: $font-primary-color;
     width: 100%;
@@ -20,11 +9,32 @@ body.admin {
     td {
       border: 1px solid gray;
     }
+    th {
+      border: 1px solid #ddd;
+    }
+    td,
+    th {
+      max-width: 50vw;
+    }
 
     &#articles {
       border-spacing: 0px;
       width: 100%;
       border: 1px solid black;
+      word-break: break-word;
+
+      thead tr th {
+        position: sticky;
+        top: 0;
+        background: #fff;
+        border-bottom: 2px solid #ccc;
+
+        a.sortable {
+          width: 100%;
+          display: block;
+          text-decoration: none;
+        }
+      }
 
       td.actions {
         display: flex;
@@ -32,6 +42,8 @@ body.admin {
 
         a.button {
           padding: 0px;
+          min-width: unset;
+          word-break: initial;
         }
       }
 
@@ -57,7 +69,7 @@ body.admin {
     .wyswig-parent {
       background: #fff;
       width: 90%;
-      margin:0px auto;
+      margin: 0px auto;
     }
     .wyswig-parent,
     .tox.tox-tinymce {
@@ -71,17 +83,92 @@ body.admin {
   }
   #photo-selection {
     display: block;
-    max-height: 200px;
+    max-height: 400px;
     overflow-y: scroll;
     overflow-x: auto;
     text-align: left;
+    padding: 12px auto;
+
+    .photo-from-file {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: stretch;
+      align-content: flex-start;
+      padding: 16px 0px;
+
+      input {
+        display: none;
+        visibility: hidden;
+      }
+
+      label {
+        display: block;
+        position: relative;
+        cursor: pointer;
+        border: 3px solid #000;
+      }
+
+      input:checked + label {
+        border: 3px solid green;
+      }
+
+      input:checked + label::before {
+        content: "✓";
+        position: absolute;
+        background-color: #ffffff;
+        color: #000;
+        font-weight: bold;
+        top: 4px;
+        left: 4px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 1px solid black;
+        text-align: center;
+        opacity: 0.5;
+        font-size: 40px;
+        line-height: 1;
+      }
+    }
 
     .photo-selection-option {
       display: block;
+      margin: auto 0px;
     }
     img.file-selection {
       max-width: 200px;
       max-height: 200px;
+      vertical-align: middle;
     }
   }
+}
+
+div#admin-header-menu {
+  display:block;
+  background: #000;
+  color: #fff;
+
+  .links{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-flow: wrap;
+  margin: auto;
+  margin-bottom: 4px;
+  padding: 4px;
+  max-width: $max-width-default;
+
+  a {
+    border: 1px solid #000;
+    background-color: #333;
+    padding: 2px 4px;
+    margin: 0px 4px;
+  &:hover{
+    border:1px solid #eee;
+    background-color: #666;
+    transition-duration: .2s;
+  }
+  }
+}
 }

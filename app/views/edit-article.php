@@ -2,25 +2,24 @@
 <html lang="pl">
 <?php require_once(_PRIVATE_PATH . DIRECTORY_SEPARATOR . 'keys.php'); ?>
 <?php
-require_once(_VIEWS_PATH . 'partials' . DIRECTORY_SEPARATOR . 'admin-menu.php');
+// require_once(_VIEWS_PATH . 'partials' . DIRECTORY_SEPARATOR . 'admin-menu.php');
 require_once(_VIEWS_PATH . 'partials' . DIRECTORY_SEPARATOR . 'add-picture.php');
 showHtmlHead("Dodawanie artykułu", null, null, true);
 ?>
 
 <body class="admin">
     <script src="<?= _RESOURCES_PATH . 'js' . DIRECTORY_SEPARATOR . 'manage-article.js' ?>"></script>
-    <script src="<?= _RESOURCES_PATH . 'js' . DIRECTORY_SEPARATOR . 'unload-support.js' ?>"></script>
-
-
 
 
     <?php
-    showHtmlHeader();
+    if($articleToEdit)
+    renderHtmlHeader(array("page"=>"edit-article","articleId"=>$articleToEdit->getId()));
+    else
+    renderHtmlHeader(array());
     ?>
     <main id="content-box">
         <!--changed from content- duplicated id-->
         <?php
-        showHtmlAdminMenu();
 
         $articleTitle = $articleContent = '';
 
@@ -97,7 +96,9 @@ showHtmlHead("Dodawanie artykułu", null, null, true);
             <input type="hidden" name="edit-article" value="<?php if (isset($_GET['edit-article'])) echo $_GET['edit-article']; ?>">
         </form>
     </main>
-
+                <script>
+                    preventExit();
+                    </script>
     <!--WYSWIG START-->
     <script src="https://cdn.tiny.cloud/1/<?php echo $tinyId; ?>/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
@@ -105,7 +106,7 @@ showHtmlHead("Dodawanie artykułu", null, null, true);
             selector: '.wyswig',
             plugins: [
                 'advlist autolink lists link image charmap preview anchor',
-                'visualblocks code codesample fullscreen powerpaste',
+                'visualblocks code codesample fullscreen',
                 'insertdatetime media table paste imagetools wordcount'
             ],
             toolbar: 'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | subscript superscript | undo redo |',

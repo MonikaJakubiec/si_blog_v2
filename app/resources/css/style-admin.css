@@ -1,20 +1,4 @@
-body.admin nav.admin-menu {
-  max-width: 1200px;
-  background-color: #fff;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  margin: auto;
-  margin-bottom: 4px;
-  padding: 4px;
-}
-
+@charset "UTF-8";
 body.admin table {
   background-color: #fff;
   width: 100%;
@@ -24,10 +8,34 @@ body.admin table td {
   border: 1px solid gray;
 }
 
+body.admin table th {
+  border: 1px solid #ddd;
+}
+
+body.admin table td,
+body.admin table th {
+  max-width: 50vw;
+}
+
 body.admin table#articles {
   border-spacing: 0px;
   width: 100%;
   border: 1px solid black;
+  word-break: break-word;
+}
+
+body.admin table#articles thead tr th {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background: #fff;
+  border-bottom: 2px solid #ccc;
+}
+
+body.admin table#articles thead tr th a.sortable {
+  width: 100%;
+  display: block;
+  text-decoration: none;
 }
 
 body.admin table#articles td.actions {
@@ -42,6 +50,8 @@ body.admin table#articles td.actions {
 
 body.admin table#articles td.actions a.button {
   padding: 0px;
+  min-width: unset;
+  word-break: initial;
 }
 
 body.admin table#articles .article.not-published {
@@ -82,18 +92,111 @@ body.admin #add-picture-from-file {
 
 body.admin #photo-selection {
   display: block;
-  max-height: 200px;
+  max-height: 400px;
   overflow-y: scroll;
   overflow-x: auto;
   text-align: left;
+  padding: 12px auto;
+}
+
+body.admin #photo-selection .photo-from-file {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+  padding: 16px 0px;
+}
+
+body.admin #photo-selection .photo-from-file input {
+  display: none;
+  visibility: hidden;
+}
+
+body.admin #photo-selection .photo-from-file label {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  border: 3px solid #000;
+}
+
+body.admin #photo-selection .photo-from-file input:checked + label {
+  border: 3px solid green;
+}
+
+body.admin #photo-selection .photo-from-file input:checked + label::before {
+  content: "✓";
+  position: absolute;
+  background-color: #ffffff;
+  color: #000;
+  font-weight: bold;
+  top: 4px;
+  left: 4px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid black;
+  text-align: center;
+  opacity: 0.5;
+  font-size: 40px;
+  line-height: 1;
 }
 
 body.admin #photo-selection .photo-selection-option {
   display: block;
+  margin: auto 0px;
 }
 
 body.admin #photo-selection img.file-selection {
   max-width: 200px;
   max-height: 200px;
+  vertical-align: middle;
+}
+
+div#admin-header-menu {
+  display: block;
+  background: #000;
+  color: #fff;
+}
+
+div#admin-header-menu .links {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -ms-flex-flow: wrap;
+      flex-flow: wrap;
+  margin: auto;
+  margin-bottom: 4px;
+  padding: 4px;
+  max-width: 1200px;
+}
+
+div#admin-header-menu .links a {
+  border: 1px solid #000;
+  background-color: #333;
+  padding: 2px 4px;
+  margin: 0px 4px;
+}
+
+div#admin-header-menu .links a:hover {
+  border: 1px solid #eee;
+  background-color: #666;
+  -webkit-transition-duration: .2s;
+          transition-duration: .2s;
 }
 /*# sourceMappingURL=style-admin.css.map */
