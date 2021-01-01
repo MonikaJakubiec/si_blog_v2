@@ -79,7 +79,7 @@ final class ArticleRepository
 		if ($limit > 0)
 			$limitQueryPart = "LIMIT :limit ";
 
-		//dodanie limitu
+		//dodanie offsetu
 		$offsetQueryPart = '';
 		if ($offset > 0)
 			$offsetQueryPart = "OFFSET :offset ";

@@ -9,9 +9,9 @@ if (isset($_GET['page'])) {
 } else {
     $page =1;
 }
-$featuredForSlider=prepareFeaturedForSLider(3,false,4,1,1,true);
+$featuredForSlider=prepareFeaturedForSLider(3,false,4,2,1,true);
 if($page==1)
-$featuredForSlider=prepareFeaturedForSLider(3,false,4,1);
+$featuredForSlider=prepareFeaturedForSLider(3,false,4,3);
 
 
 $numOfArticles=$articleRepository->getArticlesCount(true);

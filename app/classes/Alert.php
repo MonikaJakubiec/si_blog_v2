@@ -4,7 +4,6 @@ class Alert
     private $message;
     private $type;
     private $showOnlyInDebugMode;
-    private $showBacktrace;
     private $backtrace;
 
     /**

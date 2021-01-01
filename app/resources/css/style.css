@@ -434,10 +434,6 @@ body.login a.return {
 }
 
 /*END ALERTS*/
-.error {
-  color: red;
-}
-
 /*inspiorowane https://www.w3schools.com/howto/howto_css_loader.asp */
 .loader {
   border: 16px solid #dfdfdf;
