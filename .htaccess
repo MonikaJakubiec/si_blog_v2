@@ -7,6 +7,6 @@ RewriteCond %{REQUEST_URI} !\.(png|jpg|jpeg|webp|gif|)$
 #except js:
 RewriteCond %{REQUEST_URI} !\.(js)$
 #except css:
-RewriteCond %{REQUEST_URI} !\.(css)$
+RewriteCond %{REQUEST_URI} !\.(css|map)$
 RewriteRule .* index.php
 

@@ -37,6 +37,11 @@ function showGalleryInput($pictureId)
             <input type="radio" name="picture-id" id="picture-from-file" onclick="showHideAddingPicture()" value="picture-from-file" <?php if($pictureId == "picture-from-file") echo "checked" ?>>
             <label for="picture-from-file">Zdjęcie z pliku</label>
         </div>
+        <?php if(count($allPhotos)>0){
+        ?>
+        <p>Lub wybierz z poniższych</p>
+        <div class="photo-from-file">
+    
         <?php
         foreach ($allPhotos as $photo) {
             //todo: check file exist
@@ -53,6 +58,11 @@ function showGalleryInput($pictureId)
             }
             ?>
         <?php } ?>
+
+        </div>
+        <?php
+        }
+        ?>
     </div>
 <?php
 }

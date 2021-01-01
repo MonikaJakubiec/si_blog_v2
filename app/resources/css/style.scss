@@ -9,12 +9,73 @@ $button-color: #fff;
 $max-width-default: 1200px;
 $article-listing-gap: 30px;
 $article-listing-cols: 3;
+$error-color:#fe121a;
+$success-color:#8bc34b;
+$info-color:#333;
+$warning-color:#ff9800;
 
+// START default style sheet for HTML 4 from https://www.w3.org/TR/CSS2/sample.html
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+h2 {
+  font-size: 1.5em;
+  margin: 0.75em 0;
+}
+h3 {
+  font-size: 1.17em;
+  margin: 0.83em 0;
+}
+h5 {
+  font-size: 0.83em;
+  margin: 1.5em 0;
+}
+h6 {
+  font-size: 0.75em;
+  margin: 1.67em 0;
+}
+strong {
+  font-weight: bolder;
+}
+input,
+select {
+  display: inline-block;
+}
+sub {
+  vertical-align: sub;
+}
+sup {
+  vertical-align: super;
+}
+hr {
+  border: 1px inset;
+}
+center {
+  text-align: center;
+}
+
+//END default style sheet for HTML 4
+table{
+display: table;
+border-collapse: separate;
+border-spacing: 0px;
+border-color: gray;
+th,td{
+  border:1px solid gray;
+}
+}
 body {
   font: 100% $font-stack;
   background: $primary-color;
   color: #000;
   margin: 0px;
+  word-break: break-word;
+  
+
+  img {
+    max-width: 100%;
+  }
 }
 
 .m-auto {
@@ -31,14 +92,24 @@ main#content-box {
 }
 
 header {
-  max-width: $max-width-default;
   margin-left: auto;
   margin-right: auto;
-  padding: 0 8px;
+  padding: 0px;
+  position: sticky;
+  top: 0;
+  background: $primary-color;
+  z-index: 5;
+  .boxed
+  {
+    max-width: $max-width-default;
+    margin:auto;
+  }
   h1 {
-    padding-left: 8px;
+    padding:0px 8px;
+    margin:0px auto;
     font-size: 40px;
     color: $font-primary-color;
+    line-height: 1.6;
   }
   a {
     text-decoration: none;
@@ -62,7 +133,7 @@ footer {
   color: $font-primary-color;
 }
 
-/*BUTTONS*/
+/*START BUTTONS*/
 .button,
 a.button,
 input.button {
@@ -81,6 +152,7 @@ input.button {
   font-family: arial;
   border: 1px solid #444;
   cursor: pointer;
+  word-break: break-word;
 
   &:hover {
     background: $green-dark;
@@ -99,7 +171,8 @@ input.button {
     background-color: gray;
   }
 }
-
+/*END BUTTONS*/
+/*LISTING START*/
 .article-listing {
   max-width: $max-width-default;
   margin-left: auto;
@@ -149,12 +222,20 @@ input.button {
     }
   }
 }
+/*END LISTING*/
 
+/*START ARTICLE PAGE*/
 #main-article {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  //grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
   column-gap: 8px;
   row-gap: 8px;
+
+  @media only screen and (max-width: 380px) {
+    grid-template-columns: 1;
+    column-gap: 0px;
+  }
 
   div,
   article,
@@ -162,14 +243,33 @@ input.button {
     background: white;
   }
   div h1,
-  article,
+  article {
+    padding: 0px 8px;
+  }
   aside {
-    padding: 4px;
+    padding: 0px;
+  }
+  aside > .sticky {
+    position: sticky;
+    top: 0;
+    & > *:not(#featured-slider) {
+      margin: 4px;
+    }
+    #featured-slider {
+      margin-top: 0px;
+    }
   }
 
   .main-article-info {
-    grid-column: 1 / 4;
+    grid-column: 1 / -1;
     text-align: center;
+    h1 {
+      margin-bottom: 4px;
+    }
+    time,
+    p.author {
+      margin: 4px auto;
+    }
 
     time {
       display: block;
@@ -187,11 +287,13 @@ input.button {
     grid-column: 1 / 3;
   }
 }
+/*END ARTICLE PAGE*/
 
 .list-header {
   font-weight: bold;
 }
 
+/*START LOGIN PAGE*/
 body.login {
   header {
     text-align: center;
@@ -227,7 +329,9 @@ body.login {
     text-align: center;
   }
 }
+/*END LOGIN PAGE*/
 
+/*START PAGINATION*/
 .pagination {
   display: block;
   margin: 24px auto;
@@ -238,60 +342,65 @@ body.login {
     border: 2px solid #fff;
   }
 }
+/*END PAGINATION*/
+
+/*START ALERTS*/
+.alert  {
+  display: block;
+  margin: 8px auto;
+  max-width: $max-width-default;
+  text-align: center;
+  color:#fff;
+  background-color: #000;
+  border:1px solid #000;
+  position: relative;
+  min-height: 16px;//close ma padding 8 i position absolute
+
+  &.closed
+  {
+    display:none;
+    opacity : 0;
+    visibility: hidden;
+  }
+
+  &.info
+  {
+    background-color:$info-color;
+  }
+  &.warning
+  {
+    background-color:$warning-color;
+  }
+  &.success
+  {
+    background-color:$success-color;
+  }
+  &.error
+  {
+    background-color:$error-color;
+  }
+
+  span.close {
+    cursor: pointer;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    padding: 8px;
+    &:hover{
+      background-color: black;
+    }
+}
+}
+/*END ALERTS*/
+
+
+
 
 //temp to test TODO change MKu
 .error {
   color: red;
 }
 
-/*
-.article-listing {
-  padding: auto;
-  display: flex;
-  flex-wrap: wrap;
-  flex-flow: space-around;
-  align-items: stretch;
-  align-content: flex-start;
-
-  article {
-    display: flex;
-    flex-direction: column;
-    background-color: $article-background;
-    height: auto;
-    margin: 8px;
-    padding: 8px 0px;
-    flex: 10 2 30%;
-
-    //except image
-    & > h2,
-    & > p,
-    & > a {
-      padding-left: 4px;
-      padding-right: 4px;
-    }
-    h2 {
-      margin: 0px;
-      padding: 4px;
-      text-align: center;
-      text-overflow: ellipsis;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-    img {
-      width: 100%;
-    }
-
-    a.read-more {
-      margin:4px;
-      display: block;
-      text-align: center;
-      margin-top: auto;
-    }
-  }
-}
-*/
 /*inspiorowane https://www.w3schools.com/howto/howto_css_loader.asp */
 .loader {
   border: 16px solid #dfdfdf; /* Light grey */
@@ -301,14 +410,101 @@ body.login {
   width: 100px;
   height: 100px;
   position: absolute;
-  margin:auto;
+  margin: auto;
   margin: auto;
   position: absolute;
-  top: 0; left: 0; bottom: 0; right: 0;
-
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+//slider
+//zostanie nadpisane
+@keyframes transition-slider {
+  0% {
+    left: 0%;
+  }
+}
+
+#featured-slider {
+  width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  margin: 12px 0px;
+  word-break: break-word;
+
+  * {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .slider {
+    position: relative;
+    width: 100%; //zostanie nadpisane
+    animation: 5s transition-slider infinite;
+    height: 50vh;
+    font-size: 0; //usuniecie odstepu miedy elementami
+
+    &:hover {
+      animation-play-state: paused; //wylaczenie animacji po najechaniu/ zostanie nadpisane po id
+    }
+    .slide {
+      width: 100%;
+      height: 100%;
+      display: inline-block;
+      position: inherit;
+      background-color: #000;
+      position: relative;
+
+      img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+      }
+
+      .title {
+        position: absolute;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+        font-size: 2.5vh;
+        padding: 0px;
+        z-index: 1;
+        background: none;
+        color: #fff;
+        background: linear-gradient(#00000000, #000000, #00000000);
+        overflow: hidden;
+        text-align: center;
+        &:hover {
+          transition-duration: .4s;
+           background-color: #ffffff33;
+        }
+        .text {
+          background: linear-gradient(#00000000, #00000088, #00000088, #00000000);
+          text-decoration: none;
+          padding: 16px 8px;
+          max-height: 100%;
+          overflow: hidden;
+          width: 100%;
+          text-align: center;
+        }
+      }
+    }
+  }
 }

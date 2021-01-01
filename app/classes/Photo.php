@@ -17,6 +17,9 @@ class Photo {
 	public function getPath() {
 		return $this->path;
 	}
+	public function getFrontendPath() {
+		return (_RHOME.str_replace("\\","/",$this->path));
+	}
 
 	public function setPath($newPath) {
 		$this->path = $newPath;
