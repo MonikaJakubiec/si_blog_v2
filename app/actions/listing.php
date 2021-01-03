@@ -11,7 +11,7 @@ if (isset($_GET['page'])) {
 }
 $featuredForSlider=prepareFeaturedForSLider(3,false,4,2,1,true);
 if($page==1)
-$featuredForSlider=prepareFeaturedForSLider(3,false,4,3);
+$featuredForSlider=prepareFeaturedForSLider(5,false,4,1);
 
 
 $numOfArticles=$articleRepository->getArticlesCount(true);

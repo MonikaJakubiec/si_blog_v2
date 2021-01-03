@@ -132,6 +132,10 @@ footer p {
   color: #fff;
 }
 
+.no-bcg a {
+  color: #00e2ff;
+}
+
 /*START BUTTONS*/
 .button,
 a.button,

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pl">
 <?php
-showHtmlHead();
+showHtmlHead("Nie znaleziono");
 ?>
 
 <body>
