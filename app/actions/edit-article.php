@@ -5,7 +5,9 @@ require_once(_ACTIONS_PATH . 'add-picture.php');
 require_once(_CLASSES_PATH . 'CreateArticleRequest.php');
 require_once(_REPOSITORIES_PATH . 'ArticleRepository.php');
 
-//post z form
+$articleTitle = $articleContent = '';
+
+//post z form przy kliknieciu zaktualizuj lub publikuj
 if(isset($_POST['title'])) {
     if(isset($_POST['edit-article']) && $_POST['edit-article'] != '') {
         $articleToEdit = (new ArticleRepository)->getArticleById($_POST['edit-article'])['article'];   
@@ -22,27 +24,32 @@ if(isset($_POST['title'])) {
         default:
             $pictureId = $_POST['picture-id'];
             break;
-    }    
+    }
+
     validateArticle($errors, $pictureId, $articleToEdit);
+    //edit article - post
 }
 else {
+    //edycja artykulu
     if(isset($_GET['edit-article'])) {
         $articleToEdit = (new ArticleRepository)->getArticleById($_GET['edit-article'])['article'];
-        saveArticleDataToSession($articleToEdit->getTitle(), $articleToEdit->getContent(), $articleToEdit->isFeatured(), $articleToEdit->getPhotoId(), $articleToEdit->getStatus());
+        setArticleDataForView($articleTitle ,$articleToEdit->getTitle(), $articleContent, $articleToEdit->getContent(), $articleToEdit->isFeatured(), $articleToEdit->getPhotoId(), $articleToEdit->getStatus());
     }
+
+    //nowy artykul
 }
 
 function validateArticle(&$errors, $pictureId, $articleToEdit) {
     $isDataCorrect = true;
 
-    $articleTitle = testInput($_POST['title']);
-    $articleContent = testInput($_POST['content']);
-    $isArticleFeatured = isset($_POST['featured']);
-    saveArticleDataToSession($articleTitle, $articleContent, $isArticleFeatured, $pictureId, null);
+    $title = testInput($_POST['title']);
+    $content = testInput($_POST['content']);
+    $featured = isset($_POST['featured']);
+    //setArticleDataForView($articleTitle, $title, $articleContent, $content, $featured, $pictureId, null);
 
     $isPublishButtonClicked = isset($_POST['publish-button']);
 
-    if($articleTitle == '') {
+    if($title == '') {
         $isDataCorrect = false;
         $errors['title'] = "Należy uzupełnić pole tytuł";
     }
@@ -71,18 +78,18 @@ function validateArticle(&$errors, $pictureId, $articleToEdit) {
     if($isDataCorrect) {
         if($articleToEdit == null) {
             if($pictureId != null) {
-                $createArticleRequest = CreateArticleRequest::createWithPhoto($articleTitle, $articleContent, time(), $status, $isArticleFeatured, 0, $pictureId);
+                $createArticleRequest = CreateArticleRequest::createWithPhoto($title, $content, time(), $status, $featured, 0, $pictureId);
                 (new ArticleRepository)->saveArticleFromRequest($createArticleRequest);
             }
             else {
-                $createArticleRequest = CreateArticleRequest::createWithoutPhoto($articleTitle, $articleContent, time(), $status, $isArticleFeatured, 0);
+                $createArticleRequest = CreateArticleRequest::createWithoutPhoto($title, $content, time(), $status, $featured, 0);
                 (new ArticleRepository)->saveArticleFromRequest($createArticleRequest);
             }
         }
         else {
-            $articleToEdit->setTitle($articleTitle);
-            $articleToEdit->setContent($articleContent);
-            $articleToEdit->setFeatured($isArticleFeatured);
+            $articleToEdit->setTitle($title);
+            $articleToEdit->setContent($content);
+            $articleToEdit->setFeatured($featured);
             $articleToEdit->setPhotoId($pictureId);
             $articleToEdit->setStatus($status);
             (new ArticleRepository)->updateArticle($articleToEdit);
@@ -110,8 +117,8 @@ function testInput($data) {
     return $data;
   }
 
-  function saveArticleDataToSession($title, $content, $isFeatured, $pictureId, $status) {
-    $_SESSION['title'] = $title;
+  function setArticleDataForView($articleTitle, $title, $articleContent, $content, $isFeatured, $pictureId, $status) {
+    $articleTitle = $title;
     $_SESSION['content'] = $content;
     $_SESSION['featured'] = $isFeatured;
     $_SESSION['picture-id'] = $pictureId;

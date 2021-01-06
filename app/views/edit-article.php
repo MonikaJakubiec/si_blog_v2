@@ -21,13 +21,6 @@ showHtmlHead("Dodawanie artykułu", null, null, true);
         <!--changed from content- duplicated id-->
         <?php
 
-        $articleTitle = $articleContent = '';
-
-        if (isset($_SESSION['title'])) {
-            $articleTitle = $_SESSION['title'];
-            unset($_SESSION['title']);
-        }
-
         if (isset($_SESSION['content'])) {
             $articleContent = $_SESSION['content'];
             unset($_SESSION['content']);
