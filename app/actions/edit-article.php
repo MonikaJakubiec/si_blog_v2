@@ -6,10 +6,12 @@ require_once(_CLASSES_PATH . 'CreateArticleRequest.php');
 require_once(_REPOSITORIES_PATH . 'ArticleRepository.php');
 
 $publishButtonText = "Publikuj";
-$updateButtonText = "Zaktulizuj";
 $unpublishButtonText = "Cofnij publikację";
+$updateButtonText = "Zaktualizuj";
+$saveButtonText = "Zapisz";
 
 $publishButtonTextToDisplay = $publishButtonText;
+$saveButtonTextToDisplay = $saveButtonText;
 
 $isArticlePublished = false;
 $articleToView = $articleToEdit = null;
@@ -40,10 +42,18 @@ if (isset($_POST['title'])) {
 
     $articleToView = new Article(null, $title, $content, null, null, $featured, null, $pictureId);
 
-    if (isset($_POST['publish-button'])) {
+    $publishTime = time();
+    $status = 'draft';
+
+    $publishButtonClicked = isset($_POST['publish-button']);
+    $saveButtonClicked = isset($_POST['save-button']);
+
+    if ($publishButtonClicked) {
         $status = $isArticlePublished ? 'draft' : 'published';
-    } else {
-        $status = $articleToEdit->getStatus();
+    }    
+
+    if($saveButtonClicked || $isArticlePublished) {
+        $publishTime = null;
     }
 
     if ($title == '') {
@@ -53,10 +63,10 @@ if (isset($_POST['title'])) {
     if (count($errors) == 0) {
         if ($articleToEdit == null) {
             if ($pictureId != null) {
-                $createArticleRequest = CreateArticleRequest::createWithPhoto($title, $content, time(), $status, $featured, 0, $pictureId);
+                $createArticleRequest = CreateArticleRequest::createWithPhoto($title, $content, $publishTime, $status, $featured, 0, $pictureId);
                 (new ArticleRepository)->saveArticleFromRequest($createArticleRequest);
             } else {
-                $createArticleRequest = CreateArticleRequest::createWithoutPhoto($title, $content, time(), $status, $featured, 0);
+                $createArticleRequest = CreateArticleRequest::createWithoutPhoto($title, $content, $publishTime, $status, $featured, 0);
                 (new ArticleRepository)->saveArticleFromRequest($createArticleRequest);
             }
         } else {
@@ -64,7 +74,14 @@ if (isset($_POST['title'])) {
             $articleToEdit->setContent($content);
             $articleToEdit->setFeatured($featured);
             $articleToEdit->setPhotoId($pictureId);
+
+            if($publishButtonClicked) {
+                $articleToEdit->setPublishedTimestamp($publishTime);
+            }
+
+            if($articleToEdit == null || !$saveButtonClicked)
             $articleToEdit->setStatus($status);
+
             (new ArticleRepository)->updateArticle($articleToEdit);
         }
         switch ($status) {
@@ -86,8 +103,8 @@ if (isset($_POST['title'])) {
         $articleToEdit = (new ArticleRepository)->getArticleById($_GET['edit-article'])['article'];
         $articleToView = $articleToEdit;
         $isArticlePublished = $articleToEdit->getStatus() == 'published';
-        if ($isArticlePublished) $publishButtonTextToDisplay = $unpublishButtonText;
-        else $publishButtonTextToDisplay = $publishButtonText;
+        $publishButtonTextToDisplay = $isArticlePublished ? $unpublishButtonText : $publishButtonText;
+        $saveButtonTextToDisplay = $updateButtonText;
     }
     else {
         //dodanie nowego artykulu

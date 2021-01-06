@@ -49,12 +49,12 @@ showHtmlHead("Dodawanie artykułu", null, null, true);
             showGalleryInput($articleToView);
             ?>
             <script>
-                if ("<?= $pictureId ?>" != "picture-from-file") {
+                if ("<?= $articleToView->getPhotoId() ?>" != "picture-from-file") {
                     document.getElementById('add-picture-from-file').style.display = "none";
                 }
             </script>
             <a class="button button-red" href="<?= _RHOME ?>admin-panel/">Anuluj</a>
-            <input type="submit" name="save-button" value=<?= isset($_GET['edit-article']) ? "Zaktualizuj" : "Zapisz" ?> class="button" onclick="formSubmit()">
+            <input type="submit" name="save-button" value=<?= $saveButtonTextToDisplay ?> class="button" onclick="formSubmit()">
             <input type="submit" name="publish-button" value="<?= $publishButtonTextToDisplay ?>" class="button" onclick="formSubmit()">
 
             <input type="hidden" name="edit-article" value="<?php if (isset($_GET['edit-article'])) echo $_GET['edit-article']; ?>">

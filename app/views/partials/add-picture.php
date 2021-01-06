@@ -30,7 +30,7 @@ function showGalleryInput($articleToView)
 
     <div id="photo-selection">
         <div class="photo-selection-option">
-            <input type="radio" name="picture-id" id="without-photo" onclick="showHideAddingPicture()" value="without-picture" <?php if($articleToView->getPhotoId() === null) echo "checked" ?>>
+            <input type="radio" name="picture-id" id="without-photo" onclick="showHideAddingPicture()" value="without-picture" <?php if($articleToView->getPhotoId() == null) echo "checked" ?>>
             <label for="without-photo">Artykuł bez zdjęcia</label>
         </div>
         <div class="photo-selection-option">
