@@ -19,38 +19,11 @@ showHtmlHead("Dodawanie artykułu", null, null, true);
     ?>
     <main id="content-box">
         <!--changed from content- duplicated id-->
-        <?php
-
-        if (isset($_SESSION['content'])) {
-            $articleContent = $_SESSION['content'];
-            unset($_SESSION['content']);
-        }
-
-        $isArticleFeatured = false;
-        if (isset($_SESSION['featured'])) {
-            if ($_SESSION['featured']) {
-                $isArticleFeatured = true;
-            }
-            unset($_SESSION['featured']);
-        }
-
-        $pictureId = "without-picture";
-        if (isset($_SESSION['picture-id'])) {
-            $pictureId = $_SESSION['picture-id'];
-            unset($_SESSION['picture-id']);
-        }
-
-        if (isset($_SESSION['status'])) {
-            $articleStatus = $_SESSION['status'];
-            unset($_SESSION['status']);
-        }
-
-        ?>
         <h2 class="no-bcg t-center">Dodaj artykuł</h2>
         <form class="edit-article no-bcg t-center" method="post" action="<?= _RHOME ?>edit-article/" enctype="multipart/form-data">
             <div>
                 <label for="title">Tytuł</label><br>
-                <input type="text" id="title" name="title" placeholder="Wpisz tytuł"  spellcheck="false "autofocus="true" value="<?= $articleTitle ?>">
+                <input type="text" id="title" name="title" placeholder="Wpisz tytuł"  spellcheck="false "autofocus="true" value="<?= $articleToView->getTitle() ?>">
             </div>
             <div class="error">
                 <?php
@@ -63,19 +36,17 @@ showHtmlHead("Dodawanie artykułu", null, null, true);
             <label for="content">Treść</label><br>
             <div class="wyswig-parent">
                 <div class="loader"></div>
-                <textarea id="content" class="wyswig" name="content" placeholder="Wpisz treść" rows=30><?= $articleContent ?></textarea>
+                <textarea id="content" class="wyswig" name="content" placeholder="Wpisz treść" rows=30><?= $articleToView->getContent() ?></textarea>
             </div>
             <div>
-                <input type="checkbox" name="featured" id="featured" <?php if ($isArticleFeatured) echo "checked"; ?>>
+                <input type="checkbox" name="featured" id="featured" <?php if ($articleToView->isFeatured()) echo "checked"; ?>>
                 <label for="featured">Polecany</label>
             </div>
             <div id="add-picture-from-file">
                 <?php showFileInput($errors); ?>
             </div>
             <?php
-            showGalleryInput($pictureId);
-            $publishButtonText = "Publikuj";
-            if (isset($_GET['edit-article']) && $articleStatus != null && $articleStatus == 'published') $publishButtonText = "Cofnij publikację";
+            showGalleryInput($articleToView);
             ?>
             <script>
                 if ("<?= $pictureId ?>" != "picture-from-file") {
@@ -84,7 +55,7 @@ showHtmlHead("Dodawanie artykułu", null, null, true);
             </script>
             <a class="button button-red" href="<?= _RHOME ?>admin-panel/">Anuluj</a>
             <input type="submit" name="save-button" value=<?= isset($_GET['edit-article']) ? "Zaktualizuj" : "Zapisz" ?> class="button" onclick="formSubmit()">
-            <input type="submit" name="publish-button" value="<?= $publishButtonText ?>" class="button" onclick="formSubmit()">
+            <input type="submit" name="publish-button" value="<?= $publishButtonTextToDisplay ?>" class="button" onclick="formSubmit()">
 
             <input type="hidden" name="edit-article" value="<?php if (isset($_GET['edit-article'])) echo $_GET['edit-article']; ?>">
         </form>
@@ -110,5 +81,4 @@ showHtmlHead("Dodawanie artykułu", null, null, true);
     showHtmlFooter();
     ?>
 </body>
-
 </html>

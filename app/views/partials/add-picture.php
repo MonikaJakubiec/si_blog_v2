@@ -21,7 +21,7 @@ function showFileInput($errors)
 
 //Mateusz Kus - czemu w widoku pobieramy dane ???
 // TODO generacja divów lub tabeli na podstawie zdjec z bazy
-function showGalleryInput($pictureId)
+function showGalleryInput($articleToView)
 {
     $photoRepo = new PhotoRepository();
     $allPhotos = $photoRepo->getAllPhotos();
@@ -30,11 +30,11 @@ function showGalleryInput($pictureId)
 
     <div id="photo-selection">
         <div class="photo-selection-option">
-            <input type="radio" name="picture-id" id="without-photo" onclick="showHideAddingPicture()" value="without-picture" <?php if($pictureId == "without-picture") echo "checked" ?>>
+            <input type="radio" name="picture-id" id="without-photo" onclick="showHideAddingPicture()" value="without-picture" <?php if($articleToView->getPhotoId() === null) echo "checked" ?>>
             <label for="without-photo">Artykuł bez zdjęcia</label>
         </div>
         <div class="photo-selection-option">
-            <input type="radio" name="picture-id" id="picture-from-file" onclick="showHideAddingPicture()" value="picture-from-file" <?php if($pictureId == "picture-from-file") echo "checked" ?>>
+            <input type="radio" name="picture-id" id="picture-from-file" onclick="showHideAddingPicture()" value="picture-from-file" <?php if($articleToView->getPhotoId() == "picture-from-file") echo "checked" ?>>
             <label for="picture-from-file">Zdjęcie z pliku</label>
         </div>
         <?php if(count($allPhotos)>0){
@@ -48,7 +48,7 @@ function showGalleryInput($pictureId)
             if (file_exists($photo->getPath())) {
         ?>
                 <div class="photo-selection-option">
-                    <input type="radio" name="picture-id" id="<?= $photo->getId(); ?>" onclick="showHideAddingPicture()" value="<?= $photo->getId() ?>" <?php if($pictureId == $photo->getId()) echo "checked" ?>>
+                    <input type="radio" name="picture-id" id="<?= $photo->getId(); ?>" onclick="showHideAddingPicture()" value="<?= $photo->getId() ?>" <?php if($articleToView->getPhotoId() == $photo->getId()) echo "checked" ?>>
 
                     <label for="<?php echo $photo->getId(); ?>">
                         <img src="<?= _RHOME . $photo->getPath() ?>" class="file-selection" alt="<?php echo $photo->getAlt(); ?>" title="<?php echo $photo->getAlt(); ?>">
