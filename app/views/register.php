@@ -5,7 +5,7 @@ showHtmlHead("Rejestracja", null, null, true);
 ?>
 
 <body class="login">
-	<script src="<?= _RESOURCES_PATH . 'js' . DIRECTORY_SEPARATOR . 'manage-article.js' ?>"></script>
+	<script src="<?= _RESOURCES_PATH . 'js' . DIRECTORY_SEPARATOR . 'manage-articles-users.js' ?>"></script>
 
 	<?php
 	renderHtmlHeader(array("page" => "register"));
@@ -39,8 +39,8 @@ showHtmlHead("Rejestracja", null, null, true);
 				<div class="error"><?= $errors['register-password'] ?></div><?php endif; ?>
 
 			<div class="login-part">
-				<input type="radio" name="role" id="editor" value="editor" <?php if(!isset($role) || $role == 'editor') echo 'checked'; ?>>
-				<label for="editor">Redaktor</label>
+				<input type="radio" name="role" id="user" value="user" <?php if(!isset($role) || $role == 'user') echo 'checked'; ?>>
+				<label for="user">Redaktor</label>
 				<input type="radio" name="role" id="admin" value="admin" <?php if($role == 'admin') echo 'checked'; ?>>
 				<label for="admin">Administrator</label>
 			</div>

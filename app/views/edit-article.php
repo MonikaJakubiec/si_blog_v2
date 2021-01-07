@@ -8,7 +8,7 @@ showHtmlHead("Dodawanie artykułu", null, null, true);
 ?>
 
 <body class="admin">
-    <script src="<?= _RESOURCES_PATH . 'js' . DIRECTORY_SEPARATOR . 'manage-article.js' ?>"></script>
+    <script src="<?= _RESOURCES_PATH . 'js' . DIRECTORY_SEPARATOR . 'manage-articles-users.js' ?>"></script>
 
 
     <?php
