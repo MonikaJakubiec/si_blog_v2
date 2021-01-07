@@ -38,6 +38,13 @@ showHtmlHead("Dodawanie artykułu", null, null, true);
                 <div class="loader"></div>
                 <textarea id="content" class="wyswig" name="content" placeholder="Wpisz treść" rows=30><?= $articleToView->getContent() ?></textarea>
             </div>
+            <div class="error">
+                <?php
+                if (key_exists('content', $errors)) {
+                    echo $errors['content'];
+                }
+                ?>
+            </div>
             <div>
                 <input type="checkbox" name="featured" id="featured" <?php if ($articleToView->isFeatured()) echo "checked"; ?>>
                 <label for="featured">Polecany</label>
@@ -54,10 +61,9 @@ showHtmlHead("Dodawanie artykułu", null, null, true);
                 }
             </script>
             <a class="button button-red" href="<?= _RHOME ?>admin-panel/">Anuluj</a>
+            <input type="hidden" name="edit-article" value="<?= $articleToView->getId() ?>">
             <input type="submit" name="save-button" value=<?= $saveButtonTextToDisplay ?> class="button" onclick="formSubmit()">
             <input type="submit" name="publish-button" value="<?= $publishButtonTextToDisplay ?>" class="button" onclick="formSubmit()">
-
-            <input type="hidden" name="edit-article" value="<?php if (isset($_GET['edit-article'])) echo $_GET['edit-article']; ?>">
         </form>
     </main>
                 <script>

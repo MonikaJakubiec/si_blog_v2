@@ -134,3 +134,20 @@ function showNotFoundPage(){
         echo "<h1>Nie znaleziono</h1>";
     exit();
 }
+
+/**
+ * konwersja tekstu na postać bezpieczna do wstawienia do bazy sql
+ */
+function secureInputText($data)
+{
+    $data = stripslashes($data); //zabezpieczenia cudzysłowów
+    $data = htmlspecialchars($data); //konwersja znaków specjalnych HTML do encji HTML
+    return $data;
+}
+
+function secureInputTextWithTrimSpaces($data) { 
+    $data = trim($data);
+    $data = stripslashes($data); //zabezpieczenia cudzysłowów
+    $data = htmlspecialchars($data); //konwersja znaków specjalnych HTML do encji HTML
+    return $data;
+}

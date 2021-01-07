@@ -36,11 +36,12 @@ if (isset($_POST['title'])) {
             break;
     }
 
-    $title = testInput($_POST['title']);
-    $content = testInput($_POST['content']);
+    $title = secureInputText($_POST['title']);
+    $content = secureInputText($_POST['content']);
     $featured = isset($_POST['featured']);
-
-    $articleToView = new Article(null, $title, $content, null, null, $featured, null, $pictureId);
+    $id = isset($articleToEdit) ? $articleToEdit->getId() : null;
+    
+    $articleToView = new Article($id, $title, $content, null, null, $featured, null, $pictureId);
 
     $publishTime = time();
     $status = 'draft';
@@ -50,14 +51,18 @@ if (isset($_POST['title'])) {
 
     if ($publishButtonClicked) {
         $status = $isArticlePublished ? 'draft' : 'published';
-    }    
+    }
 
-    if($saveButtonClicked || $isArticlePublished) {
+    if ($saveButtonClicked || $isArticlePublished) {
         $publishTime = null;
     }
 
-    if ($title == '') {
-        $errors['title'] = "Należy uzupełnić pole tytuł";
+    if (strlen($title) < 1 || strlen($title) > 50) {
+        $errors['title'] = "Tytuł nie może być pusty i nie może przekraczać 50 znaków";
+    }
+
+    if (strlen($content) > 65530) {
+        $errors['content'] = "Przekroczono limit znaków w zawartości artykułu, liczba znaków nie może przekraczać 65530";
     }
 
     if (count($errors) == 0) {
@@ -70,17 +75,18 @@ if (isset($_POST['title'])) {
                 (new ArticleRepository)->saveArticleFromRequest($createArticleRequest);
             }
         } else {
+            echo
             $articleToEdit->setTitle($title);
             $articleToEdit->setContent($content);
             $articleToEdit->setFeatured($featured);
             $articleToEdit->setPhotoId($pictureId);
 
-            if($publishButtonClicked) {
+            if ($publishButtonClicked) {
                 $articleToEdit->setPublishedTimestamp($publishTime);
             }
 
-            if($articleToEdit == null || !$saveButtonClicked)
-            $articleToEdit->setStatus($status);
+            if ($articleToEdit == null || !$saveButtonClicked)
+                $articleToEdit->setStatus($status);
 
             (new ArticleRepository)->updateArticle($articleToEdit);
         }
@@ -96,7 +102,6 @@ if (isset($_POST['title'])) {
         header("Location: " . _RHOME . "admin-panel/");
         exit();
     }
-
 } else {
     //edycja artykulu
     if (isset($_GET['edit-article'])) {
@@ -105,19 +110,8 @@ if (isset($_POST['title'])) {
         $isArticlePublished = $articleToEdit->getStatus() == 'published';
         $publishButtonTextToDisplay = $isArticlePublished ? $unpublishButtonText : $publishButtonText;
         $saveButtonTextToDisplay = $updateButtonText;
-    }
-    else {
+    } else {
         //dodanie nowego artykulu
         $articleToView = new Article(null, null, null, null, null, null, null, null);
     }
-}
-
-/**
- * konwersja tekstu na postać bezpieczna do wstawienia do bazy sql
- */
-function testInput($data)
-{
-    $data = stripslashes($data); //zabezpieczenia cudzysłowów
-    $data = htmlspecialchars($data); //konwersja znaków specjalnych HTML do encji HTML
-    return $data;
 }
