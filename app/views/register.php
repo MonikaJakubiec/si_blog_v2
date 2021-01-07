@@ -5,6 +5,8 @@ showHtmlHead("Rejestracja", null, null, true);
 ?>
 
 <body class="login">
+	<script src="<?= _RESOURCES_PATH . 'js' . DIRECTORY_SEPARATOR . 'manage-article.js' ?>"></script>
+
 	<?php
 	renderHtmlHeader(array("page" => "register"));
 	?>
@@ -14,7 +16,7 @@ showHtmlHead("Rejestracja", null, null, true);
 			<!-- Okno z możliwością wpisania nazwy użytkownika -->
 			<div class="login-part">
 				<label for="username">Nazwa użytkownika</label>
-				<input type="text" name="username" id="username" value="" />
+				<input type="text" name="username" id="username" value="<?= $username ?>" />
 			</div>
 			<?php if (array_key_exists('register-username', $errors)) : ?>
 				<div class="error"><?= $errors['register-username'] ?></div><?php endif; ?>
@@ -37,9 +39,9 @@ showHtmlHead("Rejestracja", null, null, true);
 				<div class="error"><?= $errors['register-password'] ?></div><?php endif; ?>
 
 			<div class="login-part">
-				<input type="radio" name="role" id="editor" value="editor" checked>
+				<input type="radio" name="role" id="editor" value="editor" <?php if(!isset($role) || $role == 'editor') echo 'checked'; ?>>
 				<label for="editor">Redaktor</label>
-				<input type="radio" name="role" id="admin" value="admin">
+				<input type="radio" name="role" id="admin" value="admin" <?php if($role == 'admin') echo 'checked'; ?>>
 				<label for="admin">Administrator</label>
 			</div>
 			<?php if (array_key_exists('register-role', $errors)) : ?>
@@ -47,7 +49,7 @@ showHtmlHead("Rejestracja", null, null, true);
 
 			<!-- Przycisk potwierdzający wysłanie danych -->
 			<div class="login-part">
-				<input class="button" style="width: 0%; font-size: 14px;" type="submit" value="Zarejestruj" />
+				<input class="button" style="width: 0%; font-size: 14px;" type="submit" value="Zarejestruj" onclick="formSubmit()"/>
 			</div>
 
 			<div class="login-part">
@@ -55,6 +57,8 @@ showHtmlHead("Rejestracja", null, null, true);
 			</div>
 		</form>
 	</div>
+
+	<script>preventExit();</script>
 </body>
 
 </html>
