@@ -24,6 +24,7 @@ function renderLoggedInMenu($pageInfo)
             <a href="<?= _RHOME ?>admin-panel/">Panel administracyjny</a>
             <a href="<?= _RHOME ?>edit-article/">Dodaj artykuł</a>
             <a href="<?= _RHOME ?>register/">Dodaj użytkownika</a>
+            <a href="<?= _RHOME ?>users-list/">Lista użytkowników</a>
                 <?php
 
                 if (array_key_exists("page", $pageInfo)) {

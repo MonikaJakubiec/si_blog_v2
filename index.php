@@ -75,7 +75,7 @@ $routingRequestPageWithoutData=$routingRequestPageWithData[0];
  * Dostępne strony
  * @var array
  */
-$pages = array('edit-article', 'homepage', 'login', 'logout', 'admin-panel', 'show-article', 'add-picture', 'listing', 'article', 'register');
+$pages = array('edit-article', 'homepage', 'login', 'logout', 'admin-panel', 'show-article', 'add-picture', 'listing', 'article', 'register', 'users-list');
 
 if (in_array($routingRequestPageWithoutData, $pages)) {
     /**
@@ -101,5 +101,4 @@ if (file_exists($action)) {
 if (file_exists($view)) {
     include($view);
 }
-
 ?>

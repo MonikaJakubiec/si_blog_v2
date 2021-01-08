@@ -32,3 +32,9 @@ function preventExit() {
 function formSubmit() {
     window.formSubmitted = true;
 }
+
+function confirmUserDelete(homePage = "", userId) {
+    if (confirm("Czy na pewno chcesz usunąć użytkownika? Zmiany są nieodwracalne!")) {
+        window.location.href = homePage + "users-list?delete-user=" + userId;
+    }
+}

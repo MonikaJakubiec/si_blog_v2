@@ -65,13 +65,18 @@ if (isset($_POST['title'])) {
         $errors['content'] = "Przekroczono limit znaków w zawartości artykułu, liczba znaków nie może przekraczać 65530";
     }
 
+    $userId = null;
+    if (isset($_SESSION['login'])) {
+        $userId = $_SESSION['login'];
+    }
+
     if (count($errors) == 0) {
         if ($articleToEdit == null) {
             if ($pictureId != null) {
-                $createArticleRequest = CreateArticleRequest::createWithPhoto($title, $content, $publishTime, $status, $featured, 0, $pictureId);
+                $createArticleRequest = CreateArticleRequest::createWithPhoto($title, $content, $publishTime, $status, $featured, $userId, $pictureId);
                 (new ArticleRepository)->saveArticleFromRequest($createArticleRequest);
             } else {
-                $createArticleRequest = CreateArticleRequest::createWithoutPhoto($title, $content, $publishTime, $status, $featured, 0);
+                $createArticleRequest = CreateArticleRequest::createWithoutPhoto($title, $content, $publishTime, $status, $featured, $userId);
                 (new ArticleRepository)->saveArticleFromRequest($createArticleRequest);
             }
         } else {

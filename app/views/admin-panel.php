@@ -9,7 +9,7 @@ showHtmlHead("Panel administratora", null, null, true);
     <?php
     renderHtmlHeader(array("page"=>"admin-panel"));
     ?>
-    <script src="<?= _RESOURCES_PATH . 'js' . DIRECTORY_SEPARATOR . 'manage-article.js' ?>"></script>
+    <script src="<?= _RESOURCES_PATH . 'js' . DIRECTORY_SEPARATOR . 'manage-articles-users.js' ?>"></script>
 
     <main id="content-box">
     <?php
@@ -50,6 +50,7 @@ showHtmlHead("Panel administratora", null, null, true);
                 }
             }
             else
+            //TODO
                 {
                     echo "<div class=\"t-center alert\"><h2>Nie masz jeszcze artykułów</h2><a href=\"http://localhost/other/5si/projekt/si-blog/edit-article/\" style=\"color:unset\">Dodaj pierwszy!</a></div>";
                 }

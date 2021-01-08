@@ -39,5 +39,13 @@ class User {
 	public function setRole($newRole) {
 		$this->role = $newRole;
 	}
+
+	public function getUserEditUrl() {
+		return  getUserEditUrlById($this->getId());
+	}
+}
+
+function getUserEditUrlById($id){
+	return _RHOME .'register/?edit-user='.$id;
 }
 ?>
