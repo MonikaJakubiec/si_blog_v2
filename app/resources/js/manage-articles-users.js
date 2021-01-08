@@ -1,7 +1,7 @@
 function confirmArticleDelete(homePage = "", articleId) {
     if (confirm("Czy na pewno chcesz usunąć artykuł? Zmiany są nieodwracalne!")) {
         
-        window.location.href = homePage + "admin-panel?delete-article=" + articleId;
+        window.location.href = homePage + "articles-list?delete-article=" + articleId;
     }
 }
 

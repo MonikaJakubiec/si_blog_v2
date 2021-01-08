@@ -60,7 +60,7 @@ showHtmlHead("Dodawanie artykułu", null, null, true);
                     document.getElementById('add-picture-from-file').style.display = "none";
                 }
             </script>
-            <a class="button button-red" href="<?= _RHOME ?>admin-panel/">Anuluj</a>
+            <a class="button button-red" href="<?= _RHOME ?>articles-list/">Anuluj</a>
             <input type="hidden" name="edit-article" value="<?= $articleToView->getId() ?>">
             <input type="submit" name="save-button" value=<?= $saveButtonTextToDisplay ?> class="button" onclick="formSubmit()">
             <input type="submit" name="publish-button" value="<?= $publishButtonTextToDisplay ?>" class="button" onclick="formSubmit()">

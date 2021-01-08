@@ -2,12 +2,12 @@
 <html lang="pl">
 <?php
 
-showHtmlHead("Panel administratora", null, null, true);
+showHtmlHead("Lista artykułów", null, null, true);
 ?>
 
 <body class="admin">
     <?php
-    renderHtmlHeader(array("page"=>"admin-panel"));
+    renderHtmlHeader(array("page"=>"articles-list"));
     ?>
     <script src="<?= _RESOURCES_PATH . 'js' . DIRECTORY_SEPARATOR . 'manage-articles-users.js' ?>"></script>
 
@@ -52,7 +52,7 @@ showHtmlHead("Panel administratora", null, null, true);
             else
             //TODO
                 {
-                    echo "<div class=\"t-center alert\"><h2>Nie masz jeszcze artykułów</h2><a href=\"http://localhost/other/5si/projekt/si-blog/edit-article/\" style=\"color:unset\">Dodaj pierwszy!</a></div>";
+                    echo "<div class=\"t-center alert\"><h2>Nie masz jeszcze artykułów</h2><a href=\"". _RHOME . "edit-article/" . "\" style=\"color:unset\">Dodaj pierwszy!</a></div>";
                 }
             ?>
 

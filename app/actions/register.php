@@ -1,6 +1,5 @@
 <?php
-require_once(_ACTIONS_PATH . 'redirects.php');
-redirectIfNotLoggedIn();
+redirectIfNotAdmin($userRole);
 
 require_once _REPOSITORIES_PATH . 'UserRepository.php';
 
@@ -65,6 +64,7 @@ if (isset($_POST['username'])) {
                 }
 
                 (new UserRepository())->updateUser($user);
+                addAlert("Zaktualizowano użytkownika", "success");
             }            
 
             header('Location: ' . _RHOME . 'users-list/');

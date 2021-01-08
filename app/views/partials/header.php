@@ -22,9 +22,10 @@ function renderLoggedInMenu($pageInfo)
         <div id="admin-header-menu">
             <div class="links">
             <a href="<?= _RHOME ?>admin-panel/">Panel administracyjny</a>
+            <a href="<?= _RHOME ?>articles-list/">Lista artykułów</a>
             <a href="<?= _RHOME ?>edit-article/">Dodaj artykuł</a>
-            <a href="<?= _RHOME ?>register/">Dodaj użytkownika</a>
             <a href="<?= _RHOME ?>users-list/">Lista użytkowników</a>
+            <a href="<?= _RHOME ?>register/">Dodaj użytkownika</a>
                 <?php
 
                 if (array_key_exists("page", $pageInfo)) {

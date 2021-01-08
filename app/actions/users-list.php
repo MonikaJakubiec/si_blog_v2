@@ -1,4 +1,6 @@
 <?php
+redirectIfNotAdmin($userRole);
+
 require_once _REPOSITORIES_PATH . 'UserRepository.php';
 
 $userRepository = new UserRepository();

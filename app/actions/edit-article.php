@@ -1,4 +1,6 @@
 <?php
+redirectIfNotLoggedIn();
+
 $errors = [];
 
 require_once(_ACTIONS_PATH . 'add-picture.php');
@@ -104,7 +106,7 @@ if (isset($_POST['title'])) {
                 addAlert('Artykuł został opublikowany na blogu.', "success");
                 break;
         }
-        header("Location: " . _RHOME . "admin-panel/");
+        header("Location: " . _RHOME . "articles-list/");
         exit();
     }
 } else {
@@ -115,6 +117,11 @@ if (isset($_POST['title'])) {
         $isArticlePublished = $articleToEdit->getStatus() == 'published';
         $publishButtonTextToDisplay = $isArticlePublished ? $unpublishButtonText : $publishButtonText;
         $saveButtonTextToDisplay = $updateButtonText;
+
+        //przekieruj jesli user probuje edytowac nie swoj artykul
+        if($articleToEdit->getUserId() != $_SESSION['login']) {
+            redirectIfNotAdmin($userRole);
+        }
     } else {
         //dodanie nowego artykulu
         $articleToView = new Article(null, null, null, null, null, null, null, null);

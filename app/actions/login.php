@@ -1,5 +1,4 @@
 <?php
-require_once(_ACTIONS_PATH . 'redirects.php');
 redirectIfLoggedIn();
 
 require_once(_REPOSITORIES_PATH . 'UserRepository.php');

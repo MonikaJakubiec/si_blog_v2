@@ -39,6 +39,7 @@ require_once(_VIEWS_PATH  . 'partials' . DIRECTORY_SEPARATOR . 'head.php');
 require_once(_VIEWS_PATH  . 'partials' . DIRECTORY_SEPARATOR . 'header.php');
 require_once(_VIEWS_PATH  . 'partials' . DIRECTORY_SEPARATOR . 'footer.php');
 require_once(_ACTIONS_PATH  . 'functions.php');
+require_once(_ACTIONS_PATH . 'redirects.php');
 
 
 /**
@@ -75,7 +76,7 @@ $routingRequestPageWithoutData=$routingRequestPageWithData[0];
  * Dostępne strony
  * @var array
  */
-$pages = array('edit-article', 'homepage', 'login', 'logout', 'admin-panel', 'show-article', 'add-picture', 'listing', 'article', 'register', 'users-list');
+$pages = array('edit-article', 'login', 'logout', 'admin-panel', 'articles-list', 'listing', 'article', 'register', 'users-list');
 
 if (in_array($routingRequestPageWithoutData, $pages)) {
     /**
