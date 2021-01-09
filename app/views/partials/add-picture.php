@@ -21,10 +21,9 @@ function showFileInput($errors)
 
 //Mateusz Kus - czemu w widoku pobieramy dane ???
 // TODO generacja divów lub tabeli na podstawie zdjec z bazy
-function showGalleryInput($articleToView)
+function showGalleryInput($articleToView, $allPhotos)
 {
-    $photoRepo = new PhotoRepository();
-    $allPhotos = $photoRepo->getAllPhotos();
+
 
 ?>
 

@@ -1,6 +1,8 @@
 <?php
 require_once _CLASSES_PATH . DIRECTORY_SEPARATOR . 'AddPhotoRequest.php';
 require_once _REPOSITORIES_PATH . DIRECTORY_SEPARATOR . 'PhotoRepository.php';
+    $photoRepo = new PhotoRepository();
+    $allPhotos = $photoRepo->getAllPhotos();    
     function getFileExtension($filename)
     {
         $fileNameArray = (explode('.', $filename));
@@ -10,7 +12,8 @@ require_once _REPOSITORIES_PATH . DIRECTORY_SEPARATOR . 'PhotoRepository.php';
     function validatePicture(&$errors, $allowedExtensions = array('jpg', 'jpeg', 'png')) {
         $fields['alt'] = array_key_exists('alt', $_POST) ? $_POST['alt'] : ''; //ustawienie zmiennej title w tablicy fields
         $returnId = "picture-from-file";
-        
+
+
         //sprawdzanie, czy tablica metody POST jest większa od 0
         if(count($_POST) > 0)
         {
@@ -28,9 +31,18 @@ require_once _REPOSITORIES_PATH . DIRECTORY_SEPARATOR . 'PhotoRepository.php';
                 
                 $tempName = $_FILES['file']['tmp_name']; //zmienna do przechowywania tymczasowej nazwy
                 $fileName = $_FILES['file']['name']; //zmienna przechowywująca nazwę pliku
+                $actualName = pathinfo($fileName,PATHINFO_FILENAME);
+                $originalName= $actualName;
                 $extension = getFileExtension($fileName);
                 $dirForCurrentFileUpload = _UPLOADS_PATH. DIRECTORY_SEPARATOR .$today;
                 $fileRoot = $dirForCurrentFileUpload. DIRECTORY_SEPARATOR .$fileName; //ścieżka dostępu do pliku
+                $i = 1;
+                while(file_exists($fileRoot))
+                {           
+                    $actualName = (string)$originalName."(".$i.")";
+                    $fileName = $actualName.".".$extension;
+                    $i++;
+                }
                 if(in_array($extension, $allowedExtensions))
                 {
                     if(!file_exists($dirForCurrentFileUpload))
@@ -38,7 +50,7 @@ require_once _REPOSITORIES_PATH . DIRECTORY_SEPARATOR . 'PhotoRepository.php';
                         mkdir($dirForCurrentFileUpload,0777,true);
 
                     }
-
+                    
                     move_uploaded_file($tempName, $fileRoot); //przesunięcie pliku do folderu images
                     $photoRequest = new AddPhotoRequest($fileRoot, $fields['alt']);
                     $photoRepo= new PhotoRepository();

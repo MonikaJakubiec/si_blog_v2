@@ -17,6 +17,7 @@ $saveButtonTextToDisplay = $saveButtonText;
 
 $isArticlePublished = false;
 $articleToView = $articleToEdit = null;
+$allPhotos;
 
 //artykul przeslany postem z formularza przy kliknieciu zaktualizuj lub publikuj
 if (isset($_POST['title'])) {

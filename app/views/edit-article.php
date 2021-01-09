@@ -53,7 +53,7 @@ showHtmlHead("Dodawanie artykułu", null, null, true);
                 <?php showFileInput($errors); ?>
             </div>
             <?php
-            showGalleryInput($articleToView);
+            showGalleryInput($articleToView, $allPhotos);
             ?>
             <script>
                 if ("<?= $articleToView->getPhotoId() ?>" != "picture-from-file") {
