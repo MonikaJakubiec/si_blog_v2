@@ -28,21 +28,22 @@ require_once _REPOSITORIES_PATH . DIRECTORY_SEPARATOR . 'PhotoRepository.php';
             if(is_uploaded_file($_FILES['file']['tmp_name']))
             {
                 $today = date("Y-m-d");
-                
                 $tempName = $_FILES['file']['tmp_name']; //zmienna do przechowywania tymczasowej nazwy
                 $fileName = $_FILES['file']['name']; //zmienna przechowywująca nazwę pliku
                 $actualName = pathinfo($fileName,PATHINFO_FILENAME);
                 $originalName= $actualName;
                 $extension = getFileExtension($fileName);
                 $dirForCurrentFileUpload = _UPLOADS_PATH. DIRECTORY_SEPARATOR .$today;
-                $fileRoot = $dirForCurrentFileUpload. DIRECTORY_SEPARATOR .$fileName; //ścieżka dostępu do pliku
                 $i = 1;
-                while(file_exists($fileRoot))
-                {           
+                while(file_exists($dirForCurrentFileUpload. DIRECTORY_SEPARATOR .$actualName.".".$extension))
+                {         
                     $actualName = (string)$originalName."(".$i.")";
                     $fileName = $actualName.".".$extension;
                     $i++;
                 }
+                $fileRoot = $dirForCurrentFileUpload. DIRECTORY_SEPARATOR .$fileName; //ścieżka dostępu do pliku
+                
+                
                 if(in_array($extension, $allowedExtensions))
                 {
                     if(!file_exists($dirForCurrentFileUpload))
@@ -51,7 +52,7 @@ require_once _REPOSITORIES_PATH . DIRECTORY_SEPARATOR . 'PhotoRepository.php';
 
                     }
                     
-                    move_uploaded_file($tempName, $fileRoot); //przesunięcie pliku do folderu images
+                    move_uploaded_file($tempName, $fileRoot); //przesunięcie pliku do folderu uploads
                     $photoRequest = new AddPhotoRequest($fileRoot, $fields['alt']);
                     $photoRepo= new PhotoRepository();
 
