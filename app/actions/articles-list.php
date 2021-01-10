@@ -37,4 +37,9 @@ if ($sortColumn == "publishedTime") {
     array_push($sortArray, [$sortColumn, $sortDirection]);
 } else
     $sortArray = array([$sortColumn, $sortDirection]);
-$allArticles = $articleRepository->getArticles(false, false, null, 0, $sortArray);
+
+if($userRole == 'administrator') {
+    $allArticles = $articleRepository->getArticles(false, false, null, 0, $sortArray);
+} else {
+    $allArticles = $articleRepository->getArticlesCreatedByUser($_SESSION['login'], $sortArray);
+}
