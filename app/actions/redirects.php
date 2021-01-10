@@ -25,11 +25,14 @@ function redirectIfLoggedIn() {
   }
 }
 
+/**
+ * przekierowanie usera do listy artykulow a niezalogowanego do strony logowania
+ */
 function redirectIfNotAdmin($userRole) {
   if(isset($userRole)) {
     if($userRole != 'administrator') {
-      addAlert('Nie masz uprawnień do wyświetlenia tej strony', 'error');
-      header("Location: " . _RHOME . 'admin-panel/');
+      addAlert('Nie masz uprawnień do wyświetlenia podanej strony', 'error');
+      header("Location: " . _RHOME . 'articles-list/');
       exit();
     }
   } else {
