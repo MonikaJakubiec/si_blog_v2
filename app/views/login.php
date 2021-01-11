@@ -14,13 +14,13 @@ showHtmlHead("Zaloguj", null, null, false);
 			<!-- Okno z możliwością wpisania nazwy użytkownika -->
 			<div class="login-part">
 				<label for="username">Nazwa użytkownika</label>
-				<input type="text" name="username" value="" />
+				<input type="text" name="username" id="username" value="" />
 			</div>
 
 			<!-- Okno z możliwością wpisania hasła użytkownika -->
 			<div class="login-part">
 				<label for="password">Hasło</label>
-				<input type="password" name="password" value="" />
+				<input type="password" name="password" id="password" value="" />
 			</div>
 
 			<!-- Wypisanie błędów z talbicy errors -->

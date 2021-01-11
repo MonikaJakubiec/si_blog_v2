@@ -147,11 +147,44 @@ final class ArticleRepository
 		return $articlesWithPhotoAndUserInfo;
 	}
 
-	public function getArticlesCreatedByUser($userId)
+	public function getArticlesCreatedByUser($userId, $sortBy)
 	{
 		require _PDO_FILE;
 		$articlesWithPhotoAndUserInfo = [];
-		$stmt = $db->prepare('SELECT Article.id as article_id, Article.user_id, Article.photo_id, Article.is_featured, Article.status, Article.title, Article.published_timestamp, Article.content, Photo.path as photo_path, Photo.alt as photo_alt, User.name as user_name, User.role as user_role FROM Article LEFT JOIN Photo ON Article.photo_id = Photo.id LEFT JOIN User ON Article.user_id = User.id WHERE Article.user_id = :userId AND Article.status != "archived" ORDER BY published_timestamp DESC');
+
+		//start to discuss
+		//dodanie sortowania
+		$availableSortColumns = array(
+			"id" => "Article.id",
+			"title" => "Article.title",
+			"status" => "Article.status",
+			"author" => "User.name",
+			"publishedTime" => "Article.published_timestamp",
+			"random" => "RAND()"
+		);
+		$OrderByQueryPart = '';
+		foreach ($sortBy as &$sortOption) {
+			if(array_key_exists($sortOption[0],$availableSortColumns))
+			{
+				$OrderByQueryPart.=$availableSortColumns[$sortOption[0]]." ";
+				if($sortOption[1]=="DESC")//zabezpieczenie na wypadek wpisania innej opcji
+					$OrderByQueryPart.="DESC,";
+				else
+					$OrderByQueryPart.="ASC,";
+			}
+		}
+
+		$OrderByQueryPart=trim($OrderByQueryPart, ',');//usuniecie ewentualnego przecinka na kmońcu
+		if(strlen($OrderByQueryPart)>1)//jeżli zostałty dodane sortowania
+		$OrderByQueryPart="ORDER BY ".$OrderByQueryPart;
+
+		$OrderByQueryPart.=' ';
+		//end to discuss
+
+		$stmt = $db->prepare('SELECT Article.id as article_id, Article.user_id, Article.photo_id, Article.is_featured, Article.status, Article.title, Article.published_timestamp, Article.content, Photo.path as photo_path, Photo.alt as photo_alt, User.name as user_name, User.role as user_role FROM Article LEFT JOIN Photo ON Article.photo_id = Photo.id LEFT JOIN User ON Article.user_id = User.id WHERE Article.user_id = :userId AND Article.status != "archived"' . $OrderByQueryPart);
+
+		//to remove: ORDER BY published_timestamp DESC
+
 		$stmt->bindValue(':userId', $userId, PDO::PARAM_INT);
 		$success = $stmt->execute();
 		if (!$success) {

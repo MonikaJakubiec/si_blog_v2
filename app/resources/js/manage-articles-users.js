@@ -1,7 +1,7 @@
 function confirmArticleDelete(homePage = "", articleId) {
     if (confirm("Czy na pewno chcesz usunąć artykuł? Zmiany są nieodwracalne!")) {
         
-        window.location.href = homePage + "admin-panel?delete-article=" + articleId;
+        window.location.href = homePage + "articles-list?delete-article=" + articleId;
     }
 }
 
@@ -28,8 +28,13 @@ function preventExit() {
         }
     });
     
-
 }
 function formSubmit() {
     window.formSubmitted = true;
+}
+
+function confirmUserDelete(homePage = "", userId) {
+    if (confirm("Czy na pewno chcesz usunąć użytkownika? Zmiany są nieodwracalne!")) {
+        window.location.href = homePage + "users-list?delete-user=" + userId;
+    }
 }

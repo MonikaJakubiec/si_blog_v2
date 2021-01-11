@@ -1,66 +1,27 @@
 <!DOCTYPE html>
 <html lang="pl">
 <?php
-
-showHtmlHead("Panel administratora", null, null, true);
+showHtmlHead("Panel administracyjny", null, null, true);
 ?>
 
 <body class="admin">
     <?php
-    renderHtmlHeader(array("page"=>"admin-panel"));
+    renderHtmlHeader(array("page" => "admin-panel"));
     ?>
-    <script src="<?= _RESOURCES_PATH . 'js' . DIRECTORY_SEPARATOR . 'manage-article.js' ?>"></script>
+    <!-- TODO -->
+    <div style="display: flex; flex-wrap: wrap; justify-content: center;">
+        <div style="margin: 30px; width: 400px; height: 400px; text-align: center; background-color: darkgreen;">
+            <a style="font-size: 30px; text-align: center; text-decoration: none; color: white; display: block; padding: 179px 0px;" href="<?= _RHOME ?>articles-list/">Lista artykułów</a>
+        </div>
+        <div style="margin: 30px; width: 400px; height: 400px; text-align: center; background-color: darkgreen;">
+            <a style="font-size: 30px; text-align: center; text-decoration: none; color: white; display: block; padding: 179px 0px;" href="<?= _RHOME ?>users-list">Lista użytkowników</a>
+        </div>
+    </div>
 
-    <main id="content-box">
-    <?php
-                if(count($allArticles)>0){
-                    ?>
-        <table id="articles">
-            <thead>
-                <tr>
-                    <th><a href="?sortBy=id&sortDir=<?=$newSortDirections['id']?>" class="sortable" title="Sortuj po id">ID</a></th>
-                    <th class="title"><a href="?sortBy=title&sortDir=<?=$newSortDirections['title']?>" class="sortable" title="Sortuj po tytule">Tytuł</a></th>
-                    <th><a href="?sortBy=author&sortDir=<?=$newSortDirections['author']?>" class="sortable" title="Sortuj po autorze">Autor</a></th>
-                    <th><a href="?sortBy=publishedTime&sortDir=<?=$newSortDirections['publishedTime']?>" class="sortable" title="Sortuj po dacie publikacji">Data publikacji</a></th>
-                    <th class="actions">Akcje</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                
-                foreach ($allArticles as $articleData) {
-                ?>
-                    <tr class="article <?php if (!$articleData['article']->isPublished()) {
-                                            echo "not-published";
-                                        } ?>">
-                        <td><?php echo $articleData['article']->getId(); ?></td>
-                        <td class="title"><?php echo $articleData['article']->getTitle(); ?></td>
-                        <td><?php echo $articleData['user']->getName(); ?></td>
-                        <td><?php if ($articleData['article']->isPublished()) {
-                                echo strftime("%c", $articleData['article']->getPublishedTimestamp());
-                            } else {
-                                echo "nie opublikowano";
-                            } ?></td>
-                        <td class="actions">
-                            <?php if ($articleData['article']->isPublished()) : ?><a class="button" href="<?= $articleData['article']->getUrl() ?>">Zobacz</a><?php endif; ?>
-                            <a class="button" href="<?= $articleData['article']->getEditUrl() ?>">Edytuj</a>
-                            <a class="button button-red" href="#" onClick="confirmArticleDelete('<?= _RHOME ?>', <?= $articleData['article']->getId() ?>);">Usuń</a></td>
-                    </tr>
-                <?php
-                }
-            }
-            else
-                {
-                    echo "<div class=\"t-center alert\"><h2>Nie masz jeszcze artykułów</h2><a href=\"http://localhost/other/5si/projekt/si-blog/edit-article/\" style=\"color:unset\">Dodaj pierwszy!</a></div>";
-                }
-            ?>
-
-            </tbody>
-        </table>
-    </main>
     <?php
     showHtmlFooter();
     ?>
+
 </body>
 
 </html>
