@@ -24,6 +24,8 @@ if (isset($_POST['title'])) {
     if (isset($_POST['edit-article']) && $_POST['edit-article'] != '') {
         $articleToEdit = (new ArticleRepository)->getArticleById($_POST['edit-article'])['article'];
         $isArticlePublished = $articleToEdit->getStatus() == 'published';
+        $publishButtonTextToDisplay = $isArticlePublished ? $unpublishButtonText : $publishButtonText;
+        $saveButtonTextToDisplay = $updateButtonText;
     }
     switch ($_POST['picture-id']) {
         case 'picture-from-file':
