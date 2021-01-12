@@ -4,7 +4,7 @@
 <?php showHtmlHead($articleData["article"]->getTitle(),$articleMetaDescription,$articleData["user"]->getName()); ?>
 
 <body class="article">
-    <?php renderHtmlHeader(array("page"=>"article","articleId"=>$articleId)); ?>
+    <?php renderHtmlHeader($userRole,array("page"=>"article","articleId"=>$articleId,"creatorId"=>$articleData["user"]->getId())); ?>
     <main id="content-box">
         <div id="main-article">
             <div class="main-article-info">

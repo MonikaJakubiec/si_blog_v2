@@ -9,14 +9,11 @@ $button-color: #fff;
 $max-width-default: 1200px;
 $article-listing-gap: 30px;
 $article-listing-cols: 3;
-$error-color:#fe121a;
-$success-color:#8bc34b;
-$info-color:#333;
-$warning-color:#ff9800;
+$error-color: #fe121a;
+$success-color: #8bc34b;
+$info-color: #333;
+$warning-color: #ff9800;
 
-.error {
-  color:#fe121a;
-}
 // START default style sheet for HTML 4 from https://www.w3.org/TR/CSS2/sample.html
 h1 {
   font-size: 2em;
@@ -59,14 +56,15 @@ center {
 }
 
 //END default style sheet for HTML 4
-table{
-display: table;
-border-collapse: separate;
-border-spacing: 0px;
-border-color: gray;
-th,td{
-  border:1px solid gray;
-}
+table {
+  display: table;
+  border-collapse: separate;
+  border-spacing: 0px;
+  border-color: gray;
+  th,
+  td {
+    border: 1px solid gray;
+  }
 }
 body {
   font: 100% $font-stack;
@@ -74,7 +72,6 @@ body {
   color: #000;
   margin: 0px;
   word-break: break-word;
-  
 
   img {
     max-width: 100%;
@@ -93,23 +90,23 @@ main#content-box {
   margin-left: auto;
   margin-right: auto;
 }
-
+.boxed {
+  max-width: $max-width-default;
+  margin: auto;
+}
 header {
   margin-left: auto;
   margin-right: auto;
   padding: 0px;
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
   background: $primary-color;
   z-index: 5;
-  .boxed
-  {
-    max-width: $max-width-default;
-    margin:auto;
-  }
+
   h1 {
-    padding:0px 8px;
-    margin:0px auto;
+    padding: 0px 8px;
+    margin: 0px auto;
     font-size: 40px;
     color: $font-primary-color;
     line-height: 1.6;
@@ -135,7 +132,7 @@ footer {
 .no-bcg {
   color: $font-primary-color;
 
-  a{
+  a {
     color: #00e2ff;
   }
 }
@@ -179,6 +176,11 @@ input.button {
   }
 }
 /*END BUTTONS*/
+
+.error {
+  color: #fe121a;
+}
+
 /*LISTING START*/
 .article-listing {
   max-width: $max-width-default;
@@ -218,6 +220,7 @@ input.button {
     img.featured {
       width: 100%;
       height: 214px;
+      -o-object-fit: cover;
       object-fit: cover;
     }
 
@@ -236,11 +239,13 @@ input.button {
   display: grid;
   //grid-template-columns: repeat(3, 1fr);
   grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  -moz-column-gap: 8px;
   column-gap: 8px;
   row-gap: 8px;
 
   @media only screen and (max-width: 380px) {
     grid-template-columns: 1;
+    -moz-column-gap: 0px;
     column-gap: 0px;
   }
 
@@ -257,6 +262,7 @@ input.button {
     padding: 0px;
   }
   aside > .sticky {
+    position: -webkit-sticky;
     position: sticky;
     top: 0;
     & > *:not(#featured-slider) {
@@ -313,6 +319,8 @@ body.login {
     margin: auto;
     text-align: center;
     padding: 16px 32px;
+    width: -webkit-max-content;
+    width: -moz-max-content;
     width: max-content;
     font-size: 18px;
 
@@ -352,39 +360,34 @@ body.login {
 /*END PAGINATION*/
 
 /*START ALERTS*/
-.alert  {
+.alert {
   display: block;
   margin: 8px auto;
   max-width: $max-width-default;
   text-align: center;
-  color:#fff;
+  color: #fff;
   background-color: #000;
-  border:1px solid #000;
+  border: 1px solid #000;
   position: relative;
-  min-height: 16px;//close ma padding 8 i position absolute
+  min-height: 16px; //close ma padding 8 i position absolute
 
-  &.closed
-  {
-    display:none;
-    opacity : 0;
+  &.closed {
+    display: none;
+    opacity: 0;
     visibility: hidden;
   }
 
-  &.info
-  {
-    background-color:$info-color;
+  &.info {
+    background-color: $info-color;
   }
-  &.warning
-  {
-    background-color:$warning-color;
+  &.warning {
+    background-color: $warning-color;
   }
-  &.success
-  {
-    background-color:$success-color;
+  &.success {
+    background-color: $success-color;
   }
-  &.error
-  {
-    background-color:$error-color;
+  &.error {
+    background-color: $error-color;
   }
 
   span.close {
@@ -393,29 +396,41 @@ body.login {
     top: 0px;
     right: 0px;
     padding: 8px;
-    &:hover{
+    &:hover {
       background-color: black;
     }
-}
+  }
 }
 /*END ALERTS*/
 
-/*inspiorowane https://www.w3schools.com/howto/howto_css_loader.asp */
-.loader {
-  border: 16px solid #dfdfdf; /* Light grey */
-  border-top: 16px solid $primary-color; /* Blue */
-  border-radius: 50%;
-  animation: spin 1s cubic-bezier(0.65, 0.05, 0.36, 1) infinite;
-  width: 100px;
-  height: 100px;
-  position: absolute;
-  margin: auto;
-  margin: auto;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
+.loader-parent {
+  position: relative;
+  /*animacja ładowania inspirowana https://www.w3schools.com/howto/howto_css_loader.asp */
+  .loader {
+    border: 16px solid #dfdfdf; /* Light grey */
+    border-top: 16px solid $primary-color; /* Blue */
+    border-radius: 50%;
+    -webkit-animation: spin 1s cubic-bezier(0.65, 0.05, 0.36, 1) infinite;
+    animation: spin 1s cubic-bezier(0.65, 0.05, 0.36, 1) infinite;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    margin: auto;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    bottom: 50%;
+    right: 0;
+  }
+}
+@-webkit-keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes spin {
@@ -429,6 +444,11 @@ body.login {
 
 //slider
 //zostanie nadpisane
+@-webkit-keyframes transition-slider {
+  0% {
+    left: 0%;
+  }
+}
 @keyframes transition-slider {
   0% {
     left: 0%;
@@ -451,11 +471,13 @@ body.login {
   .slider {
     position: relative;
     width: 100%; //zostanie nadpisane
+    -webkit-animation: 5s transition-slider infinite;
     animation: 5s transition-slider infinite;
     height: 50vh;
     font-size: 0; //usuniecie odstepu miedy elementami
 
     &:hover {
+      -webkit-animation-play-state: paused;
       animation-play-state: paused; //wylaczenie animacji po najechaniu/ zostanie nadpisane po id
     }
     .slide {
@@ -470,6 +492,7 @@ body.login {
         position: absolute;
         width: 100%;
         height: 100%;
+        -o-object-fit: cover;
         object-fit: cover;
         z-index: 0;
       }
@@ -491,8 +514,8 @@ body.login {
         overflow: hidden;
         text-align: center;
         &:hover {
-          transition-duration: .4s;
-           background-color: #ffffff33;
+          transition-duration: 0.4s;
+          background-color: #ffffff33;
         }
         .text {
           background: linear-gradient(#00000000, #00000088, #00000088, #00000000);

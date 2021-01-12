@@ -1,6 +1,7 @@
 $max-width-default: 1200px;
 $font-primary-color: #fff;
-
+$tiles-color: #4caf50;
+$tiles-color-hover: #4caf50 - #333333;
 body.admin {
   table {
     background-color: $font-primary-color;
@@ -17,13 +18,15 @@ body.admin {
       max-width: 50vw;
     }
 
-    &#articles {
+    &#articles,
+    &#users {
       border-spacing: 0px;
       width: 100%;
       border: 1px solid black;
       word-break: break-word;
 
       thead tr th {
+        position: -webkit-sticky;
         position: sticky;
         top: 0;
         background: #fff;
@@ -142,33 +145,68 @@ body.admin {
       vertical-align: middle;
     }
   }
+
+  .tiles {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .tile {
+      margin: 12px 12px;
+      text-align: center;
+      background-color: $tiles-color;
+      flex: 1 1 400px;
+      min-height: 150px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      &:hover {
+        background-color: $tiles-color-hover;
+      }
+
+      & > a {
+        font-size: 30px;
+        text-decoration: none;
+        color: white;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
 }
 
 div#admin-header-menu {
-  display:block;
+  display: block;
   background: #000;
   color: #fff;
 
-  .links{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  flex-flow: wrap;
-  margin: auto;
-  margin-bottom: 4px;
-  padding: 4px;
-  max-width: $max-width-default;
+  .links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-flow: wrap;
+    margin: auto;
+    margin-bottom: 4px;
+    padding: 4px;
+    max-width: $max-width-default;
 
-  a {
-    border: 1px solid #000;
-    background-color: #333;
-    padding: 2px 4px;
-    margin: 0px 4px;
-  &:hover{
-    border:1px solid #eee;
-    background-color: #666;
-    transition-duration: .2s;
-  }
+    a {
+      border: 1px solid #000;
+      background-color: #333;
+      padding: 2px 4px;
+      margin: 0px 4px;
+      &:hover {
+        border: 1px solid #eee;
+        background-color: #666;
+        transition-duration: 0.2s;
+      }
+      &.current {
+        cursor: not-allowed;
+        opacity: 0.6;
+      }
+    }
   }
 }
-}
+

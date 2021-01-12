@@ -5,13 +5,13 @@
  * @param string $desription opis strony
  * @param string $author autor artykułu
  */
-function showHtmlHead($title=_SITE_NAME,$description=null,$author=null,$adminCss=null)
+function showHtmlHead($title="",$description=null,$author=null,$adminCss=null)
 {
 
     ?><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $title;?></title>
+    <title><?php echo $title.' | '._SITE_NAME;?></title>
     <link rel="stylesheet" href="<?php echo getFrontendPath(_RESOURCES_PATH);?>css/style.css">
     <?php if(isset($_SESSION['login'])):?>
         <link rel="stylesheet" href="<?php echo getFrontendPath(_RESOURCES_PATH);?>css/style-admin.css">

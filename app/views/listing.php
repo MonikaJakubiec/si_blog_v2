@@ -5,10 +5,10 @@ require_once(_ACTIONS_PATH  . 'functions.php');
 ?>
 <!DOCTYPE html>
 <html lang="pl">
-<?php showHtmlHead(_SITE_NAME . "— Strona główna", "Zobacz najnowsze artykuły", null); ?>
+<?php showHtmlHead("Strona główna", "Zobacz najnowsze artykuły", null); ?>
 
 <body>
-    <?php renderHtmlHeader(array("page"=>"listing")); ?>
+    <?php renderHtmlHeader($userRole,array("page"=>"listing")); ?>
     <section id="main">
    
         <?php

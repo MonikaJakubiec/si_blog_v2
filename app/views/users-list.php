@@ -34,7 +34,7 @@ showHtmlHead("Lista użytkowników", null, null, true);
                                         } ?>">
                         <td><?php echo $user->getId(); ?></td>
                         <td class="username"><?php echo $user->getName(); ?></td>
-                        <td><?php echo $user->getRole(); ?></td>
+                        <td><?php echo $user->getFrontendRole(); ?></td>
                         <td class="actions">
                             <a class="button" href="<?= $user->getUserEditUrl() ?>">Edytuj</a>
                             <a class="button button-red" href="#" onClick="confirmUserDelete('<?= _RHOME ?>', <?= $user->getId() ?>);">Usuń</a></td>

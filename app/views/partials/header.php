@@ -1,8 +1,8 @@
 <?php
-function renderHtmlHeader($pageInfo = array())
+function renderHtmlHeader($userRole, $pageInfo = array())
 {
 ?><header>
-        <?php renderLoggedInMenu($pageInfo);
+        <?php renderLoggedInMenu($pageInfo, $userRole);
         ?>
 
         <div class="boxed">
@@ -14,36 +14,41 @@ function renderHtmlHeader($pageInfo = array())
     renderAlerts();
 }
 
-function renderLoggedInMenu($pageInfo)
+function renderLoggedInMenu($pageInfo, $userRole)
 {
     if (isset($_SESSION['login'])) {
-
+        if (array_key_exists("page", $pageInfo))
+            $page = $pageInfo["page"];
+        else
+        $page=null;
     ?>
         <div id="admin-header-menu">
             <div class="links">
-            <a href="<?= _RHOME ?>admin-panel/">Panel administracyjny</a>
-            <a href="<?= _RHOME ?>articles-list/">Lista artykułów</a>
-            <a href="<?= _RHOME ?>edit-article/">Dodaj artykuł</a>
-            <a href="<?= _RHOME ?>users-list/">Lista użytkowników</a>
-            <a href="<?= _RHOME ?>register/">Dodaj użytkownika</a>
+                <a href="<?= _RHOME ?>admin-panel/" <?php if ($page == "admin-panel") echo "class=\"current\""; ?>>Panel administracyjny</a>
+                <a href="<?= _RHOME ?>articles-list/" <?php if ($page == "articles-list") echo "class=\"current\""; ?>>Lista artykułów</a>
+                <a href="<?= _RHOME ?>add-article/" <?php if ($page == ">add-article") echo "class=\"current\""; ?>>Dodaj artykuł</a>
+                <?php if ($userRole == 'administrator') : ?><a href="<?= _RHOME ?>users-list/" <?php if ($page == "users-list") echo "class=\"current\""; ?>>Lista użytkowników</a><?php endif; ?>
+                <?php if ($userRole == 'administrator') : ?><a href="<?= _RHOME ?>register/" <?php if ($page == "register") echo "class=\"current\""; ?>>Dodaj użytkownika</a><?php endif; ?>
                 <?php
+                $articleId = null;
+                if (isset($pageInfo["articleId"]))
+                    $articleId = $pageInfo["articleId"];
 
-                if (array_key_exists("page", $pageInfo)) {
-                    $page = $pageInfo["page"];
+                $articleCreatorId = null;
+                if (isset($pageInfo["creatorId"]))
+                    $articleCreatorId = $pageInfo["creatorId"];
 
-                    if ($page == "article") { ?>
-                        <a href="<?php echo getEditUrlById($pageInfo["articleId"]) ?>">Edytuj ten artykuł</a>
+                if ($page == "article" && $articleId != null)
+                    if ($userRole == 'administrator' || $articleCreatorId == $_SESSION['login']) {
+                ?>
+                    <a href="<?php echo getEditUrlById($pageInfo["articleId"]) ?>">Edytuj ten artykuł</a>
                 <?php
                     }
-                }
                 ?>
                 <a href="<?= _RHOME ?>logout/">Wyloguj</a>
             </div>
         </div>
-    <?php
-
+<?php
 
     }
 }
-
-

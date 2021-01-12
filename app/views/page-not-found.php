@@ -6,7 +6,7 @@ showHtmlHead("Nie znaleziono");
 
 <body>
     <?php
-    renderHtmlHeader(array("page"=>"page-not-found"));
+    renderHtmlHeader($userRole,array("page"=>"page-not-found"));
     ?>
     <main id="content-box">
         <div class="no-bcg t-center">

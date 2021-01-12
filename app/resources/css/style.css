@@ -1,7 +1,4 @@
-.error {
-  color: #fe121a;
-}
-
+@charset "UTF-8";
 h1 {
   font-size: 2em;
   margin: 0.67em 0;
@@ -59,7 +56,8 @@ table {
   border-color: gray;
 }
 
-table th, table td {
+table th,
+table td {
   border: 1px solid gray;
 }
 
@@ -89,6 +87,11 @@ main#content-box {
   margin-right: auto;
 }
 
+.boxed {
+  max-width: 1200px;
+  margin: auto;
+}
+
 header {
   margin-left: auto;
   margin-right: auto;
@@ -98,11 +101,6 @@ header {
   top: 0;
   background: #000a51;
   z-index: 5;
-}
-
-header .boxed {
-  max-width: 1200px;
-  margin: auto;
 }
 
 header h1 {
@@ -193,6 +191,10 @@ input.button.button-gray {
 }
 
 /*END BUTTONS*/
+.error {
+  color: #fe121a;
+}
+
 /*LISTING START*/
 .article-listing {
   max-width: 1200px;
@@ -243,7 +245,7 @@ input.button.button-gray {
   width: 100%;
   height: 214px;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 .article-listing article a.read-more {
@@ -442,24 +444,28 @@ body.login a.return {
 }
 
 /*END ALERTS*/
-/*inspiorowane https://www.w3schools.com/howto/howto_css_loader.asp */
-.loader {
+.loader-parent {
+  position: relative;
+  /*animacja ładowania inspirowana https://www.w3schools.com/howto/howto_css_loader.asp */
+}
+
+.loader-parent .loader {
   border: 16px solid #dfdfdf;
   /* Light grey */
   border-top: 16px solid #000a51;
   /* Blue */
   border-radius: 50%;
   -webkit-animation: spin 1s cubic-bezier(0.65, 0.05, 0.36, 1) infinite;
-          animation: spin 1s cubic-bezier(0.65, 0.05, 0.36, 1) infinite;
+  animation: spin 1s cubic-bezier(0.65, 0.05, 0.36, 1) infinite;
   width: 100px;
   height: 100px;
   position: absolute;
   margin: auto;
   margin: auto;
   position: absolute;
-  top: 0;
+  top: 50%;
   left: 0;
-  bottom: 0;
+  bottom: 50%;
   right: 0;
 }
 
@@ -516,14 +522,14 @@ body.login a.return {
   position: relative;
   width: 100%;
   -webkit-animation: 5s transition-slider infinite;
-          animation: 5s transition-slider infinite;
+  animation: 5s transition-slider infinite;
   height: 50vh;
   font-size: 0;
 }
 
 #featured-slider .slider:hover {
   -webkit-animation-play-state: paused;
-          animation-play-state: paused;
+  animation-play-state: paused;
 }
 
 #featured-slider .slider .slide {
@@ -540,7 +546,7 @@ body.login a.return {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   z-index: 0;
 }
 
@@ -570,8 +576,8 @@ body.login a.return {
 }
 
 #featured-slider .slider .slide .title:hover {
-  -webkit-transition-duration: .4s;
-          transition-duration: .4s;
+  -webkit-transition-duration: 0.4s;
+          transition-duration: 0.4s;
   background-color: #ffffff33;
 }
 

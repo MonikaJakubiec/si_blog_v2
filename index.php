@@ -76,7 +76,7 @@ $routingRequestPageWithoutData=$routingRequestPageWithData[0];
  * Dostępne strony
  * @var array
  */
-$pages = array('edit-article', 'login', 'logout', 'admin-panel', 'articles-list', 'listing', 'article', 'register', 'users-list');
+$pages = array('edit-article', 'add-article', 'login', 'logout', 'admin-panel', 'articles-list', 'listing', 'article', 'register', 'users-list');
 
 if (in_array($routingRequestPageWithoutData, $pages)) {
     /**
@@ -91,7 +91,9 @@ if (in_array($routingRequestPageWithoutData, $pages)) {
         $page = 'page-not-found';
     }
 }
-
+if($page=="add-article"){
+    $page="edit-article";
+}
 $action = _ACTIONS_PATH . $page . '.php';
 $view = _VIEWS_PATH . $page . '.php';
 
