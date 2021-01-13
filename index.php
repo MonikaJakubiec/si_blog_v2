@@ -5,7 +5,7 @@ setlocale(LC_ALL, 'pl_pl.UTF8','pol.UTF-8','plk.UTF-8');//ustawienie dla formato
 
 /** katalog w ktorym znajduje się aplikajca */
 $routingCurrDir = str_replace("index.php", "", $_SERVER['SCRIPT_NAME']);
-
+$opisStrony=('Najciekawsze artykuły o technologii');//tytuł strony (wyświetlany w title strony głównej)
 
 /** katalog w ktorym znajduje się aplikajca */
 define('_RHOME', $routingCurrDir);

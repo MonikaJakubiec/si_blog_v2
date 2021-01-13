@@ -24,9 +24,13 @@ $offset=($page-1)*$postPerPage;
 /**
  * Tytuł storny (tag title)
  */
-$htmlTitle="Strona główna";
+$htmlTitle=_SITE_NAME;
 if($page>1)
 {
-    $htmlTitle.=' - strona '.$page.'/'.$lastPageNumber;
+    $htmlTitle.=' - strona '.$page.'/'.$lastPageNumber.' - '.$opisStrony;
+}
+else
+{
+    $htmlTitle.=' - '.$opisStrony;
 }
 $newestArticles = $articleRepository->getArticles(true,false,$postPerPage, $offset);

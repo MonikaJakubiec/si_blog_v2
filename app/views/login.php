@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pl">
 <?php
-showHtmlHead("Zaloguj", null, null, false);
+showHtmlHead("Zaloguj się","Zaloguj się na swoje konto",null,true,false);
 ?>
 
 <body class="login">

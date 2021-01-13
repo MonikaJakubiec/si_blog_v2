@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pl">
 <?php
-showHtmlHead("Rejestracja", null, null, true);
+showHtmlHead("Rejestracja", null, null,true,false);
 ?>
 
 <body class="login">
