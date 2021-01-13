@@ -4,7 +4,7 @@
 <?php
 // require_once(_VIEWS_PATH . 'partials' . DIRECTORY_SEPARATOR . 'admin-menu.php');
 require_once(_VIEWS_PATH . 'partials' . DIRECTORY_SEPARATOR . 'add-picture.php');
-showHtmlHead("Dodawanie artykułu", null, null, true);
+showHtmlHead("Dodawanie artykułu", null, null, true,false);
 ?>
 
 <body class="admin">

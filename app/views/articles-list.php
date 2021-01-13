@@ -2,7 +2,7 @@
 <html lang="pl">
 <?php
 
-showHtmlHead("Lista artykułów", null, null, true);
+showHtmlHead("Lista artykułów", null, null, true,false);
 ?>
 
 <body class="admin">

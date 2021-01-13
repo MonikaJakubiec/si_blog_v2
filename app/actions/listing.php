@@ -16,7 +16,17 @@ $featuredForSlider=prepareFeaturedForSLider(5,false,4,1);
 
 $numOfArticles=$articleRepository->getArticlesCount(true);
 $lastPageNumber = ceil($numOfArticles / $postPerPage);
-/*if($page>$lastPageNumber)
-$page=$lastPageNumber;*///todo:show 404
+if($page>$lastPageNumber)
+{   
+    showNotFoundPage();
+}
 $offset=($page-1)*$postPerPage;
+/**
+ * Tytuł storny (tag title)
+ */
+$htmlTitle="Strona główna";
+if($page>1)
+{
+    $htmlTitle.=' - strona '.$page.'/'.$lastPageNumber;
+}
 $newestArticles = $articleRepository->getArticles(true,false,$postPerPage, $offset);

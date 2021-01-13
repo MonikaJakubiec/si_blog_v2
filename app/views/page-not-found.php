@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pl">
 <?php
-showHtmlHead("Nie znaleziono");
+showHtmlHead("Nie znaleziono",null,null,true,false);
 ?>
 
 <body>
@@ -10,7 +10,7 @@ showHtmlHead("Nie znaleziono");
     ?>
     <main id="content-box">
         <div class="no-bcg t-center">
-            <p>404 PAGE NOT FOUND</p>
+            <p>Nie znaleziono</p>
             <p>Przepraszamy podana strona nie istnieje :(</p>
             <a href="<?php echo _RHOME;?>">Przejdź do strony głównej</a>
         </div>

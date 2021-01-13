@@ -81,7 +81,7 @@ function renderHeadStyle()
 {
     global $stylesToInsertInline;
     if (strlen($stylesToInsertInline) > 0)
-        echo "<style>" . $stylesToInsertInline . "</style>";
+        echo "<!--custom style start--><style>" . $stylesToInsertInline . "</style><!--custom style end-->";
 }
 
 /**
@@ -129,12 +129,13 @@ function renderAlerts()
 }
 
 
-function showNotFoundPage(){
+function showNotFoundPage($userRole=null){
+
     $pageNewNotFound = 'page-not-found';
     $actionNewNotFound = _ACTIONS_PATH . $pageNewNotFound . '.php';
     $viewNewNotFound = _VIEWS_PATH . $pageNewNotFound . '.php';
     if (file_exists($actionNewNotFound))
-        include($actionNew);
+        include($actionNewNotFound);
     if (file_exists($viewNewNotFound))
         include($viewNewNotFound);
         else

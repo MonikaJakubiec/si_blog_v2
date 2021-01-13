@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pl">
 <?php
-showHtmlHead("Panel administracyjny", null, null, true);
+showHtmlHead("Panel administracyjny",null,null,true,false);
 ?>
 
 <body class="admin">
