@@ -71,6 +71,7 @@ body {
 
 body img {
   max-width: 100%;
+  height: auto;
 }
 
 .m-auto {
@@ -102,8 +103,8 @@ header {
   background: #000a51;
   z-index: 5;
   top: 0px;
-  -webkit-transition: .4s ease;
-  transition: .4s ease;
+  -webkit-transition: 0.4s ease;
+  transition: 0.4s ease;
 }
 
 header h1 {
@@ -122,15 +123,15 @@ header a {
 }
 
 header.scroll {
-  -webkit-transition: .4s ease;
-  transition: .4s ease;
+  -webkit-transition: 0.4s ease;
+  transition: 0.4s ease;
 }
 
 header.scroll h1 {
   font-size: 20px;
   padding: 0px 4px;
-  -webkit-transition: .4s ease;
-  transition: .4s ease;
+  -webkit-transition: 0.4s ease;
+  transition: 0.4s ease;
 }
 
 footer {
@@ -321,6 +322,10 @@ input.button.button-gray {
   padding: 0px;
 }
 
+#main-article aside .newest {
+  margin-bottom: 30px;
+}
+
 #main-article aside > .sticky {
   position: -webkit-sticky;
   position: sticky;
@@ -363,6 +368,7 @@ input.button.button-gray {
 }
 
 #main-article .main-article-content {
+  padding-bottom: 12px;
   -ms-grid-column: 1;
   -ms-grid-column-span: 2;
   grid-column: 1 / 3;

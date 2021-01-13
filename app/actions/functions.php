@@ -34,9 +34,9 @@ function prepareFeaturedForSLider($limit = 3, $random = false, $timePerOneSlide 
     $sliderRandomId = "slider-" . getRandomString(5);
     $articleRepository = new ArticleRepository;
     if ($random)
-        $featuredArticles = $articleRepository->getArticles(true, true, $limit, 0, array(["random", "asc"]),);
+        $featuredArticles = $articleRepository->getArticles(true, true, $limit, 0,null, array(["random", "asc"]),);
     else
-        $featuredArticles = $articleRepository->getArticles(true, true, $limit, 0);
+        $featuredArticles = $articleRepository->getArticles(true, true, $limit, 0,null);
 
 
     $numOfSlides = count($featuredArticles);

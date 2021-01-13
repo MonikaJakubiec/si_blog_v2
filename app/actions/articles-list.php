@@ -39,7 +39,7 @@ if ($sortColumn == "publishedTime") {
     $sortArray = array([$sortColumn, $sortDirection]);
 
 if($userRole == 'administrator') {
-    $allArticles = $articleRepository->getArticles(false, false, null, 0, $sortArray);
+    $allArticles = $articleRepository->getArticles(false, false, null, 0,null,$sortArray);
 } else {
     $allArticles = $articleRepository->getArticlesCreatedByUser($_SESSION['login'], $sortArray);
 }

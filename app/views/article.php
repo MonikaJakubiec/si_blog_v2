@@ -25,7 +25,7 @@
                     $featuredHeading = "";
                     renderFeaturedSlider($featuredForSliderAside,$featuredHeading);
                     ?>
-                    <p class="list-header">Zobacz najnowsze wpisy:</p>
+                    <p class="list-header">Najnowsze wpisy:</p>
                     <?php
                     if (count($newestArticles) > 0) {
                     ?>
@@ -44,7 +44,27 @@
                         </ul>
                     <?php
                     }
-
+                    ?>
+                    
+                    <?php
+                    if (count($userArticles) > 0) {
+                    ?>
+                    <p class="list-header">Inne wpisy autora <?php echo  $article['user']->getName();?>:</p>
+                        <ul class="newest author">
+                            <?php
+                            foreach ($userArticles as $article) {
+                            ?>
+                                <li>
+                                    <a href="<?= $article['article']->getUrl() ?>">
+                                        <?= $article['article']->getTitle() ?>
+                                    </a>
+                                </li>
+                            <?php
+                            }
+                            ?>
+                        </ul>
+                    <?php
+                    }
                     ?>
                 </div>
             </aside>

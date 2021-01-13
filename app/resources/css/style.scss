@@ -88,6 +88,7 @@ body {
     word-break: break-word;
     img {
         max-width: 100%;
+        height: auto;
     }
 }
 
@@ -132,13 +133,13 @@ header {
         color: unset;
     }
     top: 0px;
-    transition: .4s ease;
+    transition: 0.4s ease;
     &.scroll {
-        transition: .4s ease;
+        transition: 0.4s ease;
         h1 {
             font-size: 20px;
             padding: 0px 4px;
-            transition: .4s ease;
+            transition: 0.4s ease;
         }
     }
 }
@@ -266,7 +267,7 @@ input.button {
 #main-article {
     display: grid;
     //grid-template-columns: repeat(3, 1fr);
-    grid-template-columns: repeat(auto-fill, minmax($articleGridColumnWidth, 1fr));
+    grid-template-columns: repeat( auto-fill, minmax($articleGridColumnWidth, 1fr));
     -moz-column-gap: 8px;
     column-gap: $articleGridColumnGap;
     row-gap: 8px;
@@ -294,6 +295,9 @@ input.button {
     }
     aside {
         padding: 0px;
+        .newest {
+            margin-bottom: 30px;
+        }
     }
     aside>.sticky {
         position: -webkit-sticky;
@@ -328,6 +332,7 @@ input.button {
         }
     }
     .main-article-content {
+        padding-bottom: 12px;
         grid-column: 1 / 3;
     }
 }
