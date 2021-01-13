@@ -1,7 +1,7 @@
 <?php
 function renderHtmlHeader($userRole, $pageInfo = array())
 {
-?><header>
+?><header id="header">
         <?php renderLoggedInMenu($pageInfo, $userRole);
         ?>
 
@@ -9,6 +9,7 @@ function renderHtmlHeader($userRole, $pageInfo = array())
             <h1><a href="<?= _RHOME ?>"><?= _SITE_NAME ?></a></h1>
         </div>
     </header>
+    
 
     <?php
     renderAlerts();

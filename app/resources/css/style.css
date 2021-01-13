@@ -101,6 +101,9 @@ header {
   top: 0;
   background: #000a51;
   z-index: 5;
+  top: 0px;
+  -webkit-transition: .4s ease;
+  transition: .4s ease;
 }
 
 header h1 {
@@ -109,11 +112,25 @@ header h1 {
   font-size: 40px;
   color: #fff;
   line-height: 1.6;
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
 }
 
 header a {
   text-decoration: none;
   color: unset;
+}
+
+header.scroll {
+  -webkit-transition: .4s ease;
+  transition: .4s ease;
+}
+
+header.scroll h1 {
+  font-size: 20px;
+  padding: 0px 4px;
+  -webkit-transition: .4s ease;
+  transition: .4s ease;
 }
 
 footer {

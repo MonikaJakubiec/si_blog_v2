@@ -15,6 +15,7 @@ $error-color: #fe121a;
 $success-color: #8bc34b;
 $info-color: #333;
 $warning-color: #ff9800;
+$articleGridColumnWidth: 380px;
 // START default style sheet for HTML 4 from https://www.w3.org/TR/CSS2/sample.html
 h1 {
     font-size: 2em;
@@ -123,10 +124,21 @@ header {
         font-size: 40px;
         color: $font-primary-color;
         line-height: 1.6;
+        transition: all 0.4s ease;
     }
     a {
         text-decoration: none;
         color: unset;
+    }
+    top: 0px;
+    transition: .4s ease;
+    &.scroll {
+        transition: .4s ease;
+        h1 {
+            font-size: 20px;
+            padding: 0px 4px;
+            transition: .4s ease;
+        }
     }
 }
 
