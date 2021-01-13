@@ -591,4 +591,8 @@ body.login a.return {
   width: 100%;
   text-align: center;
 }
+
+pre {
+  background-color: #fff;
+}
 /*# sourceMappingURL=style.css.map */

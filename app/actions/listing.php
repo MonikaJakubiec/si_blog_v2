@@ -9,10 +9,10 @@ if (isset($_GET['page'])) {
 } else {
     $page =1;
 }
-$featuredForSlider=prepareFeaturedForSLider(3,false,4,2,1,true);
+$featuredForSlider=null;
+
 if($page==1)
 $featuredForSlider=prepareFeaturedForSLider(5,false,4,1);
-
 
 $numOfArticles=$articleRepository->getArticlesCount(true);
 $lastPageNumber = ceil($numOfArticles / $postPerPage);
