@@ -16,6 +16,7 @@ $success-color: #8bc34b;
 $info-color: #333;
 $warning-color: #ff9800;
 $articleGridColumnWidth: 380px;
+$articleGridColumnGap: 8px;
 // START default style sheet for HTML 4 from https://www.w3.org/TR/CSS2/sample.html
 h1 {
     font-size: 2em;
@@ -265,11 +266,19 @@ input.button {
 #main-article {
     display: grid;
     //grid-template-columns: repeat(3, 1fr);
-    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax($articleGridColumnWidth, 1fr));
     -moz-column-gap: 8px;
-    column-gap: 8px;
+    column-gap: $articleGridColumnGap;
     row-gap: 8px;
-    @media only screen and (max-width: 380px) {
+    @media only screen and (max-width: $articleGridColumnWidth*3+$articleGridColumnGap*2) {
+        grid-template-columns: 1;
+        grid-column: 1 / -1;
+        -moz-column-gap: 0px;
+        column-gap: 0px;
+        margin: auto 8px;
+    }
+    @media only screen and (max-width: $articleGridColumnWidth) {
+        grid-template-columns: 1fr; //jedna kolumna na całą szerokość
         grid-template-columns: 1;
         -moz-column-gap: 0px;
         column-gap: 0px;
@@ -325,6 +334,10 @@ input.button {
 
 
 /*END ARTICLE PAGE*/
+
+iframe {
+    max-width: 100%;
+}
 
 .list-header {
     font-weight: bold;

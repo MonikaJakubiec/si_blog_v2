@@ -284,8 +284,21 @@ input.button.button-gray {
   row-gap: 8px;
 }
 
+@media only screen and (max-width: 1156px) {
+  #main-article {
+    -ms-grid-columns: 1;
+        grid-template-columns: 1;
+    grid-column: 1 / -1;
+    -webkit-column-gap: 0px;
+            column-gap: 0px;
+    margin: auto 8px;
+  }
+}
+
 @media only screen and (max-width: 380px) {
   #main-article {
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
     -ms-grid-columns: 1;
         grid-template-columns: 1;
     -webkit-column-gap: 0px;
@@ -356,6 +369,10 @@ input.button.button-gray {
 }
 
 /*END ARTICLE PAGE*/
+iframe {
+  max-width: 100%;
+}
+
 .list-header {
   font-weight: bold;
 }
