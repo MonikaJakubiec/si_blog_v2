@@ -15,15 +15,15 @@ showHtmlHead("Panel administracyjny",null,null,true,false);
         </div>
         <?php if ($userRole == 'administrator') : ?>
             <div class="tile">
-                <a href="<?= _RHOME ?>users-list">Lista użytkowników</a>
+                <a href="<?= _RHOME ?>users-list/">Lista użytkowników</a>
             </div>
         <?php endif; ?>
         <div class="tile">
-            <a href="<?= _RHOME ?>add-article">Dodaj artykuł</a>
+            <a href="<?= _RHOME ?>add-article/">Dodaj artykuł</a>
         </div>
         <?php if ($userRole == 'administrator') : ?>
             <div class="tile">
-                <a href="<?= _RHOME ?>users-list">Dodaj użytkownika</a>
+                <a href="<?= _RHOME ?>register/">Dodaj użytkownika</a>
             </div>
         <?php endif; ?>
     </div>

@@ -7,7 +7,7 @@ showHtmlHead("Lista użytkowników", null, null,true, false);
 
 <body class="admin">
     <?php
-    renderHtmlHeader(array("page"=>"users-list"));
+    renderHtmlHeader($userRole,array("page"=>"users-list"));
     ?>
     <script src="<?= _RESOURCES_PATH . 'js' . DIRECTORY_SEPARATOR . 'manage-articles-users.js' ?>"></script>
 

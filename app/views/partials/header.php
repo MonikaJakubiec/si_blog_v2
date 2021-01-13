@@ -1,6 +1,7 @@
 <?php
 function renderHtmlHeader($userRole, $pageInfo = array())
 {
+
 ?><header id="header">
         <?php renderLoggedInMenu($pageInfo, $userRole);
         ?>
