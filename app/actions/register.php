@@ -39,7 +39,12 @@ if (isset($_POST['username'])) {
             $errors['register-password'] = "Hasło powinno mieć od 4 do 20 znaków";
         }
 
+        
         if ($firstPassword != $_POST['first_password']) {
+            $errors['register-password'] = "Użyto niedozwolonych znaków w haśle";
+        }
+
+        if ($secondPassword != $_POST['second_password']) {
             $errors['register-password'] = "Użyto niedozwolonych znaków w haśle";
         }
 

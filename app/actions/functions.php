@@ -10,14 +10,6 @@ function getRandomString($length)
     return $randomString;
 }
 /**
- * Wyświetla slider polecanych artykułów
- *
- * @param integer $limit maksymalna liczba artykułów na sliderze
- * @param bool $random pobranie postow w losowej kolejnosci
- * @return array tablica [artykuly, sliderId]
- */
-
-/**
  * Zwraca tablicę z informacjami o slajderze
  *
  * @param integer $limit  liczba postow na slider
