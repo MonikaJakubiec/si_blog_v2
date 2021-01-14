@@ -82,4 +82,3 @@ require_once _REPOSITORIES_PATH . DIRECTORY_SEPARATOR . 'PhotoRepository.php';
         }
         return $returnId;
     }
-?>

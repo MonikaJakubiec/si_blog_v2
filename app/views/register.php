@@ -5,7 +5,7 @@ showHtmlHead("Rejestracja", null, null,true,false);
 ?>
 
 <body class="login">
-	<script src="<?= _RESOURCES_PATH . 'js' . DIRECTORY_SEPARATOR . 'manage-articles-users.js' ?>"></script>
+	
 
 	<?php
 	renderHtmlHeader($userRole,array("page" => "register"));

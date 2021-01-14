@@ -30,10 +30,10 @@ if (isset($_GET['sortBy'])) {
     $sortColumn = "id";
     $sortDirection = "DESC";
 }
-    $sortArray = array([$sortColumn, $sortDirection]);
+$sortArray = array([$sortColumn, $sortDirection]);
 
-if($userRole == 'administrator') {
-    $allArticles = $articleRepository->getArticles(false, false, null, 0,null,$sortArray);
+if ($userRole == 'administrator') {
+    $allArticles = $articleRepository->getArticles(false, false, null, 0, null, $sortArray);
 } else {
     $allArticles = $articleRepository->getArticlesCreatedByUser($_SESSION['login'], $sortArray);
 }

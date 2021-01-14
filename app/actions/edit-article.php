@@ -45,7 +45,7 @@ if (isset($_POST['title'])) {
     $content = secureInputText($_POST['content']);
     $featured = isset($_POST['featured']);
     $id = isset($articleToEdit) ? $articleToEdit->getId() : null;
-    
+
     $articleToView = new Article($id, $title, $content, null, null, $featured, null, $pictureId);
 
     $publishTime = time();
@@ -126,7 +126,7 @@ if (isset($_POST['title'])) {
         $saveButtonTextToDisplay = $updateButtonText;
 
         //przekieruj jesli user probuje edytowac nie swoj artykul
-        if($articleToEdit->getUserId() != $_SESSION['login']) {
+        if ($articleToEdit->getUserId() != $_SESSION['login']) {
             redirectIfNotAdmin($userRole);
         }
     } else {

@@ -9,8 +9,7 @@ showHtmlHead("Lista użytkowników", null, null,true, false);
     <?php
     renderHtmlHeader($userRole,array("page"=>"users-list"));
     ?>
-    <script src="<?= _RESOURCES_PATH . 'js' . DIRECTORY_SEPARATOR . 'manage-articles-users.js' ?>"></script>
-
+    
     <main id="content-box">
     <?php
                 if($allUsers != null && count($allUsers)>0){

@@ -3,7 +3,7 @@ RewriteEngine On
 #except indexphp
 RewriteCond %{REQUEST_URI} !=index.php
 #except images:
-RewriteCond %{REQUEST_URI} !\.(png|jpg|jpeg|webp|gif|)$
+RewriteCond %{REQUEST_URI} !\.(png|jpg|jpeg|webp|gif|ico)$
 #except js:
 RewriteCond %{REQUEST_URI} !\.(js)$
 #except css:

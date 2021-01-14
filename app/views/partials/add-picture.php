@@ -37,7 +37,6 @@ function showGalleryInput($articleToView, $allPhotos)
 
                 <?php
                 foreach ($allPhotos as $photo) {
-                    //todo: check file exist
                     if (file_exists($photo->getPath())) {
                 ?>
                         <div class="photo-selection-option">
