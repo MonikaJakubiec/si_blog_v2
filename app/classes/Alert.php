@@ -7,7 +7,7 @@ class Alert
     private $backtrace;
 
     /**
-     * Undocumented function
+     * Konstruktor
      *
      * @param string $wiadomosć wyświetlana
      * @param string $rodzaj wiadomości (info/warning/success/error)
