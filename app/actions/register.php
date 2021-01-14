@@ -9,12 +9,14 @@ $isEditForm = false;
 
 $username = null;
 $role = null;
+$id = null;
 
 if (isset($_POST['username'])) {
     if(isset($_POST['edit-user']) && $_POST['edit-user'] != '') {
         $user = (new UserRepository())->getUserById($_POST['edit-user']);
         $username = $user->getName();
         $role = $user->getRole();
+        $id = $user->getId();
         $isEditForm = true;
     }
 
@@ -78,6 +80,7 @@ if (isset($_POST['username'])) {
         $user = (new UserRepository())->getUserById($_GET['edit-user']);
         $username = $user->getName();
         $role = $user->getRole();
+        $id = $user->getId();
         $isEditForm = true;
     }
 }

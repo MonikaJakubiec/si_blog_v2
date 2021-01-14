@@ -2,20 +2,18 @@
 <html lang="pl">
 <?php require_once(_PRIVATE_PATH . DIRECTORY_SEPARATOR . 'keys.php'); ?>
 <?php
-// require_once(_VIEWS_PATH . 'partials' . DIRECTORY_SEPARATOR . 'admin-menu.php');
 require_once(_VIEWS_PATH . 'partials' . DIRECTORY_SEPARATOR . 'add-picture.php');
-showHtmlHead("Dodawanie artykułu", null, null, true);
+showHtmlHead("Dodawanie artykułu", null, null, true,false);
 ?>
 
 <body class="admin">
     <script src="<?= _RESOURCES_PATH . 'js' . DIRECTORY_SEPARATOR . 'manage-articles-users.js' ?>"></script>
 
-
     <?php
     if($articleToEdit)
-    renderHtmlHeader(array("page"=>"edit-article","articleId"=>$articleToEdit->getId()));
+    renderHtmlHeader($userRole,array("page"=>"edit-article","articleId"=>$articleToEdit->getId()));
     else
-    renderHtmlHeader(array());
+    renderHtmlHeader($userRole,array());
     ?>
     <main id="content-box">
         <!--changed from content- duplicated id-->
@@ -23,7 +21,7 @@ showHtmlHead("Dodawanie artykułu", null, null, true);
         <form class="edit-article no-bcg t-center" method="post" action="<?= _RHOME ?>edit-article/" enctype="multipart/form-data">
             <div>
                 <label for="title">Tytuł</label><br>
-                <input type="text" id="title" name="title" placeholder="Wpisz tytuł"  spellcheck="false "autofocus="true" value="<?= $articleToView->getTitle() ?>">
+                <input type="text" id="title" name="title" placeholder="Wpisz tytuł" spellcheck="false "autofocus="true" value="<?= $articleToView->getTitle() ?>"  minlength="1" maxlength="100" required>
             </div>
             <div class="error">
                 <?php
@@ -34,7 +32,7 @@ showHtmlHead("Dodawanie artykułu", null, null, true);
             </div>
 
             <label for="content">Treść</label><br>
-            <div class="wyswig-parent">
+            <div class="wyswig-parent loader-parent">
                 <div class="loader"></div>
                 <textarea id="content" class="wyswig" name="content" placeholder="Wpisz treść" rows=30><?= $articleToView->getContent() ?></textarea>
             </div>

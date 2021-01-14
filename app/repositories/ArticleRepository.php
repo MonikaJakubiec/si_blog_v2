@@ -58,26 +58,33 @@ final class ArticleRepository
 	 * @param boolean $onlyFeatured tylko polecane artykuły
 	 * @param null|integer $limit maksymalna liczba artykulow do zwrocenia
 	 * @param integer $offset ile pierwszych artykulow pominac
+	 * @param integer $userId id użytkownika, którego posty zwrócić
 	 * @param array $sortBy tablica tablic z kolejnoscia sortowania [kolumna, kierunek]. Dostępne kolumny: id, title, status, author, publishedTime, random, dostępne kierunki ASC, DESC
+	 * @param array $excludePost tablica id postów, która mają bbyć wykluczone ze zwróconej wartości
 	 * @return array tablica skladajaca się z Article, opcjonalnie Photo, User
 	 */
-	public function getArticles($onlyPublished = false, $onlyFeatured = false, $limit = null, $offset = 0, $sortBy=array(["id","DESC"]))
-	{		
+	public function getArticles($onlyPublished = false, $onlyFeatured = false, $limit = null, $offset = 0, $userId = null, $sortBy = array(["id", "DESC"]), $excludePost = null)
+	{
 		require _PDO_FILE;
 		$articlesWithPhotoAndUserInfo = [];
 		if ($onlyPublished)
 			$filterByStatus = 'Article.status = "published"';
 		else
 			$filterByStatus = 'Article.status != "archived"';
-		if ($onlyFeatured) 
+		if ($onlyFeatured)
 			$filterByFeatured = " AND is_featured = 1 ";
 		else
-			$filterByFeatured="";
+			$filterByFeatured = "";
 
 		//dodanie limitu
 		$limitQueryPart = '';
 		if ($limit > 0)
 			$limitQueryPart = "LIMIT :limit ";
+
+		//dodanie filtrowania artykulow wg uzytkownika
+		$filterByUserQueryPart = '';
+		if ($userId)
+			$filterByUserQueryPart = " AND User.id=:userId ";
 
 		//dodanie offsetu
 		$offsetQueryPart = '';
@@ -94,27 +101,39 @@ final class ArticleRepository
 		);
 		$OrderByQueryPart = '';
 		foreach ($sortBy as &$sortOption) {
-			if(array_key_exists($sortOption[0],$availableSortColumns))
-			{
-				$OrderByQueryPart.=$availableSortColumns[$sortOption[0]]." ";
-				if($sortOption[1]=="DESC")//zabezpieczenie na wypadek wpisania innej opcji
-					$OrderByQueryPart.="DESC,";
+			if (array_key_exists($sortOption[0], $availableSortColumns)) {
+				$OrderByQueryPart .= $availableSortColumns[$sortOption[0]] . " ";
+				if ($sortOption[1] == "DESC") //zabezpieczenie na wypadek wpisania innej opcji
+					$OrderByQueryPart .= "DESC,";
 				else
-					$OrderByQueryPart.="ASC,";
+					$OrderByQueryPart .= "ASC,";
 			}
 		}
 
-		$OrderByQueryPart=trim($OrderByQueryPart, ',');//usuniecie ewentualnego przecinka na kmońcu
-		if(strlen($OrderByQueryPart)>1)//jeżli zostałty dodane sortowania
-		$OrderByQueryPart="ORDER BY ".$OrderByQueryPart;
+		$OrderByQueryPart = trim($OrderByQueryPart, ','); //usuniecie ewentualnego przecinka na koncu
+		if (strlen($OrderByQueryPart) > 1) //jeżli zostały dodane sortowania
+			$OrderByQueryPart = "ORDER BY " . $OrderByQueryPart;
+		$OrderByQueryPart .= ' ';
 
-		$OrderByQueryPart.=' ';
-		$stmt = $db->prepare('SELECT Article.id as article_id, Article.user_id, Article.photo_id, Article.is_featured, Article.status, Article.title, Article.published_timestamp, Article.content, Photo.path as photo_path, Photo.alt as photo_alt, User.name as user_name, User.role as user_role FROM Article LEFT JOIN Photo ON Article.photo_id = Photo.id LEFT JOIN User ON Article.user_id = User.id WHERE ' . $filterByStatus . $filterByFeatured .$OrderByQueryPart. $limitQueryPart . $offsetQueryPart);
+		$filterByNotInPostIds = "";
+		if ($excludePost && count($excludePost) > 0) {
+			$filterByNotInPostIds = " AND Article.id NOT IN (";
+			foreach ($excludePost as &$exludePostId) {
+				$filterByNotInPostIds .= $exludePostId . ",";
+			}
+			$filterByNotInPostIds = trim($filterByNotInPostIds, ','); //usuniecie przecinka na koncu
+			$filterByNotInPostIds .= ") ";
+		}
+
+
+		$stmt = $db->prepare('SELECT Article.id as article_id, Article.user_id, Article.photo_id, Article.is_featured, Article.status, Article.title, Article.published_timestamp, Article.content, Photo.path as photo_path, Photo.alt as photo_alt, User.name as user_name, User.role as user_role FROM Article LEFT JOIN Photo ON Article.photo_id = Photo.id LEFT JOIN User ON Article.user_id = User.id WHERE ' . $filterByStatus . $filterByFeatured . $filterByUserQueryPart . $filterByNotInPostIds . $OrderByQueryPart . $limitQueryPart . $offsetQueryPart);
 
 		if ($limit > 0)
 			$stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
 		if ($offset > 0)
 			$stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+		if ($userId)
+			$stmt->bindValue(':userId', $userId, PDO::PARAM_INT);
 
 		$success = $stmt->execute();
 
@@ -149,71 +168,7 @@ final class ArticleRepository
 
 	public function getArticlesCreatedByUser($userId, $sortBy)
 	{
-		require _PDO_FILE;
-		$articlesWithPhotoAndUserInfo = [];
-
-		//start to discuss
-		//dodanie sortowania
-		$availableSortColumns = array(
-			"id" => "Article.id",
-			"title" => "Article.title",
-			"status" => "Article.status",
-			"author" => "User.name",
-			"publishedTime" => "Article.published_timestamp",
-			"random" => "RAND()"
-		);
-		$OrderByQueryPart = '';
-		foreach ($sortBy as &$sortOption) {
-			if(array_key_exists($sortOption[0],$availableSortColumns))
-			{
-				$OrderByQueryPart.=$availableSortColumns[$sortOption[0]]." ";
-				if($sortOption[1]=="DESC")//zabezpieczenie na wypadek wpisania innej opcji
-					$OrderByQueryPart.="DESC,";
-				else
-					$OrderByQueryPart.="ASC,";
-			}
-		}
-
-		$OrderByQueryPart=trim($OrderByQueryPart, ',');//usuniecie ewentualnego przecinka na kmońcu
-		if(strlen($OrderByQueryPart)>1)//jeżli zostałty dodane sortowania
-		$OrderByQueryPart="ORDER BY ".$OrderByQueryPart;
-
-		$OrderByQueryPart.=' ';
-		//end to discuss
-
-		$stmt = $db->prepare('SELECT Article.id as article_id, Article.user_id, Article.photo_id, Article.is_featured, Article.status, Article.title, Article.published_timestamp, Article.content, Photo.path as photo_path, Photo.alt as photo_alt, User.name as user_name, User.role as user_role FROM Article LEFT JOIN Photo ON Article.photo_id = Photo.id LEFT JOIN User ON Article.user_id = User.id WHERE Article.user_id = :userId AND Article.status != "archived"' . $OrderByQueryPart);
-
-		//to remove: ORDER BY published_timestamp DESC
-
-		$stmt->bindValue(':userId', $userId, PDO::PARAM_INT);
-		$success = $stmt->execute();
-		if (!$success) {
-			$stmt->closeCursor();
-			$db = null;
-			return null;
-		}
-		while ($articleInfo = $stmt->fetch()) {
-			$article = new Article($articleInfo['article_id'], $articleInfo['title'], $articleInfo['content'], $articleInfo['published_timestamp'], $articleInfo['status'], $articleInfo['is_featured'], $articleInfo['user_id'], $articleInfo['photo_id']);
-			$user = new User($articleInfo['user_id'], $articleInfo['user_name'], "", $articleInfo['user_role']);
-			if ($articleInfo['photo_id'] != NULL) {
-				$photo = new Photo($articleInfo['photo_id'], $articleInfo['photo_path'], $articleInfo['photo_alt']);
-				$articlePhotoUser = array(
-					"article" => $article,
-					"photo" => $photo,
-					"user" => $user,
-				);
-			} else {
-				$articlePhotoUser = array(
-					"article" => $article,
-					"user" => $user,
-				);
-			}
-			array_push($articlesWithPhotoAndUserInfo, $articlePhotoUser);
-		}
-		$stmt->closeCursor();
-		$db = null;
-
-		return $articlesWithPhotoAndUserInfo;
+		return $this->getArticles(false,false,null,0,$userId,$sortBy);
 	}
 
 	public function getArticlesCount($onlyPublished = false, $onlyFeatured = false)

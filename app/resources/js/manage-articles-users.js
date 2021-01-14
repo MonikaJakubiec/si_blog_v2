@@ -11,12 +11,18 @@ function showHideAddingPicture() {
 
     if (pictureFromFileChecked) {
         pInput.style.display = 'block';
+        document.getElementById('file').required = true;
+        document.getElementById('fileAlt').required=true;
     }
     else {
+        document.getElementById('file').required = false;
+        document.getElementById('fileAlt').required=false;
         pInput.style.display = 'none';
     }
 }
+
 window.formSubmitted = true;//global variable
+
 function preventExit() {
     window.formSubmitted = false;
 
@@ -29,6 +35,7 @@ function preventExit() {
     });
     
 }
+
 function formSubmit() {
     window.formSubmitted = true;
 }

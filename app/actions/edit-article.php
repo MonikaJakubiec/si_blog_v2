@@ -17,10 +17,10 @@ $saveButtonTextToDisplay = $saveButtonText;
 
 $isArticlePublished = false;
 $articleToView = $articleToEdit = null;
-$allPhotos;
 
-//artykul przeslany postem z formularza przy kliknieciu zaktualizuj lub publikuj
+//artykul przeslany postem z formularza przy kliknieciu zapisz/zaktualizuj lub publikuj/cofnij_publikacje
 if (isset($_POST['title'])) {
+    //przesylanie formularza przy edycji
     if (isset($_POST['edit-article']) && $_POST['edit-article'] != '') {
         $articleToEdit = (new ArticleRepository)->getArticleById($_POST['edit-article'])['article'];
         $isArticlePublished = $articleToEdit->getStatus() == 'published';
@@ -58,12 +58,16 @@ if (isset($_POST['title'])) {
         $status = $isArticlePublished ? 'draft' : 'published';
     }
 
+    if ($saveButtonClicked) {
+        $status = $isArticlePublished ? 'published' : 'draft';
+    }
+
     if ($saveButtonClicked || $isArticlePublished) {
         $publishTime = null;
     }
 
-    if (strlen($title) < 1 || strlen($title) > 50) {
-        $errors['title'] = "Tytuł nie może być pusty i nie może przekraczać 50 znaków";
+    if (strlen($title) < 1 || strlen($title) > 100) {
+        $errors['title'] = "Tytuł nie może być pusty i nie może przekraczać 100 znaków";
     }
 
     if (strlen($content) > 65530) {
@@ -76,6 +80,7 @@ if (isset($_POST['title'])) {
     }
 
     if (count($errors) == 0) {
+        //dodawanie nowego artykulu
         if ($articleToEdit == null) {
             if ($pictureId != null) {
                 $createArticleRequest = CreateArticleRequest::createWithPhoto($title, $content, $publishTime, $status, $featured, $userId, $pictureId);
@@ -85,7 +90,7 @@ if (isset($_POST['title'])) {
                 (new ArticleRepository)->saveArticleFromRequest($createArticleRequest);
             }
         } else {
-            echo
+            //aktualizacja artykulu
             $articleToEdit->setTitle($title);
             $articleToEdit->setContent($content);
             $articleToEdit->setFeatured($featured);
@@ -105,7 +110,6 @@ if (isset($_POST['title'])) {
                 addAlert("Artykuł został zapisany jako wersja robocza.", "success");
                 break;
             case 'published':
-                echo "addAlert";
                 addAlert('Artykuł został opublikowany na blogu.', "success");
                 break;
         }
@@ -113,7 +117,7 @@ if (isset($_POST['title'])) {
         exit();
     }
 } else {
-    //edycja artykulu
+    //edycja artykulu po kliknieciu w przycisk edytuj artyklul
     if (isset($_GET['edit-article'])) {
         $articleToEdit = (new ArticleRepository)->getArticleById($_GET['edit-article'])['article'];
         $articleToView = $articleToEdit;

@@ -9,81 +9,104 @@ $button-color: #fff;
 $max-width-default: 1200px;
 $article-listing-gap: 30px;
 $article-listing-cols: 3;
-$error-color:#fe121a;
-$success-color:#8bc34b;
-$info-color:#333;
-$warning-color:#ff9800;
-
-.error {
-  color:#fe121a;
-}
+$error-color: #fe121a;
+$success-color: #8bc34b;
+$info-color: #333;
+$warning-color: #ff9800;
+$articleGridColumnWidth: 380px;
+$articleGridColumnGap: 8px;
 // START default style sheet for HTML 4 from https://www.w3.org/TR/CSS2/sample.html
 h1 {
   font-size: 2em;
   margin: 0.67em 0;
 }
+
 h2 {
   font-size: 1.5em;
   margin: 0.75em 0;
 }
+
 h3 {
   font-size: 1.17em;
   margin: 0.83em 0;
 }
+
 h5 {
   font-size: 0.83em;
   margin: 1.5em 0;
 }
+
 h6 {
   font-size: 0.75em;
   margin: 1.67em 0;
 }
+
 strong {
   font-weight: bolder;
 }
+
 input,
 select {
   display: inline-block;
 }
+
 sub {
   vertical-align: sub;
 }
+
 sup {
   vertical-align: super;
 }
+
 hr {
   border: 1px inset;
 }
+
 center {
   text-align: center;
 }
 
 //END default style sheet for HTML 4
-table{
-display: table;
-border-collapse: separate;
-border-spacing: 0px;
-border-color: gray;
-th,td{
-  border:1px solid gray;
+table {
+  display: table;
+  border-collapse: separate;
+  border-spacing: 0px;
+  border-color: gray;
+  th,
+  td {
+    border: 1px solid gray;
+  }
 }
-}
+
 body {
   font: 100% $font-stack;
   background: $primary-color;
   color: #000;
   margin: 0px;
   word-break: break-word;
-  
-
   img {
     max-width: 100%;
+    height: auto;
+  }
+  //ustawienie stopki na dol
+  display: flex !important;
+  flex-direction: column;
+  min-height: 100vh;
+  & > * {
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+  }
+  footer {
+    margin-top: auto;
+    padding: 4px 0px;
   }
 }
 
 .m-auto {
   margin: 0 auto;
 }
+
 .t-center {
   text-align: center;
 }
@@ -94,53 +117,65 @@ main#content-box {
   margin-right: auto;
 }
 
+.boxed {
+  max-width: $max-width-default;
+  margin: auto;
+}
+
 header {
   margin-left: auto;
   margin-right: auto;
   padding: 0px;
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
   background: $primary-color;
   z-index: 5;
-  .boxed
-  {
-    max-width: $max-width-default;
-    margin:auto;
-  }
   h1 {
-    padding:0px 8px;
-    margin:0px auto;
+    padding: 0px 8px;
+    margin: 0px auto;
     font-size: 40px;
     color: $font-primary-color;
     line-height: 1.6;
+    transition: all 0.4s ease;
   }
   a {
     text-decoration: none;
     color: unset;
   }
+  top: 0px;
+  transition: 0.4s ease;
+  &.scroll {
+    transition: 0.4s ease;
+    h1 {
+      font-size: 20px;
+      padding: 0px 4px;
+      transition: 0.4s ease;
+    }
+  }
 }
+
 footer {
   display: block;
   margin: 10px 0px 0px 0px;
-  padding: 4px;
   background-color: #000;
   color: #ccc;
   text-align: center;
-
   p {
     font-size: 14px;
     margin: 0px;
   }
 }
+
 .no-bcg {
   color: $font-primary-color;
-
-  a{
+  a {
     color: #00e2ff;
   }
 }
 
 /*START BUTTONS*/
+
 .button,
 a.button,
 input.button {
@@ -160,13 +195,11 @@ input.button {
   border: 1px solid #444;
   cursor: pointer;
   word-break: break-word;
-
   &:hover {
     background: $green-dark;
     transition-duration: 0.4s;
     box-shadow: inset 1px 1px 4px 0px #000;
   }
-
   &:active {
     background: $primary-color;
     transition-duration: 0s;
@@ -178,8 +211,15 @@ input.button {
     background-color: gray;
   }
 }
+
 /*END BUTTONS*/
+
+.error {
+  color: #fe121a;
+}
+
 /*LISTING START*/
+
 .article-listing {
   max-width: $max-width-default;
   margin-left: auto;
@@ -188,16 +228,17 @@ input.button {
   display: grid;
   $article-listing-element-width: ($max-width-default / $article-listing-cols) -
     (($article-listing-cols - 1) * $article-listing-gap) / $article-listing-cols;
-  grid-template-columns: repeat(auto-fill, minmax($article-listing-element-width, 1fr));
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax($article-listing-element-width, 1fr)
+  );
   grid-gap: $article-listing-gap;
-
   @media only screen and (max-width: $article-listing-element-width+2*$article-listing-gap) {
     & {
       grid-template-columns: none;
       padding: 0px $article-listing-gap/2;
     }
   }
-
   article {
     display: flex;
     flex-direction: column;
@@ -206,7 +247,6 @@ input.button {
     padding: 0px;
     flex: 10 2 30%;
     box-shadow: 4px 4px 0px $green-dark;
-
     //except image
     & > h2,
     & > p,
@@ -214,13 +254,12 @@ input.button {
       padding-left: 4px;
       padding-right: 4px;
     }
-
     img.featured {
       width: 100%;
       height: 214px;
+      -o-object-fit: cover;
       object-fit: cover;
     }
-
     a.read-more {
       margin: 4px;
       display: block;
@@ -229,19 +268,26 @@ input.button {
     }
   }
 }
+
 /*END LISTING*/
 
 /*START ARTICLE PAGE*/
+
 #main-article {
   display: grid;
   //grid-template-columns: repeat(3, 1fr);
-  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-  column-gap: 8px;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax($articleGridColumnWidth, 1fr)
+  );
+  -moz-column-gap: 8px;
+  column-gap: $articleGridColumnGap;
   row-gap: 8px;
-
-  @media only screen and (max-width: 380px) {
-    grid-template-columns: 1;
+  @media only screen and (max-width: $articleGridColumnWidth*3+$articleGridColumnGap*2) {
+    grid-template-columns: 1fr; //jedna kolumna na całą szerokość
+    -moz-column-gap: 0px;
     column-gap: 0px;
+    margin: auto 8px;
   }
 
   div,
@@ -255,10 +301,18 @@ input.button {
   }
   aside {
     padding: 0px;
+    .newest {
+      margin-bottom: 30px;
+      a {
+        text-decoration: none;
+      }
+    }
   }
   aside > .sticky {
+    position: -webkit-sticky;
     position: sticky;
     top: 0;
+    padding-bottom: 16px;
     & > *:not(#featured-slider) {
       margin: 4px;
     }
@@ -266,7 +320,6 @@ input.button {
       margin-top: 0px;
     }
   }
-
   .main-article-info {
     grid-column: 1 / -1;
     text-align: center;
@@ -277,11 +330,9 @@ input.button {
     p.author {
       margin: 4px auto;
     }
-
     time {
       display: block;
     }
-
     img.featured {
       max-width: 100%;
       vertical-align: middle;
@@ -291,16 +342,23 @@ input.button {
     }
   }
   .main-article-content {
+    padding-bottom: 12px;
     grid-column: 1 / 3;
   }
 }
+
 /*END ARTICLE PAGE*/
+
+iframe {
+  max-width: 100%;
+}
 
 .list-header {
   font-weight: bold;
 }
 
 /*START LOGIN PAGE*/
+
 body.login {
   header {
     text-align: center;
@@ -313,9 +371,17 @@ body.login {
     margin: auto;
     text-align: center;
     padding: 16px 32px;
+    width: -webkit-max-content;
+    width: -moz-max-content;
     width: max-content;
     font-size: 18px;
-
+    max-width: 100%;
+    margin:4px auto;
+    @media only screen and (max-width: 768px) {
+      & {
+        padding: 4px 4px;
+      }
+    }
     .button.login,
     input {
       width: 100%;
@@ -323,7 +389,6 @@ body.login {
       text-align: center;
       font-size: 24px;
     }
-
     .login-part {
       margin: 20px 8px;
     }
@@ -334,88 +399,100 @@ body.login {
     text-decoration: none;
     margin: auto;
     text-align: center;
+    margin-top:4px;
   }
 }
+
 /*END LOGIN PAGE*/
 
 /*START PAGINATION*/
+
 .pagination {
   display: block;
   margin: 24px auto;
   text-align: center;
-
   a.button {
     padding: 4px 16px;
     border: 2px solid #fff;
   }
 }
+
 /*END PAGINATION*/
 
 /*START ALERTS*/
-.alert  {
+
+.alert {
   display: block;
   margin: 8px auto;
   max-width: $max-width-default;
   text-align: center;
-  color:#fff;
+  color: #fff;
   background-color: #000;
-  border:1px solid #000;
+  border: 1px solid #000;
   position: relative;
-  min-height: 16px;//close ma padding 8 i position absolute
-
-  &.closed
-  {
-    display:none;
-    opacity : 0;
+  min-height: 16px; //close ma padding 8 i position absolute
+  &.closed {
+    display: none;
+    opacity: 0;
     visibility: hidden;
   }
-
-  &.info
-  {
-    background-color:$info-color;
+  &.info {
+    background-color: $info-color;
   }
-  &.warning
-  {
-    background-color:$warning-color;
+  &.warning {
+    background-color: $warning-color;
   }
-  &.success
-  {
-    background-color:$success-color;
+  &.success {
+    background-color: $success-color;
   }
-  &.error
-  {
-    background-color:$error-color;
+  &.error {
+    background-color: $error-color;
   }
-
   span.close {
     cursor: pointer;
     position: absolute;
     top: 0px;
     right: 0px;
     padding: 8px;
-    &:hover{
+    &:hover {
       background-color: black;
     }
+  }
 }
-}
+
 /*END ALERTS*/
 
-/*inspiorowane https://www.w3schools.com/howto/howto_css_loader.asp */
-.loader {
-  border: 16px solid #dfdfdf; /* Light grey */
-  border-top: 16px solid $primary-color; /* Blue */
-  border-radius: 50%;
-  animation: spin 1s cubic-bezier(0.65, 0.05, 0.36, 1) infinite;
-  width: 100px;
-  height: 100px;
-  position: absolute;
-  margin: auto;
-  margin: auto;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
+.loader-parent {
+  position: relative;
+  /*animacja ładowania inspirowana https://www.w3schools.com/howto/howto_css_loader.asp */
+  .loader {
+    border: 16px solid #dfdfdf;
+    /* Light grey */
+    border-top: 16px solid $primary-color;
+    /* Blue */
+    border-radius: 50%;
+    -webkit-animation: spin 1s cubic-bezier(0.65, 0.05, 0.36, 1) infinite;
+    animation: spin 1s cubic-bezier(0.65, 0.05, 0.36, 1) infinite;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    margin: auto;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    bottom: 50%;
+    right: 0;
+  }
+}
+
+@-webkit-keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes spin {
@@ -429,6 +506,12 @@ body.login {
 
 //slider
 //zostanie nadpisane
+@-webkit-keyframes transition-slider {
+  0% {
+    left: 0%;
+  }
+}
+
 @keyframes transition-slider {
   0% {
     left: 0%;
@@ -441,21 +524,20 @@ body.login {
   max-height: 100%;
   margin: 12px 0px;
   word-break: break-word;
-
   * {
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
   }
-
   .slider {
     position: relative;
     width: 100%; //zostanie nadpisane
+    -webkit-animation: 5s transition-slider infinite;
     animation: 5s transition-slider infinite;
     height: 50vh;
     font-size: 0; //usuniecie odstepu miedy elementami
-
     &:hover {
+      -webkit-animation-play-state: paused;
       animation-play-state: paused; //wylaczenie animacji po najechaniu/ zostanie nadpisane po id
     }
     .slide {
@@ -465,15 +547,14 @@ body.login {
       position: inherit;
       background-color: #000;
       position: relative;
-
       img {
         position: absolute;
         width: 100%;
         height: 100%;
+        -o-object-fit: cover;
         object-fit: cover;
         z-index: 0;
       }
-
       .title {
         position: absolute;
         bottom: 0;
@@ -491,11 +572,16 @@ body.login {
         overflow: hidden;
         text-align: center;
         &:hover {
-          transition-duration: .4s;
-           background-color: #ffffff33;
+          transition-duration: 0.4s;
+          background-color: #ffffff33;
         }
         .text {
-          background: linear-gradient(#00000000, #00000088, #00000088, #00000000);
+          background: linear-gradient(
+            #00000000,
+            #00000088,
+            #00000088,
+            #00000000
+          );
           text-decoration: none;
           padding: 16px 8px;
           max-height: 100%;
@@ -506,4 +592,9 @@ body.login {
       }
     }
   }
+}
+
+//todo: delete
+pre {
+  background-color: #fff;
 }

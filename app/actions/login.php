@@ -15,13 +15,7 @@ if(isset($_POST['username'])) {
     if($user != null && password_verify($password, $user->getPassword())) {
       $_SESSION['login'] = $user->getId();
       
-      $headerSite = 'articles-list/';
-
-      if($user->getRole() == 'administrator') {
-        $headerSite = 'admin-panel/';
-      }
-
-      header('Location: ' . _RHOME . $headerSite);
+      header('Location: ' . _RHOME . 'admin-panel/');
       exit();
 
     }

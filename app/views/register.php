@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="pl">
 <?php
-showHtmlHead("Rejestracja", null, null, true);
+showHtmlHead("Rejestracja", null, null,true,false);
 ?>
 
 <body class="login">
 	<script src="<?= _RESOURCES_PATH . 'js' . DIRECTORY_SEPARATOR . 'manage-articles-users.js' ?>"></script>
 
 	<?php
-	renderHtmlHeader(array("page" => "register"));
+	renderHtmlHeader($userRole,array("page" => "register"));
 	?>
 	<div id="login-box">
 		<h2><?= $isEditForm ? 'Edycja' : 'Rejestracja' ?> użytkownika</h2>
@@ -16,21 +16,22 @@ showHtmlHead("Rejestracja", null, null, true);
 			<!-- Okno z możliwością wpisania nazwy użytkownika -->
 			<div class="login-part">
 				<label for="username">Nazwa użytkownika</label>
-				<input type="text" name="username" id="username" value="<?= $username ?>" />
+				<input type="text" name="username" id="username" value="<?= $username ?>" required />
 			</div>
+			<!-- Wypisanie błędów z talbicy errors -->
 			<?php if (array_key_exists('register-username', $errors)) : ?>
 				<div class="error"><?= $errors['register-username'] ?></div><?php endif; ?>
 
 			<!-- Okno z możliwością wpisania hasła użytkownika -->
 			<div class="login-part">
 				<label for="first_password">Hasło</label>
-				<input type="password" name="first_password" id="first_password" autocomplete="new-password" value="" placeholder="<?= $isEditForm ? 'Wypełnij, jeśli chcesz zmienić' : '' ?>"/>
+				<input type="password" name="first_password" id="first_password" <?= $isEditForm ? '' : 'required' ?> autocomplete="new-password" value="" placeholder="<?= $isEditForm ? 'Wypełnij, jeśli chcesz zmienić' : '' ?>"/>
 			</div>
 
 			<!-- Okno z możliwością wpisania hasła użytkownika -->
 			<div class="login-part">
 				<label for="second_password">Powtórz hasło</label>
-				<input type="password" name="second_password" id="second_password" autocomplete="new-password" value="" placeholder="<?= $isEditForm ? 'Wypełnij, jeśli chcesz zmienić' : '' ?>"/>
+				<input type="password" name="second_password" id="second_password" <?= $isEditForm ? '' : 'required' ?> autocomplete="new-password" value="" placeholder="<?= $isEditForm ? 'Wypełnij, jeśli chcesz zmienić' : '' ?>"/>
 			</div>
 
 			<!-- Wypisanie błędów z talbicy errors -->
@@ -43,11 +44,11 @@ showHtmlHead("Rejestracja", null, null, true);
 				<input type="radio" name="role" id="administrator" value="administrator" <?php if($role == 'administrator') echo 'checked'; ?>>
 				<label for="administrator">Administrator</label>
 			</div>
+			<!-- Wypisanie błędów z talbicy errors -->
 			<?php if (array_key_exists('register-role', $errors)) : ?>
 				<div class="error"><?= $errors['register-role'] ?></div><?php endif; ?>
 
-			<input type="hidden" name="edit-user" value="<?= isset($_GET['edit-user']) ? $_GET['edit-user'] : '' ?>">
-			<!-- Przycisk potwierdzający wysłanie danych -->
+			<input type="hidden" name="edit-user" value="<?= $id ?>">
 			<div class="login-part">
 			<!-- TODO -->
 				<input class="button" style="width: 0%; font-size: 14px;" type="submit" value="<?= $isEditForm ? 'Zaktualizuj' : 'Zarejestruj' ?>" onclick="formSubmit()"/>
@@ -59,7 +60,9 @@ showHtmlHead("Rejestracja", null, null, true);
 		</form>
 	</div>
 
-	<script>preventExit();</script>
+	<script>
+		preventExit();
+	</script>
 </body>
 
 </html>
