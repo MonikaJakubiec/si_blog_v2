@@ -28,7 +28,7 @@ function prepareFeaturedForSLider($limit = 3, $random = false, $timePerOneSlide 
     if ($random)
         $featuredArticles = $articleRepository->getArticles(true, true, $limit, 0, null, array(["random", "asc"]),);
     else
-        $featuredArticles = $articleRepository->getArticles(true, true, $limit, 0, null);
+        $featuredArticles = $articleRepository->getArticles(true, true, $limit, 0, null,array(['publishedTime','DESC']));
 
 
     $numOfSlides = count($featuredArticles);
@@ -140,9 +140,7 @@ function showNotFoundPage($userRole = null)
  */
 function secureInputText($data)
 {
-    $data = stripslashes($data); //zabezpieczenia cudzysłowów
-    $data = htmlspecialchars($data); //konwersja znaków specjalnych HTML do encji HTML
-    return $data;
+    return htmlentities($data);
 }
 
 /**
@@ -151,7 +149,5 @@ function secureInputText($data)
 function secureInputTextWithTrimSpaces($data)
 {
     $data = trim($data);
-    $data = stripslashes($data); //zabezpieczenia cudzysłowów
-    $data = htmlspecialchars($data); //konwersja znaków specjalnych HTML do encji HTML
-    return $data;
+    return htmlentities($data);
 }

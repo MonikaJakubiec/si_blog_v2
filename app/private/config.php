@@ -1,4 +1,3 @@
 <?php define("_SITE_NAME", "Techblog");
-$postPerPage=5;
+$postPerPage=12;
 $debugMode=false;
-?>

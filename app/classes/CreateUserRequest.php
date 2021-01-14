@@ -30,4 +30,3 @@ final class CreateUserRequest {
 		return $this->role;
 	}
 }
-?>

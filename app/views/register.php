@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="pl">
 <?php
-showHtmlHead("Rejestracja", null, null,true,false);
+showHtmlHead("Rejestracja", null, null, true, false);
 ?>
 
 <body class="login">
-	
+
 
 	<?php
-	renderHtmlHeader($userRole,array("page" => "register"));
+	renderHtmlHeader($userRole, array("page" => "register"));
 	?>
 	<div id="login-box">
 		<h2><?= $isEditForm ? 'Edycja' : 'Rejestracja' ?> użytkownika</h2>
@@ -25,23 +25,23 @@ showHtmlHead("Rejestracja", null, null,true,false);
 			<!-- Okno z możliwością wpisania hasła użytkownika -->
 			<div class="login-part">
 				<label for="first_password">Hasło</label>
-				<input type="password" name="first_password" id="first_password" <?= $isEditForm ? '' : 'required' ?> autocomplete="new-password" value="" placeholder="<?= $isEditForm ? 'Wypełnij, jeśli chcesz zmienić' : '' ?>"/>
+				<input type="password" name="first_password" id="first_password" <?= $isEditForm ? '' : 'required' ?> autocomplete="new-password" value="" placeholder="<?= $isEditForm ? 'Wypełnij, jeśli chcesz zmienić' : '' ?>" />
 			</div>
 
 			<!-- Okno z możliwością wpisania hasła użytkownika -->
 			<div class="login-part">
 				<label for="second_password">Powtórz hasło</label>
-				<input type="password" name="second_password" id="second_password" <?= $isEditForm ? '' : 'required' ?> autocomplete="new-password" value="" placeholder="<?= $isEditForm ? 'Wypełnij, jeśli chcesz zmienić' : '' ?>"/>
+				<input type="password" name="second_password" id="second_password" <?= $isEditForm ? '' : 'required' ?> autocomplete="new-password" value="" placeholder="<?= $isEditForm ? 'Wypełnij, jeśli chcesz zmienić' : '' ?>" />
 			</div>
 
 			<!-- Wypisanie błędów z talbicy errors -->
 			<?php if (array_key_exists('register-password', $errors)) : ?>
-				<div class="error"><?= $errors['register-password'] ?></div><?php endif;?>
+				<div class="error"><?= $errors['register-password'] ?></div><?php endif; ?>
 
 			<div class="login-part">
-				<input type="radio" name="role" id="user" value="user" <?php if(!isset($role) || $role == 'user') echo 'checked'; ?>>
+				<input type="radio" name="role" id="user" value="user" <?php if (!isset($role) || $role == 'user') echo 'checked'; ?>>
 				<label for="user">Redaktor</label>
-				<input type="radio" name="role" id="administrator" value="administrator" <?php if($role == 'administrator') echo 'checked'; ?>>
+				<input type="radio" name="role" id="administrator" value="administrator" <?php if ($role == 'administrator') echo 'checked'; ?>>
 				<label for="administrator">Administrator</label>
 			</div>
 			<!-- Wypisanie błędów z talbicy errors -->
@@ -50,10 +50,8 @@ showHtmlHead("Rejestracja", null, null,true,false);
 
 			<input type="hidden" name="edit-user" value="<?= $id ?>">
 			<div class="login-part">
-			<!-- TODO -->
-				<input class="button" type="submit" value="<?= $isEditForm ? 'Zaktualizuj' : 'Zarejestruj' ?>" onclick="formSubmit()"/>
+				<input class="button" type="submit" value="<?= $isEditForm ? 'Zaktualizuj' : 'Zarejestruj' ?>" onclick="formSubmit()" />
 			</div>
-
 			<div class="login-part">
 				<a class="button button-red" href="<?= _RHOME ?>users-list/">Anuluj</a>
 			</div>

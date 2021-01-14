@@ -281,11 +281,12 @@ input.button {
   -moz-column-gap: 8px;
   column-gap: $articleGridColumnGap;
   row-gap: 8px;
-  @media only screen and (max-width: $articleGridColumnWidth*3+$articleGridColumnGap*2) {
+  @media only screen and (max-width: ($articleGridColumnWidth*3)+($articleGridColumnGap*4)) {
     grid-template-columns: 1fr; //jedna kolumna na całą szerokość
     -moz-column-gap: 0px;
     column-gap: 0px;
     margin: auto 8px;
+
   }
 
   div,

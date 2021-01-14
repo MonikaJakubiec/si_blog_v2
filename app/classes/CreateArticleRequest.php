@@ -18,7 +18,7 @@ final class CreateArticleRequest {
 		$this->userId = $userId;
 		$this->photoId = $photoId;   
 	}
-
+	
 	public static function createWithPhoto($title, $content, $publishedTimestamp, $status, $featured, $userId, $photoId) {
 		return new CreateArticleRequest($title, $content, $publishedTimestamp, $status, $featured, $userId, $photoId);
 	}
@@ -83,4 +83,3 @@ final class CreateArticleRequest {
 		$this->photoId = $photoId;
 	}
 }
-?>

@@ -40,6 +40,7 @@ if (isset($_POST['title'])) {
             $pictureId = $_POST['picture-id'];
             break;
     }
+    
 
     $title = secureInputText($_POST['title']);
     $content = secureInputText($_POST['content']);
@@ -134,3 +135,5 @@ if (isset($_POST['title'])) {
         $articleToView = new Article(null, null, null, null, null, null, null, null);
     }
 }
+$photoRepo = new PhotoRepository();
+$allPhotos = $photoRepo->getAllPhotos(); //pobranie zdjec z bazy danych do wyświetlenia pod artykułem

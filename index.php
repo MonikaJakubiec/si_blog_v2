@@ -1,41 +1,40 @@
 <?php
 session_start();
 
-setlocale(LC_ALL, 'pl_pl.UTF8','pol.UTF-8','plk.UTF-8');//ustawienie dla formatowania dat
+setlocale(LC_ALL, 'pl_pl.UTF8', 'pol.UTF-8', 'plk.UTF-8'); //ustawienie dla formatowania dat
 
 /** katalog w ktorym znajduje się aplikajca */
 $routingCurrDir = str_replace("index.php", "", $_SERVER['SCRIPT_NAME']);
-$opisStrony=('Najciekawsze artykuły o technologii');//tytuł strony (wyświetlany w title strony głównej)
+$opisStrony = ('Najciekawsze artykuły o technologii'); //tytuł strony (wyświetlany w title strony głównej)
 
 /** katalog w ktorym znajduje się aplikajca */
 define('_RHOME', $routingCurrDir);
 
-require_once('app' . DIRECTORY_SEPARATOR . 'private' . DIRECTORY_SEPARATOR . 'config.php');
-
 /** katalog z widokami */
-define('_VIEWS_PATH',  'app' . DIRECTORY_SEPARATOR . 'views'.DIRECTORY_SEPARATOR);
+define('_VIEWS_PATH',  'app' . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR);
 
 /** katalog z kontrolerami */
-define('_ACTIONS_PATH',  'app' . DIRECTORY_SEPARATOR . 'actions'.DIRECTORY_SEPARATOR);
+define('_ACTIONS_PATH',  'app' . DIRECTORY_SEPARATOR . 'actions' . DIRECTORY_SEPARATOR);
 
 /** katalog z klasami */
-define('_CLASSES_PATH', 'app' . DIRECTORY_SEPARATOR . 'classes'.DIRECTORY_SEPARATOR);
+define('_CLASSES_PATH', 'app' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR);
 
 /** katalog z danymi prywatnymi */
-define('_PRIVATE_PATH', 'app' . DIRECTORY_SEPARATOR . 'private'.DIRECTORY_SEPARATOR);
+define('_PRIVATE_PATH', 'app' . DIRECTORY_SEPARATOR . 'private' . DIRECTORY_SEPARATOR);
 
 /** katalog z repozytoriami */
-define('_REPOSITORIES_PATH', 'app' . DIRECTORY_SEPARATOR . 'repositories'.DIRECTORY_SEPARATOR);
+define('_REPOSITORIES_PATH', 'app' . DIRECTORY_SEPARATOR . 'repositories' . DIRECTORY_SEPARATOR);
 
 /** plik z polaczeniem z baza danych */
-define('_PDO_FILE', 'app' . DIRECTORY_SEPARATOR . 'pdo'.DIRECTORY_SEPARATOR.'pdo.php');
+define('_PDO_FILE', 'app' . DIRECTORY_SEPARATOR . 'pdo' . DIRECTORY_SEPARATOR . 'pdo.php');
 
 /** katalog z zasobami css/js/images */
-define('_RESOURCES_PATH', _RHOME . 'app' . DIRECTORY_SEPARATOR . 'resources'.DIRECTORY_SEPARATOR);//TODO:   
+define('_RESOURCES_PATH', _RHOME . 'app' . DIRECTORY_SEPARATOR . 'resources' . DIRECTORY_SEPARATOR);
 
 /** katalog z wgranymi plikami */
 define('_UPLOADS_PATH', 'uploads');
 
+require_once('app' . DIRECTORY_SEPARATOR . 'private' . DIRECTORY_SEPARATOR . 'config.php');
 require_once(_VIEWS_PATH  . 'partials' . DIRECTORY_SEPARATOR . 'head.php');
 require_once(_VIEWS_PATH  . 'partials' . DIRECTORY_SEPARATOR . 'header.php');
 require_once(_VIEWS_PATH  . 'partials' . DIRECTORY_SEPARATOR . 'footer.php');
@@ -48,8 +47,6 @@ require_once(_ACTIONS_PATH . 'redirects.php');
  * @var string
  */
 $routingRequest = str_replace(_RHOME, "", $_SERVER['REQUEST_URI']);
-/** Adres zasobu żądanego przez użytkownika */
-
 
 /**
  * Żądana strona (bez parametrów) z danymi po slashu
@@ -65,13 +62,13 @@ $routingRequestPage = trim($routingRequestPage, "/");
  * Tablica żądanych danych (dane w url rozdzielone slashami)
  * @var string
  */
-$routingRequestPageWithData=explode("/",$routingRequestPage);
-$routingRequestPageWithDataForArticle=explode("/",str_replace(",","/",$routingRequestPage));
+$routingRequestPageWithData = explode("/", $routingRequestPage);
+$routingRequestPageWithDataForArticle = explode("/", str_replace(",", "/", $routingRequestPage));
 /**
  * Żądana strona (bez parametrów) bez danych po slashu
  * @var string
  */
-$routingRequestPageWithoutData=$routingRequestPageWithData[0];
+$routingRequestPageWithoutData = $routingRequestPageWithData[0];
 
 /**
  * Dostępne strony
@@ -92,8 +89,8 @@ if (in_array($routingRequestPageWithoutData, $pages)) {
         $page = 'page-not-found';
     }
 }
-if($page=="add-article"){
-    $page="edit-article";
+if ($page == "add-article") {
+    $page = "edit-article";
 }
 $action = _ACTIONS_PATH . $page . '.php';
 $view = _VIEWS_PATH . $page . '.php';
@@ -105,4 +102,3 @@ if (file_exists($action)) {
 if (file_exists($view)) {
     include($view);
 }
-?>

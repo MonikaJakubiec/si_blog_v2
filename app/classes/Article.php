@@ -106,4 +106,3 @@ class Article {
 function getEditUrlById($id){
 	return _RHOME .'edit-article/?edit-article='.$id;
 }
-?>

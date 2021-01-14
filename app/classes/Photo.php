@@ -33,4 +33,3 @@ class Photo {
 		$this->alt = $newAlt;
 	}
 }
-?>

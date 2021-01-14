@@ -5,7 +5,7 @@ require_once(_ACTIONS_PATH  . 'functions.php');
 ?>
 <!DOCTYPE html>
 <html lang="pl">
-<?php showHtmlHead($htmlTitle, "Zobacz najnowsze artykuły",null,false); ?>
+<?php showHtmlHead($htmlTitle, "Zobacz najnowsze artykuły", null, false); ?>
 
 <body>
     <?php renderHtmlHeader($userRole, array("page" => "listing")); ?>

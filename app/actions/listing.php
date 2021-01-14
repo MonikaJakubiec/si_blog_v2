@@ -29,4 +29,4 @@ if ($page > 1) {
 } else {
     $htmlTitle .= ' - ' . $opisStrony;
 }
-$newestArticles = $articleRepository->getArticles(true, false, $postPerPage, $offset);
+$newestArticles = $articleRepository->getArticles(true, false, $postPerPage, $offset,null,array(['publishedTime','DESC']));

@@ -11,7 +11,7 @@ function showFileInput($errors)
 
     <div><label for="file">Plik</label></div>
     <div><input type="file" name="file" id="file" accept="image/jpeg, image/png" /></div>
-    
+
     <!-- Wypisanie błędów z talbicy errors -->
     <?php if (array_key_exists('file', $errors)) : ?>
         <div class="error"><?php echo $errors['file'] ?></div><?php endif; ?>

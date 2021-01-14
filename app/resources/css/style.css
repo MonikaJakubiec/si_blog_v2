@@ -303,7 +303,7 @@ input.button.button-gray {
   row-gap: 8px;
 }
 
-@media only screen and (max-width: 1156px) {
+@media only screen and (max-width: 1172px) {
   #main-article {
     -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
