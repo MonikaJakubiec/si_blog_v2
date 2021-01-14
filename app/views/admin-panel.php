@@ -8,7 +8,6 @@ showHtmlHead("Panel administracyjny",null,null,true,false);
     <?php
     renderHtmlHeader($userRole,array("page" => "admin-panel"));
     ?>
-    <!-- TODO -->
     <div class="tiles boxed">
         <div class="tile">
             <a href="<?= _RHOME ?>articles-list/">Lista artykułów</a>

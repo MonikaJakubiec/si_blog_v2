@@ -13,11 +13,7 @@
                 <time datetime="<?= strftime("%F", $articleData["article"]->getPublishedTimestamp()) ?>"><?= strftime("%A, %e %B %Y %H:%M", $articleData["article"]->getPublishedTimestamp()) ?></time>
                 <?php if ($articleData['article']->getPhotoId() != NULL && $articleData['photo']->getPath()) : ?>
                     <img src="<?php echo $articleData['photo']->getFrontendPath(); ?>" class="featured" alt="<?php echo $articleData['photo']->getAlt(); ?>"><?php endif; 
-                ?><!--todo: delete--><?php $randomWidth = rand(100, 2000);
-                                    $randomHeight = rand(100, 800);
-                                    $seed = $articleData['article']->getId(); ?>
-                <!-- <img class="featured" src="https://picsum.photos/seed/<?= $seed ?>/<?= $randomWidth ?>/<?= $randomHeight ?>.webp?" alt="placeholder" title="random image"> -->
-                 <!--end todo: delete--></div>
+                ?></div>
             <article class="main-article-content"><?= html_entity_decode($articleData['article']->getContent()); ?></article>
             <aside class="see-also">
                 <div class="sticky">
