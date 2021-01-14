@@ -3,26 +3,23 @@
 /**
  * Wyświetla slider polecanych artykułów
  *
- * @param array $featuredArticles artykuly do wyswietlenia
- * @param integer $timePerOneSlide czas w sekundach na 1 slajd
- * @param string html do wyświetlenia nad slajderem
- * @param integer $numOfCurrentSlides liczba jednoczesnie wyswietlanych slajdow
+ * @param array $featuredArticlesData informacje o slajderze (zwracane z funkcji prepareFeaturedForSLider)
+ * @param string $heading nagównek nad slajderem
  * @return void
  */
 function renderFeaturedSlider($featuredArticlesData, $heading = "")
 {
+
     $featuredArticles = $featuredArticlesData[0];
-    if($featuredArticles==null)
-    return false;
+    if ($featuredArticles == null)
+        return false;
     $numOfSlides = count($featuredArticles);
     $sliderRandomId = $featuredArticlesData[1];
-    $numOfSimultaneousSlides=$featuredArticlesData[2];
+    $numOfSimultaneousSlides = $featuredArticlesData[2];
     if (count($featuredArticles) > 0) {
         $numOfSimultaneousSlides = min($numOfSimultaneousSlides, count($featuredArticles));
     }
 ?>
-
-
     <div id="featured-slider">
         <?php echo $heading; ?>
         <div class="slider" id="<?php echo $sliderRandomId; ?>" style="width:<?php echo number_format($numOfSlides * 100 / $numOfSimultaneousSlides, 2, '.', ''); ?>%">

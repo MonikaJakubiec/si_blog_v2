@@ -5,7 +5,7 @@ setlocale(LC_ALL, 'pl_pl.UTF8','pol.UTF-8','plk.UTF-8');//ustawienie dla formato
 
 /** katalog w ktorym znajduje się aplikajca */
 $routingCurrDir = str_replace("index.php", "", $_SERVER['SCRIPT_NAME']);
-
+$opisStrony=('Najciekawsze artykuły o technologii');//tytuł strony (wyświetlany w title strony głównej)
 
 /** katalog w ktorym znajduje się aplikajca */
 define('_RHOME', $routingCurrDir);
@@ -76,7 +76,7 @@ $routingRequestPageWithoutData=$routingRequestPageWithData[0];
  * Dostępne strony
  * @var array
  */
-$pages = array('edit-article', 'login', 'logout', 'admin-panel', 'articles-list', 'listing', 'article', 'register', 'users-list');
+$pages = array('edit-article', 'add-article', 'login', 'logout', 'admin-panel', 'articles-list', 'listing', 'article', 'register', 'users-list');
 
 if (in_array($routingRequestPageWithoutData, $pages)) {
     /**
@@ -91,7 +91,9 @@ if (in_array($routingRequestPageWithoutData, $pages)) {
         $page = 'page-not-found';
     }
 }
-
+if($page=="add-article"){
+    $page="edit-article";
+}
 $action = _ACTIONS_PATH . $page . '.php';
 $view = _VIEWS_PATH . $page . '.php';
 

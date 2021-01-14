@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="pl">
 <?php
-showHtmlHead("Zaloguj", null, null, false);
+showHtmlHead("Zaloguj się","Zaloguj się na swoje konto",null,true,false);
 ?>
 
 <body class="login">
 	<?php
-	renderHtmlHeader(array("page"=>"login"));
+	renderHtmlHeader($userRole,array("page"=>"login"));
 	?>
 	<div id="login-box">
 		<h2>Zaloguj się</h2>
@@ -20,7 +20,7 @@ showHtmlHead("Zaloguj", null, null, false);
 			<!-- Okno z możliwością wpisania hasła użytkownika -->
 			<div class="login-part">
 				<label for="password">Hasło</label>
-				<input type="password" name="password" id="password" value="" />
+				<input type="password" name="password" id="password" value=""/>
 			</div>
 
 			<!-- Wypisanie błędów z talbicy errors -->

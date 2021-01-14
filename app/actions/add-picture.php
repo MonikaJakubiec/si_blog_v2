@@ -37,7 +37,7 @@ require_once _REPOSITORIES_PATH . DIRECTORY_SEPARATOR . 'PhotoRepository.php';
                 $i = 1;
                 while(file_exists($dirForCurrentFileUpload. DIRECTORY_SEPARATOR .$actualName.".".$extension))
                 {         
-                    $actualName = (string)$originalName."(".$i.")";
+                    $actualName = (string)$originalName."(".$i.")";//KUS TŁUMACZ SIĘ!!
                     $fileName = $actualName.".".$extension;
                     $i++;
                 }

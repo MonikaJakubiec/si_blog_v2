@@ -16,20 +16,27 @@ function getRandomString($length)
  * @param bool $random pobranie postow w losowej kolejnosci
  * @return array tablica [artykuly, sliderId]
  */
-function prepareFeaturedForSLider($limit = 3, $random = false, $timePerOneSlide = 1, $numOfSimultaneousSlides = 1, $returnNull = null)
+
+/**
+ * Zwraca tablicę z informacjami o slajderze
+ *
+ * @param integer $limit  liczba postow na slider
+ * @param boolean $random losowa kolejnosc slajdow
+ * @param integer $timePerOneSlide czas w sekundach na jeden slajd
+ * @param integer $numOfSimultaneousSlides liczba jednoczesnych postow na slajderze
+ * @return void
+ */
+function prepareFeaturedForSLider($limit = 3, $random = false, $timePerOneSlide = 1, $numOfSimultaneousSlides = 1)
 {
     require_once(_VIEWS_PATH . DIRECTORY_SEPARATOR . 'partials' . DIRECTORY_SEPARATOR  . 'featured.php');
     require_once(_CLASSES_PATH  . 'Article.php');
     require_once(_REPOSITORIES_PATH  . 'ArticleRepository.php');
-    if ($returnNull) {
-        return array(null, null, null);
-    }
     $sliderRandomId = "slider-" . getRandomString(5);
     $articleRepository = new ArticleRepository;
     if ($random)
-        $featuredArticles = $articleRepository->getArticles(true, true, $limit, 0, array(["random", "asc"]),);
+        $featuredArticles = $articleRepository->getArticles(true, true, $limit, 0,null, array(["random", "asc"]),);
     else
-        $featuredArticles = $articleRepository->getArticles(true, true, $limit, 0);
+        $featuredArticles = $articleRepository->getArticles(true, true, $limit, 0,null);
 
 
     $numOfSlides = count($featuredArticles);
@@ -56,7 +63,7 @@ function prepareFeaturedForSLider($limit = 3, $random = false, $timePerOneSlide 
     return array($featuredArticles, $sliderRandomId, $numOfSimultaneousSlides);
     }
     else
-    return array(null, $sliderRandomId, $numOfSimultaneousSlides);
+    return null;
 }
 
 function getFrontendPath($path)
@@ -74,7 +81,7 @@ function renderHeadStyle()
 {
     global $stylesToInsertInline;
     if (strlen($stylesToInsertInline) > 0)
-        echo "<style>" . $stylesToInsertInline . "</style>";
+        echo "<!--custom style start--><style>" . $stylesToInsertInline . "</style><!--custom style end-->";
 }
 
 /**
@@ -122,12 +129,13 @@ function renderAlerts()
 }
 
 
-function showNotFoundPage(){
+function showNotFoundPage($userRole=null){
+
     $pageNewNotFound = 'page-not-found';
     $actionNewNotFound = _ACTIONS_PATH . $pageNewNotFound . '.php';
     $viewNewNotFound = _VIEWS_PATH . $pageNewNotFound . '.php';
     if (file_exists($actionNewNotFound))
-        include($actionNew);
+        include($actionNewNotFound);
     if (file_exists($viewNewNotFound))
         include($viewNewNotFound);
         else

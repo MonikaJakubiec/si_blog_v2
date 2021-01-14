@@ -5,14 +5,15 @@ require_once(_ACTIONS_PATH  . 'functions.php');
 ?>
 <!DOCTYPE html>
 <html lang="pl">
-<?php showHtmlHead(_SITE_NAME . "— Strona główna", "Zobacz najnowsze artykuły", null); ?>
+<?php showHtmlHead($htmlTitle, "Zobacz najnowsze artykuły",null,false); ?>
 
 <body>
-    <?php renderHtmlHeader(array("page"=>"listing")); ?>
+    <?php renderHtmlHeader($userRole, array("page" => "listing")); ?>
     <section id="main">
-   
+
         <?php
-         renderFeaturedSlider($featuredForSlider,"");
+        if ($featuredForSlider)
+            renderFeaturedSlider($featuredForSlider);
         if (is_array($newestArticles)) {
             if (count($newestArticles) > 0) {
         ?>
@@ -25,10 +26,10 @@ require_once(_ACTIONS_PATH  . 'functions.php');
                 </div>
         <?php
             } else {
-                echo '<p class="t-center">Wystąpił błąd - nie znaleziono artykułów.</p>';
+                echo '<p class="t-center alert">Wystąpił błąd - nie znaleziono artykułów.</p>';
             }
         } else {
-            echo '<p class="t-center">Wystąpił błąd. Przepraszamy. Spróbuj ponownie później.</p>';
+            echo '<p class="t-center alert">Wystąpił błąd. Przepraszamy. Spróbuj ponownie później.</p>';
         }
         ?>
     </section>
@@ -44,4 +45,5 @@ require_once(_ACTIONS_PATH  . 'functions.php');
     </nav>
     <?php showHtmlFooter(); ?>
 </body>
+
 </html>
