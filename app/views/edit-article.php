@@ -15,7 +15,6 @@ showHtmlHead("Dodawanie artykułu", null, null, true,false);
     renderHtmlHeader($userRole,array());
     ?>
     <main id="content-box">
-        <!--changed from content- duplicated id-->
         <h2 class="no-bcg t-center">Dodaj artykuł</h2>
         <form class="edit-article no-bcg t-center" method="post" action="<?= _RHOME ?>edit-article/" enctype="multipart/form-data">
             <div>

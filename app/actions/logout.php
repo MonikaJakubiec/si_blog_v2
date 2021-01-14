@@ -8,4 +8,3 @@ session_start();
 addAlert("Pomyślnie wylogowano<br><a href=\""._RHOME."login/\">Zaloguj ponownie.</a>","success");
 header("Location: " . _RHOME);
 exit();
-?>

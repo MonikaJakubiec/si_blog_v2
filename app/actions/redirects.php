@@ -41,4 +41,3 @@ function redirectIfNotAdmin($userRole) {
     exit();
   }
 }
-?>

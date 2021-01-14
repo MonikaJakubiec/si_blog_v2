@@ -26,36 +26,35 @@ function prepareFeaturedForSLider($limit = 3, $random = false, $timePerOneSlide 
     $sliderRandomId = "slider-" . getRandomString(5);
     $articleRepository = new ArticleRepository;
     if ($random)
-        $featuredArticles = $articleRepository->getArticles(true, true, $limit, 0,null, array(["random", "asc"]),);
+        $featuredArticles = $articleRepository->getArticles(true, true, $limit, 0, null, array(["random", "asc"]),);
     else
-        $featuredArticles = $articleRepository->getArticles(true, true, $limit, 0,null);
+        $featuredArticles = $articleRepository->getArticles(true, true, $limit, 0, null);
 
 
     $numOfSlides = count($featuredArticles);
-    if($numOfSlides>0){
-    $keyframesName = "transition-" . $sliderRandomId;
+    if ($numOfSlides > 0) {
+        $keyframesName = "transition-" . $sliderRandomId;
 
-    addToHeadStyle("@keyframes " . $keyframesName . " { ");
-    $timeForAllSlides = $numOfSlides * $timePerOneSlide;
-    $percentPerSlide = 100 / $numOfSlides; //czas na slajd ze zmiana
-    $percentPerTransition = min(5, $percentPerSlide / 3); //5%, ale nie wiecej niż 1/3 dlugosci slajdu
-    for ($slideNum = 0; $slideNum <= $numOfSlides - $numOfSimultaneousSlides; $slideNum++) {
+        addToHeadStyle("@keyframes " . $keyframesName . " { ");
+        $timeForAllSlides = $numOfSlides * $timePerOneSlide;
+        $percentPerSlide = 100 / $numOfSlides; //czas na slajd ze zmiana
+        $percentPerTransition = min(5, $percentPerSlide / 3); //5%, ale nie wiecej niż 1/3 dlugosci slajdu
+        for ($slideNum = 0; $slideNum <= $numOfSlides - $numOfSimultaneousSlides; $slideNum++) {
 
-        addToHeadStyle(number_format($slideNum * $percentPerSlide, 2, '.', '') . '% {left: ' . number_format((-$slideNum * 100 / $numOfSimultaneousSlides), 2, '.', '') . '%;} ');
-        addToHeadStyle(number_format(($slideNum + 1) * $percentPerSlide - $percentPerTransition, 2, '.', '') . '% {left: ' . number_format((-$slideNum * 100 / $numOfSimultaneousSlides), 2, '.', '') . '%;} ');
-    }
-    $lastOffset = $numOfSlides - $numOfSimultaneousSlides;
-    addToHeadStyle("95% {left:" . number_format(- ($lastOffset * 100 / $numOfSimultaneousSlides), 2, '.', '') . "%;}");
-    addToHeadStyle("100% {left:0%;}");
-    addToHeadStyle(" }");
+            addToHeadStyle(number_format($slideNum * $percentPerSlide, 2, '.', '') . '% {left: ' . number_format((-$slideNum * 100 / $numOfSimultaneousSlides), 2, '.', '') . '%;} ');
+            addToHeadStyle(number_format(($slideNum + 1) * $percentPerSlide - $percentPerTransition, 2, '.', '') . '% {left: ' . number_format((-$slideNum * 100 / $numOfSimultaneousSlides), 2, '.', '') . '%;} ');
+        }
+        $lastOffset = $numOfSlides - $numOfSimultaneousSlides;
+        addToHeadStyle("95% {left:" . number_format(- ($lastOffset * 100 / $numOfSimultaneousSlides), 2, '.', '') . "%;}");
+        addToHeadStyle("100% {left:0%;}");
+        addToHeadStyle(" }");
 
-    addToHeadStyle("#featured-slider .slider#" . $sliderRandomId . " { animation: " . $timeForAllSlides . "s " . $keyframesName . " infinite; }");
+        addToHeadStyle("#featured-slider .slider#" . $sliderRandomId . " { animation: " . $timeForAllSlides . "s " . $keyframesName . " infinite; }");
 
-    addToHeadStyle("#featured-slider .slider#" . $sliderRandomId . ":hover {animation-play-state: paused;}");
-    return array($featuredArticles, $sliderRandomId, $numOfSimultaneousSlides);
-    }
-    else
-    return null;
+        addToHeadStyle("#featured-slider .slider#" . $sliderRandomId . ":hover {animation-play-state: paused;}");
+        return array($featuredArticles, $sliderRandomId, $numOfSimultaneousSlides);
+    } else
+        return null;
 }
 
 function getFrontendPath($path)
@@ -121,7 +120,8 @@ function renderAlerts()
 }
 
 
-function showNotFoundPage($userRole=null){
+function showNotFoundPage($userRole = null)
+{
 
     $pageNewNotFound = 'page-not-found';
     $actionNewNotFound = _ACTIONS_PATH . $pageNewNotFound . '.php';
@@ -130,7 +130,7 @@ function showNotFoundPage($userRole=null){
         include($actionNewNotFound);
     if (file_exists($viewNewNotFound))
         include($viewNewNotFound);
-        else
+    else
         echo "<h1>Nie znaleziono</h1>";
     exit();
 }
@@ -148,7 +148,8 @@ function secureInputText($data)
 /**
  * konwersja tekstu na postać bezpieczna do wstawienia do bazy sql
  */
-function secureInputTextWithTrimSpaces($data) { 
+function secureInputTextWithTrimSpaces($data)
+{
     $data = trim($data);
     $data = stripslashes($data); //zabezpieczenia cudzysłowów
     $data = htmlspecialchars($data); //konwersja znaków specjalnych HTML do encji HTML

@@ -23,4 +23,3 @@ if(isset($_POST['username'])) {
       $errors['login-validation'] = "Podano niewłaściwe dane logowania!";
     }
 }
-?>
