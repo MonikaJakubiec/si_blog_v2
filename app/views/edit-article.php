@@ -2,14 +2,12 @@
 <html lang="pl">
 <?php require_once(_PRIVATE_PATH . DIRECTORY_SEPARATOR . 'keys.php'); ?>
 <?php
-// require_once(_VIEWS_PATH . 'partials' . DIRECTORY_SEPARATOR . 'admin-menu.php');
 require_once(_VIEWS_PATH . 'partials' . DIRECTORY_SEPARATOR . 'add-picture.php');
 showHtmlHead("Dodawanie artykułu", null, null, true,false);
 ?>
 
 <body class="admin">
     <script src="<?= _RESOURCES_PATH . 'js' . DIRECTORY_SEPARATOR . 'manage-articles-users.js' ?>"></script>
-
 
     <?php
     if($articleToEdit)

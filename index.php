@@ -9,6 +9,7 @@ $opisStrony=('Najciekawsze artykuły o technologii');//tytuł strony (wyświetla
 
 /** katalog w ktorym znajduje się aplikajca */
 define('_RHOME', $routingCurrDir);
+
 require_once('app' . DIRECTORY_SEPARATOR . 'private' . DIRECTORY_SEPARATOR . 'config.php');
 
 /** katalog z widokami */
@@ -17,7 +18,7 @@ define('_VIEWS_PATH',  'app' . DIRECTORY_SEPARATOR . 'views'.DIRECTORY_SEPARATOR
 /** katalog z kontrolerami */
 define('_ACTIONS_PATH',  'app' . DIRECTORY_SEPARATOR . 'actions'.DIRECTORY_SEPARATOR);
 
-/** katalog z clasami */
+/** katalog z klasami */
 define('_CLASSES_PATH', 'app' . DIRECTORY_SEPARATOR . 'classes'.DIRECTORY_SEPARATOR);
 
 /** katalog z danymi prywatnymi */
@@ -26,11 +27,11 @@ define('_PRIVATE_PATH', 'app' . DIRECTORY_SEPARATOR . 'private'.DIRECTORY_SEPARA
 /** katalog z repozytoriami */
 define('_REPOSITORIES_PATH', 'app' . DIRECTORY_SEPARATOR . 'repositories'.DIRECTORY_SEPARATOR);
 
-/** katalog z repozytoriami */
+/** plik z polaczeniem z baza danych */
 define('_PDO_FILE', 'app' . DIRECTORY_SEPARATOR . 'pdo'.DIRECTORY_SEPARATOR.'pdo.php');
 
 /** katalog z zasobami css/js/images */
-define('_RESOURCES_PATH', _RHOME . 'app' . DIRECTORY_SEPARATOR . 'resources'.DIRECTORY_SEPARATOR);//TODO:
+define('_RESOURCES_PATH', _RHOME . 'app' . DIRECTORY_SEPARATOR . 'resources'.DIRECTORY_SEPARATOR);//TODO:   
 
 /** katalog z wgranymi plikami */
 define('_UPLOADS_PATH', 'uploads');

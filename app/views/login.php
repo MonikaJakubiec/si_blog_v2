@@ -27,7 +27,6 @@ showHtmlHead("Zaloguj się","Zaloguj się na swoje konto",null,true,false);
 			<?php if (array_key_exists('login-validation', $errors)) : ?>
 				<div class="error"><?= $errors['login-validation'] ?></div><?php endif; ?>
 
-			<!-- Przycisk potwierdzający wysłanie danych -->
 			<div class="login-part">
 				<input class="button login" type="submit" value="Zaloguj" />
 			</div>

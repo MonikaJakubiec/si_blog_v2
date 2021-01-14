@@ -2,18 +2,16 @@
 function showFileInput($errors)
 {
 ?>
-    <!-- Okno z możliwością wpisania tytułu książki -->
-    <!--TODO: TŁUMACZYĆ SIĘ Z KSIĄŻEK-->
     <div><label for="fileAlt">Opis</label></div>
     <div><input type="text" name="alt" value="" id="fileAlt" /></div>
 
-    <!-- Wypisanie błędów z talbicy errors -->
+    <!-- Wypisanie błędów z talblicy errors -->
     <?php if (array_key_exists('alt', $errors)) : ?>
         <div class="error"><?php echo $errors['alt'] ?></div><?php endif; ?>
 
-    <!-- Okno z możliwością wybrania pliku (okładki książki) -->
     <div><label for="file">Plik</label></div>
     <div><input type="file" name="file" id="file" accept="image/jpeg, image/png" /></div>
+    
     <!-- Wypisanie błędów z talbicy errors -->
     <?php if (array_key_exists('file', $errors)) : ?>
         <div class="error"><?php echo $errors['file'] ?></div><?php endif; ?>

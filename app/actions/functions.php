@@ -153,6 +153,9 @@ function secureInputText($data)
     return $data;
 }
 
+/**
+ * konwersja tekstu na postać bezpieczna do wstawienia do bazy sql
+ */
 function secureInputTextWithTrimSpaces($data) { 
     $data = trim($data);
     $data = stripslashes($data); //zabezpieczenia cudzysłowów

@@ -5,6 +5,7 @@ require_once _REPOSITORIES_PATH . 'UserRepository.php';
 
 $userRepository = new UserRepository();
 
+//usuwanie uzytkowanika na podstawie id z GET
 if (isset($_GET['delete-user'])) {
     $userRepository->deleteUser($_GET['delete-user']);
 }

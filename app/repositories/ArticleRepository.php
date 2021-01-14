@@ -81,7 +81,7 @@ final class ArticleRepository
 		if ($limit > 0)
 			$limitQueryPart = "LIMIT :limit ";
 
-		//dodanie limitu
+		//dodanie filtrowania artykulow wg uzytkownika
 		$filterByUserQueryPart = '';
 		if ($userId)
 			$filterByUserQueryPart = " AND User.id=:userId ";
@@ -110,8 +110,8 @@ final class ArticleRepository
 			}
 		}
 
-		$OrderByQueryPart = trim($OrderByQueryPart, ','); //usuniecie ewentualnego przecinka na kmońcu
-		if (strlen($OrderByQueryPart) > 1) //jeżli zostałty dodane sortowania
+		$OrderByQueryPart = trim($OrderByQueryPart, ','); //usuniecie ewentualnego przecinka na koncu
+		if (strlen($OrderByQueryPart) > 1) //jeżli zostały dodane sortowania
 			$OrderByQueryPart = "ORDER BY " . $OrderByQueryPart;
 		$OrderByQueryPart .= ' ';
 
@@ -121,7 +121,7 @@ final class ArticleRepository
 			foreach ($excludePost as &$exludePostId) {
 				$filterByNotInPostIds .= $exludePostId . ",";
 			}
-			$filterByNotInPostIds = trim($filterByNotInPostIds, ','); //usuniecie przecinka na kmońcu
+			$filterByNotInPostIds = trim($filterByNotInPostIds, ','); //usuniecie przecinka na koncu
 			$filterByNotInPostIds .= ") ";
 		}
 
@@ -168,72 +168,7 @@ final class ArticleRepository
 
 	public function getArticlesCreatedByUser($userId, $sortBy)
 	{
-		
 		return $this->getArticles(false,false,null,0,$userId,$sortBy);
-		// require _PDO_FILE;
-		// $articlesWithPhotoAndUserInfo = [];
-
-		// //start to discuss
-		// //dodanie sortowania
-		// $availableSortColumns = array(
-		// 	"id" => "Article.id",
-		// 	"title" => "Article.title",
-		// 	"status" => "Article.status",
-		// 	"author" => "User.name",
-		// 	"publishedTime" => "Article.published_timestamp",
-		// 	"random" => "RAND()"
-		// );
-		// $OrderByQueryPart = '';
-		// foreach ($sortBy as &$sortOption) {
-		// 	if (array_key_exists($sortOption[0], $availableSortColumns)) {
-		// 		$OrderByQueryPart .= $availableSortColumns[$sortOption[0]] . " ";
-		// 		if ($sortOption[1] == "DESC") //zabezpieczenie na wypadek wpisania innej opcji
-		// 			$OrderByQueryPart .= "DESC,";
-		// 		else
-		// 			$OrderByQueryPart .= "ASC,";
-		// 	}
-		// }
-
-		// $OrderByQueryPart = trim($OrderByQueryPart, ','); //usuniecie ewentualnego przecinka na kmońcu
-		// if (strlen($OrderByQueryPart) > 1) //jeżli zostałty dodane sortowania
-		// 	$OrderByQueryPart = "ORDER BY " . $OrderByQueryPart;
-
-		// $OrderByQueryPart .= ' ';
-		// //end to discuss
-
-		// $stmt = $db->prepare('SELECT Article.id as article_id, Article.user_id, Article.photo_id, Article.is_featured, Article.status, Article.title, Article.published_timestamp, Article.content, Photo.path as photo_path, Photo.alt as photo_alt, User.name as user_name, User.role as user_role FROM Article LEFT JOIN Photo ON Article.photo_id = Photo.id LEFT JOIN User ON Article.user_id = User.id WHERE Article.user_id = :userId AND Article.status != "archived"' . $OrderByQueryPart);
-
-		// //to remove: ORDER BY published_timestamp DESC
-
-		// $stmt->bindValue(':userId', $userId, PDO::PARAM_INT);
-		// $success = $stmt->execute();
-		// if (!$success) {
-		// 	$stmt->closeCursor();
-		// 	$db = null;
-		// 	return null;
-		// }
-		// while ($articleInfo = $stmt->fetch()) {
-		// 	$article = new Article($articleInfo['article_id'], $articleInfo['title'], $articleInfo['content'], $articleInfo['published_timestamp'], $articleInfo['status'], $articleInfo['is_featured'], $articleInfo['user_id'], $articleInfo['photo_id']);
-		// 	$user = new User($articleInfo['user_id'], $articleInfo['user_name'], "", $articleInfo['user_role']);
-		// 	if ($articleInfo['photo_id'] != NULL) {
-		// 		$photo = new Photo($articleInfo['photo_id'], $articleInfo['photo_path'], $articleInfo['photo_alt']);
-		// 		$articlePhotoUser = array(
-		// 			"article" => $article,
-		// 			"photo" => $photo,
-		// 			"user" => $user,
-		// 		);
-		// 	} else {
-		// 		$articlePhotoUser = array(
-		// 			"article" => $article,
-		// 			"user" => $user,
-		// 		);
-		// 	}
-		// 	array_push($articlesWithPhotoAndUserInfo, $articlePhotoUser);
-		// }
-		// $stmt->closeCursor();
-		// $db = null;
-
-		// return $articlesWithPhotoAndUserInfo;
 	}
 
 	public function getArticlesCount($onlyPublished = false, $onlyFeatured = false)

@@ -72,8 +72,8 @@ final class UserRepository {
 			}
 		}
 
-		$OrderByQueryPart=trim($OrderByQueryPart, ',');//usuniecie ewentualnego przecinka na kmońcu
-		if(strlen($OrderByQueryPart)>1)//jeżli zostałty dodane sortowania
+		$OrderByQueryPart=trim($OrderByQueryPart, ',');//usuniecie ewentualnego przecinka na koncu
+		if(strlen($OrderByQueryPart)>1)//jeżeli zostały dodane sortowania
 		$OrderByQueryPart = "ORDER BY " . $OrderByQueryPart;
 
 		$OrderByQueryPart .= ' ';

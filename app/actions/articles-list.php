@@ -3,6 +3,7 @@ redirectIfNotLoggedIn();
 
 require_once(_REPOSITORIES_PATH  . 'ArticleRepository.php');
 
+//usuniecie artykulu na podstawie id z GET
 if (isset($_GET['delete-article'])) {
     (new ArticleRepository())->deleteArticle($_GET['delete-article']);
 }
@@ -13,6 +14,8 @@ $newSortDirections = array(
     "publishedTime" => "ASC",
 );
 $articleRepository = new ArticleRepository;
+
+//paramtery sortowania
 if (isset($_GET['sortBy'])) {
     $sortColumn = $_GET['sortBy'];
     $sortDirection = isset($_GET['sortDir']) ? $_GET['sortDir'] : "ASC";
