@@ -16,7 +16,7 @@ showHtmlHead("Rejestracja", null, null,true,false);
 			<!-- Okno z możliwością wpisania nazwy użytkownika -->
 			<div class="login-part">
 				<label for="username">Nazwa użytkownika</label>
-				<input type="text" name="username" id="username" value="<?= $username ?>" />
+				<input type="text" name="username" id="username" value="<?= $username ?>" required />
 			</div>
 			<!-- Wypisanie błędów z talbicy errors -->
 			<?php if (array_key_exists('register-username', $errors)) : ?>
@@ -25,13 +25,13 @@ showHtmlHead("Rejestracja", null, null,true,false);
 			<!-- Okno z możliwością wpisania hasła użytkownika -->
 			<div class="login-part">
 				<label for="first_password">Hasło</label>
-				<input type="password" name="first_password" id="first_password" autocomplete="new-password" value="" placeholder="<?= $isEditForm ? 'Wypełnij, jeśli chcesz zmienić' : '' ?>"/>
+				<input type="password" name="first_password" id="first_password" <?= $isEditForm ? '' : 'required' ?> autocomplete="new-password" value="" placeholder="<?= $isEditForm ? 'Wypełnij, jeśli chcesz zmienić' : '' ?>"/>
 			</div>
 
 			<!-- Okno z możliwością wpisania hasła użytkownika -->
 			<div class="login-part">
 				<label for="second_password">Powtórz hasło</label>
-				<input type="password" name="second_password" id="second_password" autocomplete="new-password" value="" placeholder="<?= $isEditForm ? 'Wypełnij, jeśli chcesz zmienić' : '' ?>"/>
+				<input type="password" name="second_password" id="second_password" <?= $isEditForm ? '' : 'required' ?> autocomplete="new-password" value="" placeholder="<?= $isEditForm ? 'Wypełnij, jeśli chcesz zmienić' : '' ?>"/>
 			</div>
 
 			<!-- Wypisanie błędów z talbicy errors -->
@@ -60,7 +60,9 @@ showHtmlHead("Rejestracja", null, null,true,false);
 		</form>
 	</div>
 
-	<script>preventExit();</script>
+	<script>
+		preventExit();
+	</script>
 </body>
 
 </html>

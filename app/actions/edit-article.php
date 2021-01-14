@@ -58,6 +58,10 @@ if (isset($_POST['title'])) {
         $status = $isArticlePublished ? 'draft' : 'published';
     }
 
+    if ($saveButtonClicked) {
+        $status = $isArticlePublished ? 'published' : 'draft';
+    }
+
     if ($saveButtonClicked || $isArticlePublished) {
         $publishTime = null;
     }

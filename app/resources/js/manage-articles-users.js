@@ -20,7 +20,9 @@ function showHideAddingPicture() {
         pInput.style.display = 'none';
     }
 }
+
 window.formSubmitted = true;//global variable
+
 function preventExit() {
     window.formSubmitted = false;
 
@@ -33,6 +35,7 @@ function preventExit() {
     });
     
 }
+
 function formSubmit() {
     window.formSubmitted = true;
 }
