@@ -52,7 +52,7 @@ showHtmlHead("Lista artykułów", null, null, true,false);
             else
             //TODO
                 {
-                    echo "<div class=\"t-center alert\"><h2>Nie masz jeszcze artykułów</h2><a class=\"button \" href=\"". _RHOME . "add-article/" . "\" style=\"color:unset\">Dodaj pierwszy!</a></div>";
+                    echo "<div class=\"t-center alert\"><h2>Nie masz jeszcze artykułów</h2><a class=\"button \" href=\"". _RHOME . "add-article/" . "\">Dodaj pierwszy!</a></div>";
                 }
             ?>
 

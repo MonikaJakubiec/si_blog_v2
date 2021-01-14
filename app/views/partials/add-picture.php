@@ -2,7 +2,7 @@
 function showFileInput($errors)
 {
 ?>
-    <div><label for="fileAlt">Opis</label></div>
+    <div><label for="fi leAlt">Opis</label></div>
     <div><input type="text" name="alt" value="" id="fileAlt" /></div>
 
     <!-- Wypisanie błędów z talblicy errors -->

@@ -433,6 +433,11 @@ body.login #login-box .login-part {
   margin: 20px 8px;
 }
 
+body.login #login-box .button {
+  font-size: 14px;
+  width: auto;
+}
+
 body.login a.return {
   display: block;
   color: #fff;

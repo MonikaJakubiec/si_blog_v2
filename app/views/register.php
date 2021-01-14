@@ -51,7 +51,7 @@ showHtmlHead("Rejestracja", null, null,true,false);
 			<input type="hidden" name="edit-user" value="<?= $id ?>">
 			<div class="login-part">
 			<!-- TODO -->
-				<input class="button" style="width: 0%; font-size: 14px;" type="submit" value="<?= $isEditForm ? 'Zaktualizuj' : 'Zarejestruj' ?>" onclick="formSubmit()"/>
+				<input class="button" type="submit" value="<?= $isEditForm ? 'Zaktualizuj' : 'Zarejestruj' ?>" onclick="formSubmit()"/>
 			</div>
 
 			<div class="login-part">
