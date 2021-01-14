@@ -3,9 +3,9 @@ require_once(_CLASSES_PATH  . 'Article.php');
 require_once(_REPOSITORIES_PATH  . 'ArticleRepository.php');
 $articleRepository = new ArticleRepository;
 
-$articleId = false;
+$articleId = null;//brak artykulu
 $routingRequestPageWithDataForArticle;
-//szukanie id posta w adresie url
+//proba pobrania id artykulu z adresu url
 for ($counter = 0; $counter < count($routingRequestPageWithDataForArticle) - 1; $counter++) {
     if ($routingRequestPageWithDataForArticle[$counter] = "article") {
         if (is_numeric($routingRequestPageWithDataForArticle[$counter + 1])) {

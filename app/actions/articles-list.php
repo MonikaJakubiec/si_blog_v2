@@ -30,15 +30,6 @@ if (isset($_GET['sortBy'])) {
     $sortColumn = "id";
     $sortDirection = "DESC";
 }
-//dodanie sortowania po statusie, jeśli wybrano sortowanie po dacie publikacji
-if ($sortColumn == "publishedTime") {
-    $sortArray=[];
-    if ($sortDirection == "DESC")
-        array_push($sortArray, ["status", "ASC"]);
-    else
-    array_push($sortArray, ["status", "DESC"]);
-    array_push($sortArray, [$sortColumn, $sortDirection]);
-} else
     $sortArray = array([$sortColumn, $sortDirection]);
 
 if($userRole == 'administrator') {

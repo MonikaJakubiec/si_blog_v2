@@ -14,9 +14,8 @@ window.onscroll = function() {
 };
 
 function resizeHeader() {
-    const minimumScrollOffset = 80; //minimalny scroll w px, po ktorym zostanie zmnnniejszony header
+    const minimumScrollOffset = 80; //minimalny scroll w px, po ktorym zostanie zmnnniejszony header (od liczby odjeta zostanie połowa histerezy)
     const hysteresis = 80; //dodanie histerezy, aby rozmiar nie przeskakiwał, z zakresu <0;2*minimumScrollOffset)
-    console.log(document.documentElement.scrollTop);
     if ((document.body.scrollTop > (minimumScrollOffset + hysteresis/2)) ||
         document.documentElement.scrollTop > (minimumScrollOffset + hysteresis/2)) {
         if (!window.scrolled) {
