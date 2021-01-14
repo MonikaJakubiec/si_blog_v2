@@ -2,7 +2,7 @@
 require_once _CLASSES_PATH . DIRECTORY_SEPARATOR . 'AddPhotoRequest.php';
 require_once _REPOSITORIES_PATH . DIRECTORY_SEPARATOR . 'PhotoRepository.php';
     $photoRepo = new PhotoRepository();
-    $allPhotos = $photoRepo->getAllPhotos(); //pobranie zdjec z bazy danych
+    
     
     /**
      * pobranie rozszerzenia pliku z nazwy (bez kropki)
@@ -82,4 +82,3 @@ require_once _REPOSITORIES_PATH . DIRECTORY_SEPARATOR . 'PhotoRepository.php';
         }
         return $returnId;
     }
-?>

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="pl">
 <?php
-showHtmlHead("Panel administracyjny",null,null,true,false);
+showHtmlHead("Panel administracyjny", null, null, true, false);
 ?>
 
 <body class="admin">
     <?php
-    renderHtmlHeader($userRole,array("page" => "admin-panel"));
+    renderHtmlHeader($userRole, array("page" => "admin-panel"));
     ?>
     <div class="tiles boxed">
         <div class="tile">

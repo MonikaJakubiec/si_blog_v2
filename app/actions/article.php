@@ -3,9 +3,9 @@ require_once(_CLASSES_PATH  . 'Article.php');
 require_once(_REPOSITORIES_PATH  . 'ArticleRepository.php');
 $articleRepository = new ArticleRepository;
 
-$articleId = false;
+$articleId = null; //brak artykulu
 $routingRequestPageWithDataForArticle;
-//szukanie id posta w adresie url
+//proba pobrania id artykulu z adresu url
 for ($counter = 0; $counter < count($routingRequestPageWithDataForArticle) - 1; $counter++) {
     if ($routingRequestPageWithDataForArticle[$counter] = "article") {
         if (is_numeric($routingRequestPageWithDataForArticle[$counter + 1])) {
@@ -17,19 +17,16 @@ for ($counter = 0; $counter < count($routingRequestPageWithDataForArticle) - 1; 
 $articleData = null;
 if ($articleId) {
     $featuredForSliderAside = prepareFeaturedForSLider(3, true, 3, 1);
-    
-    $articleData = $articleRepository->getArticleById($articleId);
-    
-    if($articleData!=null)
-    {
-    $articleMetaDescription=htmlentities(substr(preg_replace('!\s+!', ' ', Strip_tags(html_entity_decode($articleData['article']->getContent()))), 0, 160));
-    $newestArticles = $articleRepository->getArticles(true, false, 10,0);
-    $userArticles=$articleRepository->getArticles(true,false,10,0,$articleData["user"]->getId(), array(["publishedTime", "DESC"]),[$articleId]);
 
+    $articleData = $articleRepository->getArticleById($articleId);
+
+    if ($articleData != null) {
+        $articleMetaDescription = htmlentities(substr(preg_replace('!\s+!', ' ', Strip_tags(html_entity_decode($articleData['article']->getContent()))), 0, 160));
+        $newestArticles = $articleRepository->getArticles(true, false, 10, 0,null,array(['publishedTime','DESC']));
+        $userArticles = $articleRepository->getArticles(true, false, 10, 0, $articleData["user"]->getId(), array(["publishedTime", "DESC"]), [$articleId]);
     }
-    
 } else {
     showNotFoundPage();
 }
-if($articleData==null)
-showNotFoundPage();
+if ($articleData == null)
+    showNotFoundPage();

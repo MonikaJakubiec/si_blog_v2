@@ -168,7 +168,7 @@ final class ArticleRepository
 
 	public function getArticlesCreatedByUser($userId, $sortBy)
 	{
-		return $this->getArticles(false,false,null,0,$userId,$sortBy);
+		return $this->getArticles(false, false, null, 0, $userId, $sortBy);
 	}
 
 	public function getArticlesCount($onlyPublished = false, $onlyFeatured = false)

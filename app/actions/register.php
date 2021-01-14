@@ -12,7 +12,7 @@ $role = null;
 $id = null;
 
 if (isset($_POST['username'])) {
-    if(isset($_POST['edit-user']) && $_POST['edit-user'] != '') {
+    if (isset($_POST['edit-user']) && $_POST['edit-user'] != '') {
         $user = (new UserRepository())->getUserById($_POST['edit-user']);
         $username = $user->getName();
         $role = $user->getRole();
@@ -39,7 +39,12 @@ if (isset($_POST['username'])) {
             $errors['register-password'] = "Hasło powinno mieć od 4 do 20 znaków";
         }
 
+
         if ($firstPassword != $_POST['first_password']) {
+            $errors['register-password'] = "Użyto niedozwolonych znaków w haśle";
+        }
+
+        if ($secondPassword != $_POST['second_password']) {
             $errors['register-password'] = "Użyto niedozwolonych znaków w haśle";
         }
 
@@ -67,7 +72,7 @@ if (isset($_POST['username'])) {
 
                 (new UserRepository())->updateUser($user);
                 addAlert("Zaktualizowano użytkownika", "success");
-            }            
+            }
 
             header('Location: ' . _RHOME . 'users-list/');
             exit();

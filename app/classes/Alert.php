@@ -7,7 +7,7 @@ class Alert
     private $backtrace;
 
     /**
-     * Undocumented function
+     * Konstruktor
      *
      * @param string $wiadomosć wyświetlana
      * @param string $rodzaj wiadomości (info/warning/success/error)
@@ -16,7 +16,7 @@ class Alert
      */
     public function __construct($message, $type = "info", $showOnlyInDebugMode = false, $backtrace = null)
     {
-        $allowedTypes = ["info", "warning", "success","error"];
+        $allowedTypes = ["info", "warning", "success", "error"];
         if (!in_array($type, $allowedTypes))
             $type = "info";
         $this->message = $message;
@@ -25,7 +25,7 @@ class Alert
         $this->backtrace = $backtrace;
     }
 
-    public function render($index=0)
+    public function render($index = 0)
     {
         global $debugMode;
         if ((!($this->showOnlyInDebugMode)) || ($this->showOnlyInDebugMode && $debugMode)) : ?>

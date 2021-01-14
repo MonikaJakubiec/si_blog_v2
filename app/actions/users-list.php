@@ -33,4 +33,3 @@ if (isset($_GET['sortBy'])) {
 
 $sortArray = array([$sortColumn, $sortDirection]);
 $allUsers = $userRepository->getAllUsers($sortArray);
-?>

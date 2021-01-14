@@ -10,7 +10,7 @@ function renderHtmlHeader($userRole, $pageInfo = array())
             <h1><a href="<?= _RHOME ?>"><?= _SITE_NAME ?></a></h1>
         </div>
     </header>
-    
+
 
     <?php
     renderAlerts();
@@ -22,7 +22,7 @@ function renderLoggedInMenu($pageInfo, $userRole)
         if (array_key_exists("page", $pageInfo))
             $page = $pageInfo["page"];
         else
-        $page=null;
+            $page = null;
     ?>
         <div id="admin-header-menu">
             <div class="links">

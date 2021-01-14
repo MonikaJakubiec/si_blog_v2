@@ -21,6 +21,7 @@ function showHtmlHead($title = "", $description = null, $author = null, $appendS
         <link rel="stylesheet" href="<?php echo getFrontendPath(_RESOURCES_PATH); ?>css/style.css">
         <?php if (isset($_SESSION['login'])) : ?>
             <link rel="stylesheet" href="<?php echo getFrontendPath(_RESOURCES_PATH); ?>css/style-admin.css">
+            <script src="<?= getFrontendPath(_RESOURCES_PATH . 'js/manage-articles-users.js') ?>"></script>
         <?php endif; ?>
         <link rel="stylesheet" type="text/css" href="<?php echo getFrontendPath(_RESOURCES_PATH); ?>css/prism.css">
         <script src="<?= getFrontendPath(_RESOURCES_PATH) . 'js/prism.js' ?>"></script>

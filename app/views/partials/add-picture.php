@@ -2,7 +2,7 @@
 function showFileInput($errors)
 {
 ?>
-    <div><label for="fileAlt">Opis</label></div>
+    <div><label for="fi leAlt">Opis</label></div>
     <div><input type="text" name="alt" value="" id="fileAlt" /></div>
 
     <!-- Wypisanie błędów z talblicy errors -->
@@ -11,7 +11,7 @@ function showFileInput($errors)
 
     <div><label for="file">Plik</label></div>
     <div><input type="file" name="file" id="file" accept="image/jpeg, image/png" /></div>
-    
+
     <!-- Wypisanie błędów z talbicy errors -->
     <?php if (array_key_exists('file', $errors)) : ?>
         <div class="error"><?php echo $errors['file'] ?></div><?php endif; ?>
@@ -37,7 +37,6 @@ function showGalleryInput($articleToView, $allPhotos)
 
                 <?php
                 foreach ($allPhotos as $photo) {
-                    //todo: check file exist
                     if (file_exists($photo->getPath())) {
                 ?>
                         <div class="photo-selection-option">

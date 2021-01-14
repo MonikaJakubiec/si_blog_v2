@@ -79,4 +79,3 @@ final class PhotoRepository {
 		$db = null;
 	}
 }
-?>
