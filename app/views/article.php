@@ -29,11 +29,11 @@
                         ?>
                             <ul class="newest">
                                 <?php
-                                foreach ($newestArticles as $article) {
+                                foreach ($newestArticles as $articleNew) {
                                 ?>
                                     <li>
-                                        <a href="<?= $article['article']->getUrl() ?>">
-                                            <?= $article['article']->getTitle() ?>
+                                        <a href="<?= $articleNew['article']->getUrl() ?>">
+                                            <?= $articleNew['article']->getTitle() ?>
                                         </a>
                                     </li>
                                 <?php

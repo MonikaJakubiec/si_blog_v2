@@ -67,8 +67,8 @@ if (isset($_POST['title'])) {
         $publishTime = null;
     }
 
-    if (strlen($title) < 1 || strlen($title) > 100) {
-        $errors['title'] = "Tytuł nie może być pusty i nie może przekraczać 100 znaków";
+    if (strlen($title) < 1 || strlen($title) >200) {
+        $errors['title'] = "Tytuł nie może być pusty i nie może przekraczać 200 znaków";
     }
 
     if (strlen($content) > 65530) {
