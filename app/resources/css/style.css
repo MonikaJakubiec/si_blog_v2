@@ -267,12 +267,12 @@ input.button.button-gray {
   padding: 0px 30px;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (minmax(380px, 1fr))[auto-fill];
-      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  -ms-grid-columns: (minmax(585px, 1fr))[auto-fill];
+      grid-template-columns: repeat(auto-fill, minmax(585px, 1fr));
   grid-gap: 30px;
 }
 
-@media only screen and (max-width: 440px) {
+@media only screen and (max-width: 645px) {
   .article-listing {
     -ms-grid-columns: none;
         grid-template-columns: none;
@@ -307,7 +307,7 @@ input.button.button-gray {
 
 .article-listing article img.featured {
   width: 100%;
-  height: 214px;
+  height: 254px;
   -o-object-fit: cover;
   object-fit: cover;
 }
@@ -616,7 +616,7 @@ body.login a.return {
   width: 100%;
   -webkit-animation: 5s transition-slider infinite;
   animation: 5s transition-slider infinite;
-  height: 50vh;
+  height: 70vh;
   font-size: 0;
 }
 

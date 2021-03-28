@@ -86,6 +86,7 @@ body.admin form.edit-article .tox.tox-tinymce {
 
 body.admin #photo-selection,
 body.admin #add-picture-from-file {
+  background-color: #000a51;
   color: #fff;
   border: 1px solid #aaa;
 }

@@ -7,7 +7,7 @@ $green-dark: #4caf50;
 $button-color: #fff;
 $max-width-default: 1200px;
 $article-listing-gap: 30px;
-$article-listing-cols: 3;
+$article-listing-cols: 2;
 $error-color: #fe121a;
 $success-color: #8bc34b;
 $info-color: #333;
@@ -277,7 +277,7 @@ input.button {
     }
     img.featured {
       width: 100%;
-      height: 214px;
+      height: 254px;
       -o-object-fit: cover;
       object-fit: cover;
     }
@@ -559,7 +559,7 @@ body.login {
     width: 100%; //zostanie nadpisane
     -webkit-animation: 5s transition-slider infinite;
     animation: 5s transition-slider infinite;
-    height: 50vh;
+    height: 70vh;
     font-size: 0; //usuniecie odstepu miedy elementami
     &:hover {
       -webkit-animation-play-state: paused;

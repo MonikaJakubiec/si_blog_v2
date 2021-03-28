@@ -19,7 +19,7 @@ showHtmlHead("Dodawanie artykułu", null, null, true, false);
         <form class="edit-article no-bcg t-center" method="post" action="<?= _RHOME ?>edit-article/" enctype="multipart/form-data">
             <div>
                 <label for="title">Tytuł</label><br>
-                <input type="text" id="title" name="title" placeholder="Wpisz tytuł" spellcheck="false " autofocus="true" value="<?= $articleToView->getTitle() ?>" minlength="1" maxlength="100" required>
+                <input type="text" id="title" name="title" placeholder="Wpisz tytuł" spellcheck="false " autofocus="true" value="<?= $articleToView->getTitle() ?>" minlength="1" maxlength="200" required>
             </div>
             <div class="error">
                 <?php

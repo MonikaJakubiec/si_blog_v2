@@ -1,3 +1,3 @@
-<?php define("_SITE_NAME", "Serwis newsowy");
-$postPerPage=12;
+<?php define("_SITE_NAME", "70 mln newsów");
+$postPerPage=8;
 $debugMode=false;
