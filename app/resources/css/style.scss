@@ -79,7 +79,7 @@ table {
 
 body {
   font: 100% $font-stack;
-  background: $primary-color;
+
   color: #000;
   margin: 0px;
   word-break: break-word;
@@ -101,6 +101,19 @@ body {
     padding: 4px 0px;
   }
 }
+header,body{
+  background-repeat: no-repeat;
+
+}
+
+body{
+  background-size: 100% 100%;
+}
+
+header{
+  background-size: 100% auto;
+}
+
 
 .m-auto {
   margin: 0 auto;
@@ -128,11 +141,11 @@ header {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  background: $primary-color;
+  background-color: transparent;
   z-index: 5;
   h1 {
     padding: 0px 8px;
-    margin: 0px auto;
+    margin: 0px 0px;
     font-size: 40px;
     color: $font-primary-color;
     line-height: 1.6;
@@ -140,7 +153,16 @@ header {
   }
   a {
     text-decoration: none;
-    color: unset;
+    color: $font-primary-color;
+  }
+  .boxed{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  a.login-button{
+    background-color: $primary-color;
+    padding: 8px;
   }
   top: 0px;
   transition: 0.4s ease;

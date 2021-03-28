@@ -19,6 +19,12 @@ function showHtmlHead($title = "", $description = null, $author = null, $appendS
         <title><?php echo $title;
                 if ($appendSiteNameToTitle) echo ' | ' . _SITE_NAME; ?></title>
         <link rel="stylesheet" href="<?php echo getFrontendPath(_RESOURCES_PATH); ?>css/style.css">
+        <style>
+            body, header {
+                background-image: url("<?php echo getFrontendPath(_RESOURCES_PATH) . "static/rainbow.jpg"; ?>");
+
+            }
+        </style>
         <?php if (isset($_SESSION['login'])) : ?>
             <link rel="stylesheet" href="<?php echo getFrontendPath(_RESOURCES_PATH); ?>css/style-admin.css">
             <script src="<?= getFrontendPath(_RESOURCES_PATH . 'js/manage-articles-users.js') ?>"></script>

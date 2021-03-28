@@ -63,7 +63,6 @@ table td {
 
 body {
   font: 100% cursive, Helvetica, sans-serif;
-  background: #000a51;
   color: #000;
   margin: 0px;
   word-break: break-word;
@@ -93,6 +92,18 @@ body footer {
   padding: 4px 0px;
 }
 
+header, body {
+  background-repeat: no-repeat;
+}
+
+body {
+  background-size: 100% 100%;
+}
+
+header {
+  background-size: 100% auto;
+}
+
 .m-auto {
   margin: 0 auto;
 }
@@ -119,7 +130,7 @@ header {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  background: #000a51;
+  background-color: transparent;
   z-index: 5;
   top: 0px;
   -webkit-transition: 0.4s ease;
@@ -128,7 +139,7 @@ header {
 
 header h1 {
   padding: 0px 8px;
-  margin: 0px auto;
+  margin: 0px 0px;
   font-size: 40px;
   color: #fff;
   line-height: 1.6;
@@ -138,7 +149,24 @@ header h1 {
 
 header a {
   text-decoration: none;
-  color: unset;
+  color: #fff;
+}
+
+header .boxed {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header a.login-button {
+  background-color: #000a51;
+  padding: 8px;
 }
 
 header.scroll {

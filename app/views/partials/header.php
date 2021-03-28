@@ -8,6 +8,9 @@ function renderHtmlHeader($userRole, $pageInfo = array())
 
         <div class="boxed">
             <h1><a href="<?= _RHOME ?>"><?= _SITE_NAME ?></a></h1>
+            <?php if(!isset($_SESSION['login'])):?>
+            <a class="login-button button" href="<?= _RHOME ?>admin-panel/">Zaloguj się</a>
+            <?php endif;?>
         </div>
     </header>
 
