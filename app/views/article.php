@@ -47,14 +47,14 @@
                         <?php
                         if (count($userArticles) > 0) {
                         ?>
-                            <p class="list-header">Inne wpisy autora <?php echo  $article['user']->getName(); ?>:</p>
+                            <p class="list-header">Inne wpisy autora <?php echo  $articleData['user']->getName(); ?>:</p>
                             <ul class="newest author">
                                 <?php
-                                foreach ($userArticles as $article) {
+                                foreach ($userArticles as $userArticle) {
                                 ?>
                                     <li>
-                                        <a href="<?= $article['article']->getUrl() ?>">
-                                            <?= $article['article']->getTitle() ?>
+                                        <a href="<?= $userArticle['article']->getUrl() ?>">
+                                            <?= $userArticle['article']->getTitle() ?>
                                         </a>
                                     </li>
                                 <?php
